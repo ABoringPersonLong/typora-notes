@@ -69,7 +69,7 @@ File -> Preferences -> Keyboard Shortcuts
 
 搜索 ctrl+space，找到 Trigger Suggest，修改成 alt+/
 
-## 3.设置格式化时 tab 缩进为 4 个空格
+## 3.设置格式化时，tab 缩进为 2 个空格
 
 1. 在设置中搜索 tab
 2. 将 **Editor: Tab Size** 打勾
