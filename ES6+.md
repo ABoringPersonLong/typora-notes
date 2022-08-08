@@ -1042,6 +1042,7 @@ phone.price = 'free';// 调用 set
 // 1. Number.EPSILON 是 JavaScript 表示的最小精度
 // EPSILON 属性的值接近于 2.2204460492503130808472633361816E-16
 function equals(a, b) {
+    // 判断精度是否小于 js 最小精度
     return Math.abs(a - b) < Number.EPSILON;
 }
 console.log(0.1 + 0.2 === 0.3);// false
