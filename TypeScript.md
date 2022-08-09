@@ -1,6 +1,6 @@
-# 1.TypeScript 介绍
+# 1. TypeScript 介绍
 
-## 1.TypeScript 是什么
+## 1. TypeScript 是什么
 
 **T**ype**S**cript（简称：TS）是 JavaScript 的超集（JS 有的 TS 都有）
 
@@ -10,7 +10,7 @@ TypeScript 是微软开发的开源编程语言，可以在任何运行 JavaScri
 
 ![](./TypeScript/TypeScript是什么.png)
 
-## 2.TypeScript 为什么要为 JS 添加类型支持？
+## 2. TypeScript 为什么要为 JS 添加类型支持？
 
 背景：JS 的类型系统存在 “先天缺陷”，JS 代码中绝大部分错误都是**类型**错误（Uncaught **Type**Error）
 
@@ -28,7 +28,7 @@ TypeScript 是微软开发的开源编程语言，可以在任何运行 JavaScri
 
 并且，配合 VSCode 等开发工具，TS 可以**提前到在编写代码的同时**就发现代码中的错误，**减少找 Bug、改 Bug 时间**
 
-## 3.TypeScript 相比 JS 的优势
+## 3. TypeScript 相比 JS 的优势
 
 1. 更早（写代码的同时）发现错误，**减少找 Bug、改 Bug 时间**，提升开发效率
 2. 程序中任何位置的代码都有**代码提示**，随时随地的安全感，增强了开发体验
@@ -38,9 +38,9 @@ TypeScript 是微软开发的开源编程语言，可以在任何运行 JavaScri
 
 除此之外，Vue 3 源码使用 TS 重写、Angular 默认支持 TS、React 与 TS 完美配合，TypeScript 已成为大中型前端项目的首先编程语言
 
-# 2.TypeScript 初体验
+# 2. TypeScript 初体验
 
-## 1.安装编译 TS 的工具包
+## 1. 安装编译 TS 的工具包
 
 问题：为什么要安装编译 TS 的工具包？
 
@@ -58,7 +58,7 @@ typescript 包：用来编译 TS 代码的包，提供了 **tsc** 命令，实�
 
 ![](./TypeScript/安装编译TS的工具包.png)
 
-## 2.编译并运行 TS 代码
+## 2. 编译并运行 TS 代码
 
 1. 创建 hello.ts 文件（注意：TS 文件的后缀名为 **.ts**）
 2. 将 TS 编译为 JS：在终端中输入命令，**tsc** hello.ts（此时，在同级目录中会出现一个同名的 JS 文件）
@@ -71,7 +71,7 @@ typescript 包：用来编译 TS 代码的包，提供了 **tsc** 命令，实�
 > 注意：由 TS 编译生成的 **JS 文件**，代码中就**没有类型信息**了
 >
 
-## 3.简化运行 TS 的步骤
+## 3. 简化运行 TS 的步骤
 
 问题描述：每次修改代码后，都要**重复执行**两个命令，才能运行 TS 代码，太繁琐
 
@@ -92,7 +92,7 @@ ts-node hello.ts
 > 解释：ts-node 命令在内部偷偷的将 TS -> JS，然后，再运行 JS 代码
 >
 
-# 3.TypeScript 常用类型
+# 3. TypeScript 常用类型
 
 **概述**
 
@@ -106,7 +106,7 @@ TypeScript 类型系统的主要优势：可以**显示标记出代码中的意�
 1. 类型注解
 2. 常用基础类型
 
-## 1.类型注解
+## 1. 类型注解
 
 示例代码：
 
@@ -120,7 +120,7 @@ TypeScript 类型系统的主要优势：可以**显示标记出代码中的意�
 
 ![](./TypeScript/类型注解2.png)
 
-## 2.常用基础类型概述
+## 2. 常用基础类型概述
 
 可以将 TS 中的常用基础类型细分为两类：1 JS 已有类型 2 TS 新增类型。
 
@@ -130,7 +130,7 @@ TypeScript 类型系统的主要优势：可以**显示标记出代码中的意�
 2. TS 新增类型
    - 联合类型、类型别名（自定义类型）、接口、元组、字面量类型、枚举、void、any 等
 
-## 3.原始类型
+## 3. 原始类型
 
 原始类型：number/string/boolean/null/undefined/symbol
 
@@ -147,7 +147,7 @@ let s: symbol = Symbol('sss')
 console.log(age, username, flag, n, u, s)
 ```
 
-## 4.数组类型
+## 4. 数组类型
 
 对象类型：object（包括，数组、对象、函数等对象）
 
@@ -171,7 +171,7 @@ let array3: (number | string)[] = [1, 'a', 2, 'b']
 > 注意：这是 TS 中联合类型的语法，只有一根竖线，不要与 JS 中的或（||）混淆了
 >
 
-## 5.类型别名
+## 5. 类型别名
 
 **类型别名**（自定义类型）：为任意类型起别名
 
@@ -189,11 +189,11 @@ let array: arrayType = [1, 'a', 2, 'b']
 > 3. 创建类型别名后，直接**使用该类型别名作为变量的类型注解**即可
 >
 
-## 6.函数类型
+## 6. 函数类型
 
 函数的类型实际上指的是：函数**参数**和**返回值**的类型
 
-### 1.单独指定参数、返回值的类型
+### 1. 单独指定参数、返回值的类型
 
 ```typescript
 // 函数声明
@@ -205,7 +205,7 @@ function add1(num1: number, num2: number): number {
 const add2 = (num1: number, num2: number): number => num1 - num2
 ```
 
-### 2.同时指定参数、返回值的类型
+### 2. 同时指定参数、返回值的类型
 
 ```typescript
 // 中间的 (num1: number, num2: number) => number 是指定类型的代码
@@ -217,7 +217,7 @@ const add3: (num1: number, num2: number) => number = (num1, num2) => num1 + num2
 > 注意：这种形式只适用于函数表达式
 >
 
-### 3.无返回值
+### 3. 无返回值
 
 如果函数没有返回值，那么，函数返回值类型为：void
 
@@ -227,7 +227,7 @@ function output(name: string): void {
 }
 ```
 
-### 4.可选参数
+### 4. 可选参数
 
 使用函数实现某个功能时，参数可以传也可以不传，但是在 TypeScript 中函数的参数是必须要传递的。这种情况下，在给函数参数指定类型时，就用到**可选参数**了
 
@@ -247,11 +247,11 @@ mySlice(1, 5)
 > 注意：**可选参数只能出现在参数列表的最后**，也就是说可选参数后面不能再出现必选参数
 >
 
-## 7.对象类型
+## 7. 对象类型
 
 JS 中的对象是由属性和方法构成的，而 TS 中**对象的类型**就是在**描述对象的结构**（有什么类型的属性和方法）
 
-### 1.对象类型的写法
+### 1. 对象类型的写法
 
 ```typescript
 const person: {name: string; age: number; sayHi(): void} = {
@@ -272,7 +272,7 @@ const person: {name: string; age: number; sayHi(): void} = {
 > 5. 方法的类型也可以使用箭头函数形式（比如：{**sayHi: () => void**}）
 >
 
-### 2.可选属性
+### 2. 可选属性
 
 对象的属性或方法，也可以是可选的，此时就用到**可选属性**了
 
@@ -288,9 +288,9 @@ myAxios({url: 'www.baidu.com', method: 'post'})
 
 **可选属性**的语法与函数可选参数的语法一致，都使用 **?** 来表示
 
-## 8.接口
+## 8. 接口
 
-### 1.定义接口
+### 1. 定义接口
 
 当一个对象类型被多次使用时，一般会使用**接口**（**interface**）来描述对象的类型，达到**复用**的目的
 
@@ -313,14 +313,14 @@ const person: IPerson = {
 }
 ```
 
-### 2.interface（接口）和 type（类型别名）的对比
+### 2. interface（接口）和 type（类型别名）的对比
 
 - 相同点：都可以给对象指定类型
 - 不同点：
   - 接口，只能为对象指定类型
   - 类型别名，不仅可以为对象指定类型，实际上可以为任意类型指定别名
 
-### 3.继承
+### 3. 继承
 
 如果两个接口之间有相同的属性或方法，可以**将公共的属性或方法抽离出来，通过继承来实现复用**
 
@@ -344,7 +344,7 @@ interface Point3D extends Point2D {z: number}
 > 2. 继承后，Point3D 就有了 Point2D 的所有属性和方法（此时，Point3D 同时有 x、y、z 三个属性）
 >
 
-## 9.元组
+## 9. 元组
 
 场景：在地图中，使用经纬度坐标来标记位置信息
 
@@ -370,7 +370,7 @@ const position: [number, number] = [39.5427, 116.2317]
 > 2. 该示例中，元素有两个元素，每个元素的类型都是 number
 >
 
-## 10.类型推论
+## 10. 类型推论
 
 在 TS 中，某些没有明确指出类型的地方，TS 的**类型推论机制会帮助提供类型**
 
@@ -399,7 +399,7 @@ const position: [number, number] = [39.5427, 116.2317]
 > 技巧：如果不知道类型，可以通过鼠标放在变量名称上，利用 VSCode 或 WebStorm 的提示来查看类型
 >
 
-## 11.类型断言
+## 11. 类型断言
 
 有时候你会比 TS 更加明确一个值的类型，此时，可以使用类型断言来指定更具体的类型
 
@@ -440,7 +440,7 @@ const aLink2 = <HTMLAnchorElement>document.getElementById('link')
 
 ![](./TypeScript/类型断言.png)
 
-## 12.字面量类型
+## 12. 字面量类型
 
 思考以下代码，两个变量的类型分别是什么？
 
@@ -486,9 +486,9 @@ changeDirection('right')
 > 优势：相比于 string 类型，使用字面量类型更加精确、严谨。
 >
 
-## 13.枚举
+## 13. 枚举
 
-### 1.定义枚举
+### 1. 定义枚举
 
 枚举的功能类似于字面量类型+联合类型组合的功能，也可以**表示一组明确的可选值**。
 
@@ -510,7 +510,7 @@ function changeDirection(direction: Direction) {
 > 4. 定义好枚举后，直接使用枚举名称作为类型注解
 >
 
-### 2.访问枚举成员
+### 2. 访问枚举成员
 
 注意：形参 direction 的**类型为枚举 Direction**，那么，**实参的值就应该是枚举 Direction 成员的任意一个**。
 
@@ -525,7 +525,7 @@ changeDirection(Direction.Right)
 
 解释：类似于 JS 中的对象，直接通过 **.** 语法访问枚举的成员
 
-### 3.枚举成员的值
+### 3. 枚举成员的值
 
 问题：我们把枚举成员作为了函数的实参，它的值是什么呢？
 
@@ -544,7 +544,7 @@ enum Direction {Up = 10, Down, Left, Right}
 enum Direction {Up = 2, Down = 4, Left = 6, Right = 8}
 ```
 
-### 4.字符串枚举
+### 4. 字符串枚举
 
 **字符串枚举**：枚举成员的值是字符串
 
@@ -554,7 +554,7 @@ enum Direction {Up = 'up', Down = 'down', Left = 'left', Right = 'right'}
 
 注意：字符串枚举没有自增长行为，因此，**字符串枚举的每个成员必须有初始值**
 
-### 5.枚举被编译后的 JS 代码
+### 5. 枚举被编译后的 JS 代码
 
 枚举是 TS 为数不多的非 JavaScript 类型级扩展（不仅仅是类型）的特性之一。 
 
@@ -584,7 +584,7 @@ var Direction;
 
 一般情况下，**推荐使用字面量类型 + 联合类型组合的方式**，因为相比枚举，这种方式更加直观、简洁、高效。
 
-## 14.any 类型
+## 14. any 类型
 
 原则：**不推荐使用 any**！这会让 TypeScript 变为 “AnyScript”（失去 TS 类型保护的优势）。
 
@@ -608,7 +608,7 @@ const n: number = obj
 > 注意：因为不推荐使用 any，所以，这两种情况下都应该提供类型！
 >
 
-## 15.typeof
+## 15. typeof
 
 众所周知，JS 中提供了 typeof 操作符，用来在 JS 中获取数据的类型。
 
@@ -638,7 +638,7 @@ formatPoint(p)
 > 3. 注意：typeof 只能用来查询变量或属性的类型，无法查询其他形式的类型（比如，函数调用的类型）
 >
 
-# 4.TypeScript 高级类型
+# 4. TypeScript 高级类型
 
 **概述**
 
@@ -651,7 +651,7 @@ TS 中的高级类型有很多，重点学习以下高级类型：
 5. 索引签名类型和索引查询类型
 6. 映射类型
 
-## 1.class 类
+## 1. class 类
 
 TypeScript 全面支持 ES2015 中引入的 **class** 关键字，并为其添加了类型注解和其他语法（比如，可见性修饰符等）。
 
@@ -668,7 +668,7 @@ const p = new Person()
 > 2. TS 中的 **class，不仅提供了 class 的语法功能，也作为一种类型存在**
 >
 
-### 1.实例属性初始化
+### 1. 实例属性初始化
 
 ```typescript
 class Person {
@@ -683,7 +683,7 @@ class Person {
 > 1. 声明成员 age，类型为 number（没有初始值）
 > 2. 声明成员 gender，并设置初始值，此时，可省略类型注解（TS 类型推论 为 string 类型）
 
-### 2.构造函数
+### 2. 构造函数
 
 ```typescript
 class Person {
@@ -702,7 +702,7 @@ class Person {
 > 1. 成员初始化（比如，age: number）后，才可以通过 this.age 来访问实例成员
 > 2. 需要为构造函数指定类型注解，否则会被隐式推断为 any；构造函数不需要返回值类型
 
-### 3.实例方法
+### 3. 实例方法
 
 ```typescript
 class Person {
@@ -717,7 +717,7 @@ class Person {
 
 解释：方法的类型注解（参数和返回值）与函数用法相同
 
-### 4.extends（继承父类）
+### 4. extends（继承父类）
 
 ```typescript
 class Animal {
@@ -742,7 +742,7 @@ dog.move() // 调用父类的方法
 > 1. 通过 extends 关键字实现继承
 > 2. 子类 Dog 继承父类 Animal，则 Dog 的实例对象 dog 就同时具有了父类 Animal 和 子类 Dog 的所有属性和方法
 
-### 5.implements（实现接口）
+### 5. implements（实现接口）
 
 说明：JS 中只有 extends，而 implements 是 TS 提供的。
 
@@ -763,11 +763,11 @@ class Person2 implements Singable {
 > 1. 通过 implements 关键字让 class 实现接口
 > 2. Person 类实现接口 Singable 意味着，Person 类中必须提供 Singable 接口中指定的所有方法和属性
 
-### 6.类成员可见性
+### 6. 类成员可见性
 
 可以使用 TS 来**控制 class 的方法或属性对于 class 外的代码是否可见**。
 
-#### 1.public
+#### 1. public
 
 public：表示公有的、公开的，**公有成员可以被任何地方访问**，默认可见性
 
@@ -784,7 +784,7 @@ class Person {
 > 1. 在类属性或方法前面添加 **public** 关键字，来修饰该属性或方法是共有的
 > 2. 因为 **public** 是默认可见性，所以，**可以直接省略**
 
-#### 2.protected
+#### 2. protected
 
 protected：表示**受保护的**，仅对其声明所在类和子类中（非实例对象）可见
 
@@ -812,7 +812,7 @@ dog.bark()
 > 1. 在类属性或方法前面添加 **protected** 关键字，来修饰该属性或方法是受保护的
 > 2. 在子类的方法内部可以通过 this 来访问父类中受保护的成员，但是，**对实例不可见**！
 
-#### 3.private
+#### 3. private
 
 表示**私有的，只在当前类中可见**，对实例对象以及子类也是不可见的
 
@@ -844,7 +844,7 @@ dog.walk()
 > 1. 在类属性或方法前面添加 **private** 关键字，来修饰该属性或方法是私有的
 > 2. 私有的属性或方法只在当前类中可见，对子类和实例对象也都是不可见的！
 
-#### 4.readonly
+#### 4. readonly
 
 除了可见性修饰符之外，还有一个常见修饰符就是：**readonly（只读修饰符）**。
 
@@ -870,9 +870,9 @@ console.log(person4.age)
 > 2. 注意：属性 age 后面的类型注解（比如，此处的 number）如果不加，则 age 的类型为 18（字面量类型）
 > 3. **接口或者 {} 表示的对象类型，也可以使用 readonly**
 
-## 2.类型兼容性
+## 2. 类型兼容性
 
-### 1.class 类型兼容性
+### 1. class 类型兼容性
 
 两种类型系统：1.Structural Type System（结构化类型系统） 2.Nominal Type System（标明类型系统）。
 
@@ -912,7 +912,7 @@ const p: Point = new Point3D()
 > 1. Point3D 的成员**至少**与 Point 相同，则 Point 兼容 Point3D
 > 2. 所以，成员多的 Point3D 可以赋值给成员少的 Point
 
-### 2.接口兼容性
+### 2. 接口兼容性
 
 **接口之间的兼容性，类似于 class**。并且，class 和 interface 之间也可以兼容。
 
@@ -930,11 +930,11 @@ class Point3D {x: number = 0; y: number = 0; z: number = 0}
 const p4: IPoint2D = new Point3D()
 ```
 
-### 3.函数兼容性
+### 3. 函数兼容性
 
 **函数之间兼容性比较复杂**，需要考虑：1.参数个数 2.参数类型 3.返回值类型。
 
-#### 1.参数个数
+#### 1. 参数个数
 
 参数多的兼容参数少的（或者说，**参数少的可以赋值给多的**）
 
@@ -957,7 +957,7 @@ arr.forEach((item, index, array) => console.log(item, index, array))
 > 3. **在 JS 中省略用不到的函数参数实际上是很常见的，这样的使用方式，促成了 TS 中函数类型之间的兼容性**
 > 4. 并且因为回调函数是有类型的，所以，TS 会自动推导出参数 item、index、array 的类型
 
-#### 2.参数类型
+#### 2. 参数类型
 
 相同位置的参数类型要相同（原始类型）或兼容（对象类型）
 
@@ -985,7 +985,7 @@ f2 = f3 // 报错，属性少的不可以赋给属性多的
 > 1. 注意，此处与前面讲到的接口兼容性冲突
 > 2. 技巧：**将对象拆开，把每个属性看做一个个参数**，则，参数少的（f2）可以赋值给参数多的（f3）
 
-#### 3.返回值类型
+#### 3. 返回值类型
 
 只关注返回值类型本身即可
 
@@ -1009,7 +1009,7 @@ f9 = f10 // 成员多的可以赋值给成员少的
 > 1. 如果返回值类型是原始类型，此时两个类型要相同，比如，左侧类型 F7 和 F8
 > 2. 如果返回值类型是对象类型，此时成员多的可以赋值给成员少的，比如，右侧类型 F9 和 F10
 
-## 3.交叉类型
+## 3. 交叉类型
 
 **交叉类型**（**&**）：功能类似于接口继承（extends），**用于组合多个类型为一个类型（常用于对象类型）**。
 
@@ -1052,9 +1052,9 @@ type C = A & B
 fn: (value: number | string) => string
 ```
 
-## 4.泛型
+## 4. 泛型
 
-### 1.简介：
+### 1. 简介：
 
 **泛型**是可以在**保证类型安全**前提下，让函数等**与多种类型一起工作**，从而**实现复用**，常用于：**函数、接口、class** 中。
 
@@ -1080,7 +1080,7 @@ function id(value: any): any {
 
 实际上，在 C# 和 Java 等编程语言中，泛型都是用来实现可复用组件功能的主要工具之一。
 
-### 2.创建泛型函数
+### 2. 创建泛型函数
 
 ```typescript
 function id<T>(value: T): T {
@@ -1096,7 +1096,7 @@ function id<T>(value: T): T {
 > 4. 因为 T 是类型，因此可以将其作为函数参数和返回值的类型，表示参数和返回值具有相同的类型
 > 5. 类型变量 T，可以是任意合法的变量名称
 
-### 3.调用泛型函数
+### 3. 调用泛型函数
 
 ```typescript
 const num = id<number>(1)
@@ -1114,7 +1114,7 @@ const obj = id<object>({name: 'zhangsan'})
 
 这样，通过**泛型**就做到了让 id 函数与多种不同的类型一起工作，**实现了复用的同时保证了类型安全**。
 
-### 4.简化调用泛型函数
+### 4. 简化调用泛型函数
 
 ```typescript
 const num = id(10) // 根据参数推断，类型为：id: 10（字面量类型）
@@ -1130,7 +1130,7 @@ const num = id(10) // 根据参数推断，类型为：id: 10（字面量类型�
 
 说明：当编译器无法推断类型或者推断的类型不准确时，就需要显式地传入类型参数。
 
-### 5.泛型约束
+### 5. 泛型约束
 
 默认情况下，泛型函数的类型变量 T 可以代表多个类型，这导致无法访问任何属性。
 
@@ -1149,7 +1149,7 @@ function id<T>(value: T): T {
 
 添加泛型约束收缩类型，主要有以下两种方式：1.指定更加具体的类型 2.添加约束。
 
-#### 1.指定更加具体的类型
+#### 1. 指定更加具体的类型
 
 ```typescript
 function id<T>(value: T[]): T[] {
@@ -1162,7 +1162,7 @@ id2([1, 2, 3])
 
 > 比如，将类型修改为 T[]（T 类型的数组），因为只要是数组就一定存在 length 属性，因此就可以访问了。
 
-#### 2.添加约束
+#### 2. 添加约束
 
 ```typescript
 interface ILength {length: number}
@@ -1184,7 +1184,7 @@ id3('abcde')
 
 注意：传入的实参（比如，数组）只要有 length 属性即可，这也符合前面讲到的接口的类型兼容性。
 
-#### 3.定义多个类型变量
+#### 3. 定义多个类型变量
 
 泛型的类型变量可以有多个，并且**类型变量之间还可以约束**（比如，第二个类型变量受第一个类型变量约束）。
 
@@ -1208,7 +1208,7 @@ console.log(value, item) // jack 1
 > 3. 本示例中 keyof Type 实际上获取的是 person 对象所有键的联合类型，也就是：'name' | 'age'
 > 4. 类型变量 Key 受 Type 约束，可以理解为：Key 只能是 Type 所有键中的任意一个，或者说只能访问对象中存在的属性
 
-### 6.泛型接口
+### 6. 泛型接口
 
 接口也可以配合泛型来使用，以增加其灵活性，增强其复用性。
 
@@ -1248,7 +1248,7 @@ strs.forEach(() => {}) // 类型：Array<string>.forEach(callbackfn: (value: str
 >
 > 技巧：可以通过 Ctrl + 鼠标左键（Mac：option + 鼠标左键）来查看具体的类型信息
 
-### 7.泛型类
+### 7. 泛型类
 
 class 也可以配合泛型来使用。
 
@@ -1300,7 +1300,7 @@ console.log(myNum.defaultValue, myNum.add(1, 2))
 
 类似于泛型接口，在创建 class 实例时，在类名后面通过 <类型> 来指定明确的类型。
 
-### 8.泛型工具类型
+### 8. 泛型工具类型
 
 TS 内置了一些常用的工具类型，来简化 TS 中的一些常见操作。
 
@@ -1313,7 +1313,7 @@ TS 内置了一些常用的工具类型，来简化 TS 中的一些常见操作�
 3. Pick<Type, Keys>
 4. Record<Keys, Type>
 
-#### 1.Partial<Type>
+#### 1. Partial<Type>
 
 用来构造（创建）一个类型，将 Type 的所有属性设置为可选。
 
@@ -1325,7 +1325,7 @@ const obj: PartialProps = {id: ''} // 属性可选
 
 > 解释：构造出来的新类型 PartialProps 结构和 Props 相同，但所有属性都变为可选的
 
-#### 2.Readonly<Type>
+#### 2. Readonly<Type>
 
 用来构造一个类型，将 Type 的所有属性都设置为 readonly（只读）。
 
@@ -1338,7 +1338,7 @@ obj.id = '10' // 不能修改，只读的
 
 > 解释：构造出来的新类型 ReadonlyProps 结构和 Props 相同，但所有属性都变为只读的
 
-#### 3.Pick<Type, Keys>
+#### 3. Pick<Type, Keys>
 
 从 Type 中选择一组属性来构造新类型。
 
@@ -1355,7 +1355,7 @@ const obj: PickProps = {id: '', title: ''}
 > 3. **第二个类型变量传入的属性只能是第一个类型变量中存在的属性**
 > 4. 构造出来的新类型 PickProps，只有 id 和 title 两个属性类型
 
-#### 4.Record<Keys, Type>
+#### 4. Record<Keys, Type>
 
 构造一个对象类型，属性键为 Keys，属性类型为 Type。
 
@@ -1369,7 +1369,7 @@ const obj = {a: ['1'], b: ['2'], c: ['3']}
 > 1. Record 工具类型有两个类型变量：**1.表示对象有哪些属性 2.表示对象属性的类型**
 > 2. 构建的新对象类型 RecordObj 表示：这个对象有三个属性分别为 a/b/c，属性值的类型都是 string[]
 
-## 5.索引签名类型
+## 5. 索引签名类型
 
 绝大多数情况下，我们都可以在使用对象前就确定对象的结构，并为对象添加准确的类型。
 
@@ -1402,11 +1402,11 @@ const array: MyArray<number> = [1, 2, 3]
 > 2. 该索引签名类型表示：只要是 number 类型的键（索引）都可以出现在数组中，或者说数组中可以有任意多个元素
 > 3. 同时也符合数组索引是 number 类型这一前提
 
-## 6.映射类型
+## 6. 映射类型
 
 **映射类型：基于旧类型创建新类型（对象类型）**，减少重复、提升开发效率。
 
-### 1.根据联合类型创建
+### 1. 根据联合类型创建
 
 类型 PropKeys 有 x/y/z，另一个类型 Type1 中也有 x/y/z，并且 Type1 中 x/y/z 的类型相同：
 
@@ -1429,7 +1429,7 @@ type Type2 = {[Key in PropKeys]: number}
 > 3. 使用映射类型创建的新对象类型 Type2 和类型 Type1 结构完全相同
 > 4. 注意：**映射类型只能在类型别名中使用，不能在接口中使用**
 
-### 2.根据对象类型创建
+### 2. 根据对象类型创建
 
 映射类型除了根据联合类型创建新类型外，还可以根据对象类型来创建：
 
@@ -1443,7 +1443,7 @@ type Type3 = {[key in keyof Props]: number} // 类型：{a: number, b: number, c
 > 1. 首先，先执行 **keyof Props** 获取到对象类型 Props 中所有键的联合类型即，'a' | 'b' | 'c'
 > 2. 然后，**Key in ...** 就表示 Key 可以是 Props 中所有的键名称中的任意一个
 
-### 3.泛型工具类型解析
+### 3. 泛型工具类型解析
 
 实际上，前面讲到的**泛型工具类型**（比如，Partial<Type>）都**是基于映射类型实现的**。
 
@@ -1462,7 +1462,7 @@ type PartialProps = Partial<Props>
 > 3. 冒号后面的 **T[P] 表示获取 T 中每个键对应的类型**。比如，如果是 'a' 则类型是 number；如果是 'b' 则类型是 string
 > 4. 最终，新类型 PartialProps 和旧类型 Props 结构完全相同，只是让所有类型都变为可选了
 
-### 4.索引查询类型
+### 4. 索引查询类型
 
 刚刚用到的 **T[P]** 语法，在 TS 中叫做**索引查询（访问）类型**。
 
@@ -1477,7 +1477,7 @@ type TypeA = Props['a'] // 类型：number
 >
 > 注意：**[] 中的属性必须存在于被查询类型中**，否则就会报错
 
-### 5.索引查询类型的其他使用方式
+### 5. 索引查询类型的其他使用方式
 
 同时查询多个索引的类型：
 
@@ -1494,7 +1494,7 @@ type TypeC = Props[keyof Props] // number | string | boolean
 
 > 解释：使用 keyof 操作符获取 Props 中所有键对应的类型，结果为： string | number | boolean
 
-# 5.TypeScript 类型声明文件
+# 5. TypeScript 类型声明文件
 
 **概述**
 
@@ -1511,7 +1511,7 @@ type TypeC = Props[keyof Props] // number | string | boolean
 1. TS 的两种文件类型
 2. 类型声明文件的使用说明
 
-## 1.TS 中的两种文件类型
+## 1. TS 中的两种文件类型
 
 TS 中有两种文件类型：**.ts** 和 **.d.ts**。
 
@@ -1532,7 +1532,7 @@ TS 中有两种文件类型：**.ts** 和 **.d.ts**。
 >
 > 如果要为 JS 库提供类型信息，要使用 .d.ts 文件。
 
-## 2.类型声明文件的使用说明
+## 2. 类型声明文件的使用说明
 
 在使用 TS 开发项目时，**类型声明文件的使用**包括以下两种方式：
 
@@ -1541,9 +1541,9 @@ TS 中有两种文件类型：**.ts** 和 **.d.ts**。
 
 学习顺序：**先会用**（别人的）**再会写**（自己的）。
 
-### 1.使用已有的类型声明文件
+### 1. 使用已有的类型声明文件
 
-#### 1.内置类型声明文件
+#### 1. 内置类型声明文件
 
 **TS 为 JS 运行时可用的所有标准化内置 API 都提供了声明文件**。
 
@@ -1559,13 +1559,13 @@ TS 中有两种文件类型：**.ts** 和 **.d.ts**。
 
 当然，像 window、document 等 BOM、DOM API 也都有相应的类型声明（lib.dom**.d.ts**）。
 
-#### 2.第三方库的类型声明文件
+#### 2. 第三方库的类型声明文件
 
 目前，几乎所有常用的第三方库都有相应的类型声明文件。
 
 第三方库的类型声明文件有两种存在形式：1.**库自带类型声明文件** 2.**由 DefinitelyTyped 提供**。
 
-##### 1.库自带类型声明文件
+##### 1. 库自带类型声明文件
 
 比如，axios。
 
@@ -1573,7 +1573,7 @@ TS 中有两种文件类型：**.ts** 和 **.d.ts**。
 
 > 解释：这种情况下，正常导入该库，**TS 就会自动加载库自己的类型声明文件**，以提供该库的类型声明
 
-##### 2.由 DefinitelyTyped 提供
+##### 2. 由 DefinitelyTyped 提供
 
 [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/) 是一个 github 仓库，**用来提供高质量 TypeScript 类型声明**。
 
@@ -1589,11 +1589,11 @@ TS 中有两种文件类型：**.ts** 和 **.d.ts**。
 
 补充：TS 官方文档提供了一个[页面](https://www.typescriptlang.org/dt/search?search=)，可以来查询 @types/* 库。
 
-### 2.创建自己的类型声明文件
+### 2. 创建自己的类型声明文件
 
 创建自己的类型声明文件：1.**项目内共享类型** 2.**为已有 JS 文件提供类型声明**。
 
-#### 1.项目内共享类型
+#### 1. 项目内共享类型
 
 如果**多个 .ts 文件**中都用到同一个类型，此时可以创建 **.d.ts** 文件提供该类型，**实现类型共享**。
 
@@ -1603,7 +1603,7 @@ TS 中有两种文件类型：**.ts** 和 **.d.ts**。
 2. 创建需要共享的类型，并**使用 export 导出**（TS 中的类型也可以使用 import/export 实现模块化功能）
 3. 在需要使用共享类型的 .ts 文件中，通过 import 导入即可（.d.ts 后缀导入时，直接省略）
 
-#### 2.为已有 JS 文件提供类型声明
+#### 2. 为已有 JS 文件提供类型声明
 
 1. 在将 JS 项目[迁移](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)到 TS 项目时，为了让已有的 .js 文件有类型声明
 2. 成为库作者，创建库给其他人使用
@@ -1711,7 +1711,7 @@ declare const formatPoint: FormatPoint // 为 const formatPoint 常量声明类�
 export {count, songName, position, add, changeDirection, formatPoint, Point}
 ```
 
-# 6.在 React 中使用 TypeScript
+# 6. 在 React 中使用 TypeScript
 
 **概述**
 
@@ -1723,7 +1723,7 @@ export {count, songName, position, add, changeDirection, formatPoint, Point}
 2. TS 配置文件 tsconfig.json
 3. React 中的常用类型
 
-## 1.使用 CRA 创建支持 TS 的项目
+## 1. 使用 CRA 创建支持 TS 的项目
 
 React 脚手架工具 create-react-app（简称：CRA）默认支持 TypeScript。
 
@@ -1745,7 +1745,7 @@ npx create-react-app 项目名称 --template typescript
 2. React 组件的文件扩展名变为：**.tsx**
 3. src 目录中增加了 react-app-env**.d.ts**：**React 项目默认的类型声明文件**
 
-## 2.react-app-env.d.ts 文件
+## 2. react-app-env.d.ts 文件
 
 React 项目默认的类型声明文件。
 
@@ -1764,7 +1764,7 @@ react-scripts 的类型声明文件包含了两部分类型：
 
 TS 会自动加载该 .d.ts 文件，以提供类型声明（通过修改 tsconfig.json 中的 include 配置来验证）
 
-## 3.TS 配置文件 tsconfig.json
+## 3. TS 配置文件 tsconfig.json
 
 tsconfig.json 指定**项目文件和项目编译所需的配置项**。
 
@@ -1841,7 +1841,7 @@ tsc hello.ts --target es6
 
 **推荐使用：tsconfig.json 配置文件**
 
-## 4.React 中的常用类型
+## 4. React 中的常用类型
 
 前提说明：现在，基于 class 组件来讲解 React + TS 的使用（最新的 React Hooks，在后面讲解）。
 
@@ -1860,7 +1860,7 @@ tsc hello.ts --target es6
 
 React 是组件化开发模式，React 开发主要任务就是**写组件**，两种组件：1 函数组件 2 class 组件。
 
-### 1.函数组件
+### 1. 函数组件
 
 函数组件，主要包括以下内容：
 
@@ -1869,7 +1869,7 @@ React 是组件化开发模式，React 开发主要任务就是**写组件**，�
 - 组件属性的默认值（defaultProps）
 - 事件绑定和事件对象
 
-#### 1.函数组件的类型以及组件的属性
+#### 1. 函数组件的类型以及组件的属性
 
 ```tsx
 import {FC} from "react"
@@ -1911,7 +1911,7 @@ const Left = ({name, age}: Props) => {
 }
 ```
 
-#### 2.函数组件属性的默认值（defaultProps）
+#### 2. 函数组件属性的默认值（defaultProps）
 
 ```tsx
 const Left = ({name, age}: Props) => {
@@ -1940,7 +1940,7 @@ const Left = ({name, age = 20}: Props) => {
 }
 ```
 
-#### 3.事件绑定和事件对象
+#### 3. 事件绑定和事件对象
 
 ```tsx
 const Left = () => {
@@ -1961,14 +1961,14 @@ const Left = () => {
 
 ![](./TypeScript/事件绑定和事件对象.png)
 
-### 2.class 组件
+### 2. class 组件
 
 class 组件，主要包括以下内容：
 
 - 组件的类型、属性、事件
 - 组件状态（state）
 
-#### 1.class 组件的类型
+#### 1. class 组件的类型
 
 ```tsx
 type Props = { message: string }
@@ -2013,7 +2013,7 @@ class Right extends React.Component {
 }
 ```
 
-#### 2.class 组件的属性和属性默认值
+#### 2. class 组件的属性和属性默认值
 
 ```tsx
 type Props = { name: string; age?: number }
@@ -2062,7 +2062,7 @@ class Right extends React.Component<Props2> {
 }
 ```
 
-#### 3.class 组件状态（state）和事件
+#### 3. class 组件状态（state）和事件
 
 ```tsx
 type State = { count: number }

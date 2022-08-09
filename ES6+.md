@@ -1,55 +1,55 @@
-# 1.ES 介绍
+# 1. ES 介绍
 
 ES 全称 **E**CMA**S**cript，是脚本语言的**规范**，而平时经常编写的 **JavaScript**，是 ECMAScript 的**一种实现**，所以 ES 新特性其实指的就是 **JavaScript 的新特性**
 
-# 2.为什么要学习 ES 新特性
+# 2. 为什么要学习 ES 新特性
 
 1. 语法简洁，功能丰富
 2. 框架开发应用
 3. 前端开发职位要求
 
-# 3.前置知识
+# 3. 前置知识
 
 1. JavaScript 基本语法
 2. AJAX 与 Node.js
 
-# 4.ECMAScript 6+
+# 4. ECMAScript 6+
 
-## 1.ECMAScript 相关介绍
+## 1. ECMAScript 相关介绍
 
-### 1.什么是 ECMA
+### 1. 什么是 ECMA
 
 ECMA（European Computer Manufacturers Association）中文名称为欧洲计算机制造商协会，这个组织的目标是评估、开发和认可电信和计算机标准。1994 年后该组织改名为 ECMA 国际。
 
-### 2.什么是 ECMAScript
+### 2. 什么是 ECMAScript
 
 ECMAScript 是由 ECMA 国际通过 ECMA-262 标准化的脚本程序设计语言。
 
-### 3.什么是 ECMA-262
+### 3. 什么是 ECMA-262
 
 ECMA 国际制定了许多标准，而 ECMA-262 只是其中的一个，所有标准列表查看：
 
 https://www.ecma-international.org/publications-and-standards/standards/
 
-### 4.ECMA-262 历史
+### 4. ECMA-262 历史
 
 ECMA-262（ECMAScript）历史版本查看网址：
 
 https://www.ecma-international.org/publications-and-standards/standards/ecma-262/
 
-### 5.谁在维护 ECMA-262
+### 5. 谁在维护 ECMA-262
 
 TC39（Technical Committee 39）是推进 ECMAScript 发展的委员会。其会员都是公司（其中主要是浏览器厂商，由苹果、谷歌、微软、因特尔等）。TC39 定期召开会议，会议由会员公司的代表与特邀专家出席。
 
-### 6.为什么要学习 ES6
+### 6. 为什么要学习 ES6
 
 - ES6 的版本变动内容最多，具有里程碑意义
 - ES6 加入许多新的语法特性，编程实现更简单、高效
 - ES6 是前端发展趋势，就业必备技能
 
-## 2.ECMAScript 6 新特性
+## 2. ECMAScript 6 新特性
 
-### 1.let 定义变量
+### 1. let 定义变量
 
 ```js
 // 1.let 用来声明变量
@@ -85,7 +85,7 @@ console.log(name);// 在这里访问不到
 }
 ```
 
-### 2.const 定义常量
+### 2. const 定义常量
 
 ```js
 // 1.声明常量
@@ -113,7 +113,7 @@ ARRAY.push(4);
 console.log(ARRAY);
 ```
 
-### 3.变量结构赋值
+### 3. 变量结构赋值
 
 ES6 允许按照一定模式从数组和对象中提取值，对变量进行赋值，这被称为结构赋值。
 
@@ -136,7 +136,7 @@ console.log(id, name);
 fun();
 ```
 
-### 4.模板字符串
+### 4. 模板字符串
 
 ES6 加入新的声明字符串的方式 ``
 
@@ -159,7 +159,7 @@ let b = `${a}bbb`;
 console.log(b);
 ```
 
-### 5.简化对象写法
+### 5. 简化对象写法
 
 ES6 允许在大括号里面，直接写入变量和函数，作为对象的属性和方法。
 
@@ -187,7 +187,7 @@ const school = {
 console.log(school);
 ```
 
-### 6.箭头函数
+### 6. 箭头函数
 
 ES6 允许使用箭头（=>）定义函数
 
@@ -250,7 +250,7 @@ let pow = n => n + n;
 console.log(pow(5));
 ```
 
-### 7.参数默认值
+### 7. 参数默认值
 
 ES6 允许给函数参数赋值初始值
 
@@ -274,7 +274,7 @@ connection({
 });
 ```
 
-### 8.rest 参数
+### 8. rest 参数
 
 ES6 引入 rest 参数，用于获取函数的实参，用来代替 arguments
 
@@ -298,7 +298,7 @@ function fun(a, b, ...args) {
 fun('g', 'h', 'i', 'j', 'k');
 ```
 
-### 9.spread 扩展运算符
+### 9. spread 扩展运算符
 
 【...】 扩展运算符能将【数组】转换为逗号分隔的【参数序列】
 
@@ -313,7 +313,7 @@ function fun() {
 fun(...array);// 相当于 fun('a', 'b', 'c');
 ```
 
-### 10.Symbol
+### 10. Symbol
 
 ES6 引入了一种新的原始数据类型 Symbol，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，是一种类似于字符串的数据类型。
 
@@ -323,7 +323,7 @@ Symbol 特点：
 2. Symbol 值不能与其他数据进行运算
 3. Symbol 定义的对象属性不能使用 for...in 循环遍历，但是可以使用 Reflect.ownKeys 来获取对象的所有键名
 
-#### 1.Symbol 的简单使用
+#### 1. Symbol 的简单使用
 
 ```js
 // 创建 Symbol
@@ -345,7 +345,7 @@ console.log(s4, s5, s4 === s5);// true
 // let result = s + s;
 ```
 
-#### 2.Symbol 创建对象属性
+#### 2. Symbol 创建对象属性
 
 ```js
 // 向对象中添加方法 up down
@@ -387,7 +387,7 @@ let youxi = {
 console.log(youxi);
 ```
 
-#### 3.Symbol 内置属性
+#### 3. Symbol 内置属性
 
 ```js
 // hasInstance：当其他对象使用 instanceof 运算符，判断是否为该对象的实例时，会调用这个方法
@@ -410,7 +410,7 @@ array2[Symbol.isConcatSpreadable] = false;
 console.log(array.concat(array2));
 ```
 
-### 11.迭代器
+### 11. 迭代器
 
 迭代器（Iterator）是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据类型只要部署 Iterator 接口，就可以完成遍历操作。
 
@@ -468,7 +468,7 @@ for (let i of banji) {
 }
 ```
 
-### 12.生成器函数
+### 12. 生成器函数
 
 生成器函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同
 
@@ -524,7 +524,7 @@ console.log(iterator.next('ccc'));
 console.log(iterator.next('ddd'));
 ```
 
-### 13.Promise
+### 13. Promise
 
 Promise 是 ES6 引入的异步编程的新解决方案。语法上 Promise 是一个构造函数，用来封装异步操作并可以获取其成功或失败的结果。
 
@@ -532,7 +532,7 @@ Promise 是 ES6 引入的异步编程的新解决方案。语法上 Promise 是�
 2. Promise.prototype.then 方法
 3. Promise.prototype.catch 方法
 
-#### 1.Promise 基本语法
+#### 1. Promise 基本语法
 
 ```js
 // 实例化 Promise 对象
@@ -556,7 +556,7 @@ p.then(value => {
 });
 ```
 
-#### 2.Promise 读取文件
+#### 2. Promise 读取文件
 
 ```js
 const fs = require('fs');
@@ -579,7 +579,7 @@ const p = new Promise((resolve, reject) => {
 p.then(value => console.log(value.toString()), reason => console.error(reason));
 ```
 
-#### 3.Promise 封装 AJAX
+#### 3. Promise 封装 AJAX
 
 ```js
 const p = new Promise((resolve, reject) => {
@@ -598,7 +598,7 @@ const p = new Promise((resolve, reject) => {
 p.then(value => console.log(value), (reason) => console.error(reason));
 ```
 
-#### 4.Promise 的 then() 方法
+#### 4. Promise 的 then() 方法
 
 ```js
 const p = new Promise((resolve, reject) => {
@@ -631,7 +631,7 @@ console.log(result);
 // p.then().then().then();
 ```
 
-#### 5.Promise 读取多个文件
+#### 5. Promise 读取多个文件
 
 ```js
 const fs = require('fs');
@@ -662,7 +662,7 @@ p.then(value => {
 });
 ```
 
-#### 6.Promise 的 catch 方法
+#### 6. Promise 的 catch 方法
 
 ```js
 const p = new Promise((resolve, reject) => {
@@ -677,7 +677,7 @@ const p = new Promise((resolve, reject) => {
 p.catch(reason => console.warn(reason));
 ```
 
-#### 7.基于 then-fs 读取文件内容
+#### 7. 基于 then-fs 读取文件内容
 
 由于 node.js 官方提供的 fs 模块**仅支持**以**回调函数的方式**读取文件，**不支持 Promise 的调用方式**。因此，需要先运行如下的命令，安装 **then-fs** 这个第三方包，从而支持我们基于 Promise 的方式读取文件的内容：
 
@@ -733,7 +733,7 @@ thenFs.readFile('../files/aaaaaaaaaaaaaaaaaaaaaaa.txt', 'utf8').catch(error => {
 })
 ```
 
-#### 8.Promise.all() 方法
+#### 8. Promise.all() 方法
 
 Promise.all() 方法会发起并行的 Promise 异步操作，等**所有的异步操作全部结束后**才会执行下一步的 .then 操作（等待机制）。示例代码如下：
 
@@ -755,7 +755,7 @@ Promise.all(promiseArray).then(([r1, r2, r3]) => {
 > 注意：数组中的 Promise 实例的顺序就是最终结果的顺序！
 >
 
-#### 9.Promise.race() 方法
+#### 9. Promise.race() 方法
 
 Promise.race() 方法会发起并行的 Promise 异步操作，**只要任何一个异步操作完成，就立即执行下一步的 .then 操作**（赛跑机制）。示例代码如下：
 
@@ -776,7 +776,7 @@ Promise.race(promiseArray).then(result => {
 
 
 
-### 14.Set
+### 14. Set
 
 ES6 提供了新的数据结构 Set（集合）。它类似于数组，但成员的值都是唯一的，集合实现了 iterator 接口，所以可以使用【扩展运算符】和【for...of】进行遍历，集合的属性和方法：
 
@@ -817,7 +817,7 @@ for (let i of set) {
 }
 ```
 
-### 15.Map
+### 15. Map
 
 ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合。但是 “键” 的范围不限于字符串，各种类型的值（包括对象）都可以当做键。Map 也实现了 iterator 接口，所以可以使用【扩展运算符】和【for...of】进行遍历。Map 的属性和方法：
 
@@ -857,11 +857,11 @@ map.clear();
 console.log(map);
 ```
 
-### 16.class 类
+### 16. class 类
 
 ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过 class 关键字，可以定义类。基本上，ES6 的 class 可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的 class 写法只是让对象原型的写法更加勤洗、更像面向对象编程的语法而已。
 
-#### 1.基本使用
+#### 1. 基本使用
 
 ```js
 // ***************** ES5 方式 *****************
@@ -902,7 +902,7 @@ console.log(huawei2);
 huawei2.call();
 ```
 
-#### 2.类的静态成员
+#### 2. 类的静态成员
 
 ```js
 // ***************** ES5 方式 *****************
@@ -936,7 +936,7 @@ let huawei2 = new Phone2();
 console.log(huawei2.size);
 ```
 
-#### 3.ES5 类继承
+#### 3. ES5 类继承
 
 ```js
 // 手机
@@ -975,7 +975,7 @@ chuizi.photo();// 调用自己的方法
 chuizi.call();// 调用父类的方法
 ```
 
-#### 4.class 类继承
+#### 4. class 类继承
 
 ```js
 class Phone {
@@ -1014,7 +1014,7 @@ xiaomi.photo();// 调用自己的方法
 xiaomi.call();// 调用父类的方法
 ```
 
-#### 5.class 的 get 和 set
+#### 5. class 的 get 和 set
 
 ```js
 // get 和 set
@@ -1036,7 +1036,7 @@ console.log(phone.price);// 调用 get
 phone.price = 'free';// 调用 set
 ```
 
-### 17.数值扩展
+### 17. 数值扩展
 
 ```js
 // 1. Number.EPSILON 是 JavaScript 表示的最小精度
@@ -1095,7 +1095,7 @@ console.log(Math.sign(-100));// -1
 console.log('08==================================');
 ```
 
-### 18.对象方法扩展
+### 18. 对象方法扩展
 
 ```js
 // 1. Object.is 判断两个值是否完全相等
@@ -1137,39 +1137,39 @@ console.log(Object.getPrototypeOf(school));// 获取 school 对象的所有原�
 console.log('03==========================================================');
 ```
 
-### 19.模块化
+### 19. 模块化
 
 模块化是指将一个打的程序文件，拆分成许多小的文件，然后将小文件组合起来。
 
-#### 1.模块化的好处
+#### 1. 模块化的好处
 
 1. 防止命名冲突
 2. 代码复用
 3. 高维护性
 
-#### 2.模块化规范产品
+#### 2. 模块化规范产品
 
 1. CommonJS => Node.js、Browserify
 2. AMD => requireJS
 3. CMD => seaJS
 
-#### 3.ES6 模块化语法
+#### 3. ES6 模块化语法
 
 模块功能主要由两个命令构成：export 和 import
 
 - export 命令用于规定模块的对外接口
 - import 命令用于输入其他模块提供的功能
 
-#### 4.在 node.js 中使用 ES6 模块化
+#### 4. 在 node.js 中使用 ES6 模块化
 
 node.js 中**默认仅支持 CommonJS 模块化规范**，若想基于 node.js 体验于学习 ES6 的模块化语法，可以按照如下两个步骤进行配置：
 
 1. 确保安装了 **v14.15.1** 或更高版本的 node.js
 2. 在 package.json 的根节点中添加 **"type": "module"** 节点
 
-## 3.ECMAScript 7 新特性
+## 3. ECMAScript 7 新特性
 
-### 1.Array.prototype.includes
+### 1. Array.prototype.includes
 
 includes 方法用来检测数组中是否包含某个元素，返回布尔类型值
 
@@ -1180,7 +1180,7 @@ console.log(mingzhu.includes('西游记'));// true
 console.log(mingzhu.includes('金瓶梅'));// false
 ```
 
-### 2.指数操作符
+### 2. 指数操作符
 
 在 ES7 中引入指数运算符【**】，用来实现幂运算，功能与 Math.pow() 结果相同
 
@@ -1189,13 +1189,13 @@ console.log(mingzhu.includes('金瓶梅'));// false
 console.log(2 ** 10);// 计算 2 的 10 次方，相当于 Math.pow(2, 10);
 ```
 
-## 4.ECMAScript 8 新特性
+## 4. ECMAScript 8 新特性
 
-### 1.async 和 await
+### 1. async 和 await
 
 async 和 await 两种语法结合可以让异步代码像同步代码一样
 
-#### 1.async 函数
+#### 1. async 函数
 
 1. async 函数的返回值为 promise 对象
 2. promise 对象的结果由 async 函数执行的返回值决定
@@ -1215,7 +1215,7 @@ console.log(result);
 result.then(value => console.log(value), reason => console.error(reason));
 ```
 
-#### 2.await 表达式
+#### 2. await 表达式
 
 1. await 必须写在 async 函数中
 2. await 右侧的表达式一般为 promise 对象
@@ -1242,7 +1242,7 @@ async function main() {
 main();
 ```
 
-#### 3.async 和 await 的使用注意事项
+#### 3. async 和 await 的使用注意事项
 
 在 async 方法中，**第一个 await 之前的代码会同步执行**，await 之后的代码会异步执行
 
@@ -1250,7 +1250,7 @@ main();
 
 ![](./ES6+/async和await的使用注意事项2.png)
 
-### 2.对象方法扩张
+### 2. 对象方法扩张
 
 ```js
 let obj = {
@@ -1285,9 +1285,9 @@ const obj2 = Object.create(null, {// 第一个参数是原型对象，第二个�
 });
 ```
 
-## 5.ECMAScript 9 新特性
+## 5. ECMAScript 9 新特性
 
-### 1.对象展开
+### 1. 对象展开
 
 rest 参数与 spread 扩展运算符在 ES6 中已经引入，不过 ES6 中只针对与数组，在 ES9 中为对象提供了像数组一样的 rest 参数和扩展运算符
 
@@ -1315,9 +1315,9 @@ const mangsend = {...skillOne, ...skillTwo, ...skillThree, ...skillFour};
 console.log(mangsend);
 ```
 
-### 2.正则扩展
+### 2. 正则扩展
 
-#### 1.命名捕获分组
+#### 1. 命名捕获分组
 
 ```js
 // 提取 url 与【标签文本】
@@ -1341,7 +1341,7 @@ console.log(result.groups.url);// url
 console.log(result.groups.text);// 标签文本
 ```
 
-#### 2.反向断言
+#### 2. 反向断言
 
 ```js
 // 提取啦前面的数字 555
@@ -1358,7 +1358,7 @@ result = reg.exec(str);
 console.log(result);
 ```
 
-#### 3.dotAll 模式
+#### 3. dotAll 模式
 
 ```js
 // dot 是 . 的意思，除换行符以外的任意单个字符
@@ -1382,9 +1382,9 @@ while (result = reg.exec(str)) {
 }
 ```
 
-## 6.ECMAScript 10 新特新
+## 6. ECMAScript 10 新特新
 
-### 1.Object.fromEntries
+### 1. Object.fromEntries
 
 ```js
 // 二维数组转对象
@@ -1402,7 +1402,7 @@ result = Object.fromEntries(map);
 console.log(result);
 ```
 
-### 2.trimStart 与 trimEnd
+### 2. trimStart 与 trimEnd
 
 ```js
 let str = '    aaa      bbb     ';
@@ -1411,7 +1411,7 @@ console.log(str.trimStart());// 清除左边的空格
 console.log(str.trimEnd());// 清除右边的空格
 ```
 
-### 3.Array.prototype.flat 与 flatMap
+### 3. Array.prototype.flat 与 flatMap
 
 ```js
 // flat 将多维数组转成低维数组
@@ -1434,16 +1434,16 @@ result = array.flatMap(item => [item * 10]);// 给数组的每一项乘以 10，
 console.log(result);
 ```
 
-### 4.Symbol.prototype.description
+### 4. Symbol.prototype.description
 
 ```js
 let s = Symbol('尚硅谷');
 console.log(s.description);// 获取 s 的值
 ```
 
-## 7.ECMAScript 11 新特性
+## 7. ECMAScript 11 新特性
 
-### 1.私有属性
+### 1. 私有属性
 
 ```js
 class Person {
@@ -1474,7 +1474,7 @@ console.log(girl);
 girl.intro();// 访问私有属性
 ```
 
-### 2.Promise.allSettled
+### 2. Promise.allSettled
 
 ```js
 const p1 = new Promise((resolve, reject) => {
@@ -1495,7 +1495,7 @@ result = Promise.all([p1, p2]);
 console.log(result);
 ```
 
-### 3.String.prototype.matchAll
+### 3. String.prototype.matchAll
 
 ```js
 let str = `<ul>
@@ -1525,7 +1525,7 @@ const array = [...result];
 console.log(array);
 ```
 
-### 4.可选链操作符
+### 4. 可选链操作符
 
 ```js
 function main(config) {
@@ -1546,7 +1546,7 @@ main({
 });
 ```
 
-### 5.动态 import 加载
+### 5. 动态 import 加载
 
 ```js
 // 以前的方式
@@ -1561,7 +1561,7 @@ document.querySelector('#btn').addEventListener('click', () => {
 });
 ```
 
-### 6.BigInt
+### 6. BigInt
 
 ```js
 // 大整形
@@ -1580,13 +1580,13 @@ console.log(max + 2);// 运算错误
 console.log(BigInt(max) + BigInt(2));// 运算成功
 ```
 
-### 7.globalThis
+### 7. globalThis
 
 表示全局对象，在 html 中是 Window，在 js 中是 global
 
-# 5.EventLoop
+# 5. EventLoop
 
-## 1.JavaScript 是单线程的语言
+## 1. JavaScript 是单线程的语言
 
 JavaScript 是一门**单线程执行**的编程语言。也就是说，同一时间只能做一件事情。
 
@@ -1596,7 +1596,7 @@ JavaScript 是一门**单线程执行**的编程语言。也就是说，同一�
 >
 > 如果**前一个任务非常耗时**，则后续的任务就不得不一直等待，从而导致**程序假死**的问题。
 
-## 2.同步任务和异步任务
+## 2. 同步任务和异步任务
 
 为了防止某个**耗时任务**导致**程序假死**的问题，JavaScript 把待执行的任务分为了两类：
 
@@ -1607,7 +1607,7 @@ JavaScript 是一门**单线程执行**的编程语言。也就是说，同一�
     - 又叫做**耗时任务**，异步任务由 JavaScript **委托给**宿主环境进行执行
     - 当异步任务执行完成后，会**通知 JavaScript 主线程**执行异步任务的**回调函数**
 
-## 3.同步任务和异步任务的执行过程
+## 3. 同步任务和异步任务的执行过程
 
 ![](./ES6+/同步任务和异步任务的执行过程.png)
 
@@ -1617,13 +1617,13 @@ JavaScript 是一门**单线程执行**的编程语言。也就是说，同一�
 4. JavaScript 主线程的**执行栈**被清空后，会读取任务队列中的回调函数，次序执行
 5. **JavaScript 主线程不断重复上面的第 4 步**
 
-## 4.EventLoop 的基本概念
+## 4. EventLoop 的基本概念
 
 ![](./ES6+/同步任务和异步任务的执行过程.png)
 
 **JavaScript 主线程从 “任务队列” 中读取异步任务的回调函数，放到执行栈中依次执行**。这个过程是循环不断的，所以整个的这种运行机制又称为 **EventLoop**（事件循环）。
 
-## 5.结合 EventLoop 分析输出的顺序
+## 5. 结合 EventLoop 分析输出的顺序
 
 ![](./ES6+/结合EventLoop分析输出的顺序.png)
 
@@ -1632,9 +1632,9 @@ JavaScript 是一门**单线程执行**的编程语言。也就是说，同一�
 - A 和 D 属于**同步任务**。会根据代码的先后顺序**依次被执行**
 - C 和 B 属于**异步任务**。它们的回调函数会被加入到任务队列中，等待主线程空闲时再执行
 
-# 6.宏任务和微任务
+# 6. 宏任务和微任务
 
-## 1.什么是宏任务和微任务
+## 1. 什么是宏任务和微任务
 
 JavaScript 把异步任务又做了进一步的划分，异步任务又分为两类，分别是：
 
@@ -1650,7 +1650,7 @@ JavaScript 把异步任务又做了进一步的划分，异步任务又分为两
 
 ![](./ES6+/什么是宏任务和微任务.png)
 
-## 2.宏任务和微任务的执行顺序
+## 2. 宏任务和微任务的执行顺序
 
 ![](./ES6+/宏任务和微任务的执行顺序.png)
 
@@ -1658,7 +1658,7 @@ JavaScript 把异步任务又做了进一步的划分，异步任务又分为两
 
 如果有，则执行完所有微任务之后，再继续执行下一个宏任务。
 
-## 3.去银行办业务的场景
+## 3. 去银行办业务的场景
 
 1. 小云和小腾去银行办业务。首先，需要**取号之后进行排队**
     - 宏任务队列
@@ -1671,7 +1671,7 @@ JavaScript 把异步任务又做了进一步的划分，异步任务又分为两
 5. 小云离开柜台后，柜员开始为小腾办理业务
     - **所有微任务执行完毕**，开始**执行下一个宏任务**
 
-## 4.分析以下代码输出的顺序
+## 4. 分析以下代码输出的顺序
 
 ![](./ES6+/分析以下代码输出的顺序.png)
 
@@ -1686,7 +1686,7 @@ JavaScript 把异步任务又做了进一步的划分，异步任务又分为两
 3. 再执行**下一个宏任务**
     - 执行第 2 行代码
 
-## 5.经典面试题
+## 5. 经典面试题
 
 请分析以下代码输出的顺序（代码较长，截取成了左中右 3 个部分）：
 

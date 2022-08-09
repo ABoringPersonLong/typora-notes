@@ -124,6 +124,6 @@ Ctrl + Shift + F6：更改类型
 
 # 设置
 
-## 1.禁用双修改键快捷方式（双击 Ctrl、双击 Shift）
+## 1. 禁用双修改键快捷方式（双击 Ctrl、双击 Shift）
 
 Settings -> Advanced Settings -> 找到 User Interface 标题 -> 将 Disable double modifier key shortcuts 勾上

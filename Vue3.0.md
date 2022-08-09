@@ -1,8 +1,8 @@
-# 1.vue 基础入门
+# 1. vue 基础入门
 
-## 1.vue 简介
+## 1. vue 简介
 
-### 1.解读核心关键词
+### 1. 解读核心关键词
 
 官方给 vue 的定位是**前端框架**，因为它**提供了构建用户界面的一整套解决方案**（俗称 vue 全家桶）：
 
@@ -18,7 +18,7 @@
 - vue-devtools（浏览器插件：辅助调试的工具）
 - vetur（vscode 插件：提供语法高亮和智能提示）
 
-### 2.vue2.x 和 vue3.x 版本的对比
+### 2. vue2.x 和 vue3.x 版本的对比
 
 vue2.x 中**绝大多数的 API 与特性**，在 vue3.x 中**同样支持**。同时，vue3.x 中还**新增了 3.x 所特有的功能**、并**废弃了某些 2.x 中的旧功能**：
 
@@ -34,9 +34,9 @@ vue2.x 中**绝大多数的 API 与特性**，在 vue3.x 中**同样支持**。�
 
 https://v3.cn.vuejs.org/guide/migration/introduction.html
 
-## 2.vue 的调试工具
+## 2. vue 的调试工具
 
-### 1.安装 vue-devtools 调试工具
+### 1. 安装 vue-devtools 调试工具
 
 **Chrome 浏览器**在线安装 vue-devtools
 
@@ -50,11 +50,11 @@ vue 3.x 调试工具：
 
 > 注意：vue2 和 vue3 的浏览器调试工具不能交叉使用！
 
-# 2.组件基础（上）
+# 2. 组件基础（上）
 
-## 1.vite 的基本使用
+## 1. vite 的基本使用
 
-### 1.如何快速创建 vue 的 SPA 项目
+### 1. 如何快速创建 vue 的 SPA 项目
 
 vue 官方提供了**两种**快速创建工程化的 SPA 项目的方式：
 
@@ -63,7 +63,7 @@ vue 官方提供了**两种**快速创建工程化的 SPA 项目的方式：
 
 ![](./Vue3.0/如何快速创建vue的SPA项目.png)
 
-### 2.创建 vite 的项目
+### 2. 创建 vite 的项目
 
 按照顺序执行如下的命令，即可基于 vite 创建 vue 3.x 的工程化项目：
 
@@ -74,7 +74,7 @@ npm i
 npm run dev
 ```
 
-### 3.梳理项目的结构
+### 3. 梳理项目的结构
 
 使用 vite 创建的项目结构如下：
 
@@ -101,7 +101,7 @@ npm run dev
 - **index.css** 是项目的**全局样式表**文件
 - **main.js** 是整个项目的**打包入口文件**
 
-### 4.vite 项目的运行流程
+### 4. vite 项目的运行流程
 
 在工程化的项目中，vue 要做的事情很单纯：通过 **main.js** 把 **App.vue** 渲染到 **index.html** 的指定区域中。
 
@@ -111,7 +111,7 @@ npm run dev
 2. **index.html** 中需要预留一个 **el 区域**
 3. **main.js** 把 App.vue 渲染到了 index.html 所预留的区域中
 
-#### 1.在 App.vue 中编写模板结构
+#### 1. 在 App.vue 中编写模板结构
 
 清空 App.vue 的默认内容，并书写如下的模板结构：
 
@@ -123,7 +123,7 @@ npm run dev
 </template>
 ```
 
-#### 2.在 index.html 中预留 el 区域
+#### 2. 在 index.html 中预留 el 区域
 
 打开 index.html 页面，确认预留了 el 区域：
 
@@ -133,7 +133,7 @@ npm run dev
 <script type="module" src="/src/main.js"></script>
 ```
 
-#### 3.在 main.js 中进行渲染
+#### 3. 在 main.js 中进行渲染
 
 按照 **vue 3.x** 的**标准用法**，把 **App.vue 中的模板内容**渲染到 **index.html 页面的 el 区域**中：
 
@@ -151,7 +151,7 @@ const vue = createApp(App)
 vue.mount('#app')
 ```
 
-## 2.vue 组件的构成
+## 2. vue 组件的构成
 
 ### 1 在 template 中定义根节点
 
@@ -175,7 +175,7 @@ vue.mount('#app')
 </template>
 ```
 
-### 2.让 style 中支持 less 语法
+### 2. 让 style 中支持 less 语法
 
 安装依赖包：
 
@@ -197,9 +197,9 @@ npm i less -D
 </style>
 ```
 
-## 3.组件的基本使用
+## 3. 组件的基本使用
 
-### 1.使用全局注册组件
+### 1. 使用全局注册组件
 
 使用 app.component() 方法注册的全局组件，**直接以标签的形式进行使用**即可，例如：
 
@@ -208,11 +208,11 @@ import Count from "@/components/Count.vue";
 Vue.component("Count", Count);// 第一个参数是使用这个组件时用的标签名
 ```
 
-### 2.Class 与 Style 绑定
+### 2. Class 与 Style 绑定
 
 在实际开发中经常会遇到**动态操作元素样式**的需求。因此，vue 允许开发者通过 **v-bind** 属性绑定指令，为元素动态绑定 **class 属性的值**和**行内的 style 样式**。
 
-#### 1.动态绑定 HTML 的 class
+#### 1. 动态绑定 HTML 的 class
 
 可以通过**三元表达式，动态的为元素绑定 class 的类名**。示例代码如下：
 
@@ -240,7 +240,7 @@ export default {
 </style>
 ```
 
-#### 2.以数组语法绑定 HTML 的 class
+#### 2. 以数组语法绑定 HTML 的 class
 
 如果元素需要动态**绑定多个** class 的类名，此时可以使用**数组的语法格式**：
 
@@ -273,7 +273,7 @@ export default {
 </style>
 ```
 
-#### 3.以对象语法绑定 HTML 的 class
+#### 3. 以对象语法绑定 HTML 的 class
 
 使用**数组语法**动态绑定 class 会导致**模板结构臃肿**的问题。此时可以使用**对象语法**进行**简化**：
 
@@ -309,7 +309,7 @@ export default {
 </style>
 ```
 
-#### 4.以对象语法绑定内联的 style
+#### 4. 以对象语法绑定内联的 style
 
 **:style** 的**对象语法**十分直观——看着非常像 CSS，但其实是一个 **JavaScript 对象**。CSS property 名可以用驼峰式（camelCase）或短横线分隔（kebab-case，记得用引号括起来）来命名：
 
@@ -319,9 +319,9 @@ export default {
 </template>
 ```
 
-# 3.组件基础（下）
+# 3. 组件基础（下）
 
-## 1.props 验证
+## 1. props 验证
 
 **对象类型的 props 节点**提供了多种数据验证方案，例如：
 
@@ -331,7 +331,7 @@ export default {
 4. 属性默认值
 5. 自定义验证函数
 
-### 1.基础的类型检查
+### 1. 基础的类型检查
 
 可以直接为组件的 prop 属性指定**基础的校验类型**，从而防止**组件的使用者**为其绑定**错误类型的数据**：
 
@@ -352,7 +352,7 @@ export default {
 </script>
 ```
 
-### 2.多个可能的类型
+### 2. 多个可能的类型
 
 如果某个 prop 属性值的**类型不唯一**，此时可以通过数组的形式，为其指定多个可能的类型，示例代码如下：
 
@@ -366,7 +366,7 @@ export default {
 </script>
 ```
 
-### 3.必填项校验
+### 3. 必填项校验
 
 如果**组件的某个 prop 属性是必填项**，必须让组件的使用者为其传递属性的值。此时，可以通过如下的方式将其设置为必填项：
 
@@ -383,7 +383,7 @@ export default {
 </script>
 ```
 
-### 4.属性默认值
+### 4. 属性默认值
 
 在封装组件时，可以为某个 prop 属性**指定默认值**。示例代码如下：
 
@@ -400,7 +400,7 @@ export default {
 </script>
 ```
 
-### 5.自定义验证函数
+### 5. 自定义验证函数
 
 在封装组件时，可以为 prop 属性指定**自定义的验证函数**，从而**对 prop 属性的值进行更加精确的控制**：
 
@@ -421,9 +421,9 @@ export default {
 </script>
 ```
 
-## 2.组件上的 v-model
+## 2. 组件上的 v-model
 
-### 1.为什么需要在组件上使用 v-model
+### 1. 为什么需要在组件上使用 v-model
 
 v-model 是双向数据绑定指令，当**需要维护组件内外数据的同步**时，可以在组件上使用 v-model 指令。示意图如下：
 
@@ -432,7 +432,7 @@ v-model 是双向数据绑定指令，当**需要维护组件内外数据的同�
 - **外界数据的变化**会**自动同步**到 counter 组件中
 - counter 组件中数据的变化，也会**自动同步到外界**
 
-### 2.在组件上使用 v-model 的步骤
+### 2. 在组件上使用 v-model 的步骤
 
 ![](./Vue3.0/在组件上使用v-model的步骤.png)
 
@@ -445,11 +445,11 @@ v-model 是双向数据绑定指令，当**需要维护组件内外数据的同�
 2. 在子组件中声明 **emits** 自定义事件，格式为 **update:**xxx
 3. 调用 **$emit()** 触发自定义事件，更新父组件中的数据
 
-# 4.组件高级（上）
+# 4. 组件高级（上）
 
-## 1.组件的生命周期
+## 1. 组件的生命周期
 
-### 1.组件中主要的生命周期函数
+### 1. 组件中主要的生命周期函数
 
 | 生命周期函数  | 执行时机                     | 所属阶段 | 执行次数 | 应用场景             |
 | ------------- | ---------------------------- | -------- | -------- | -------------------- |
@@ -460,7 +460,7 @@ v-model 是双向数据绑定指令，当**需要维护组件内外数据的同�
 
 > 注意：在实际开发中，**created** 是**最常用的**生命周期函数！
 
-### 2.组件中全部的生命周期函数
+### 2. 组件中全部的生命周期函数
 
 | 生命周期函数  | 执行时机                     | 所属阶段 | 执行次数 | 应用场景             |
 | ------------- | ---------------------------- | -------- | -------- | -------------------- |
@@ -475,7 +475,7 @@ v-model 是双向数据绑定指令，当**需要维护组件内外数据的同�
 
 > 疑问：为什么不在 **beforeCreate** 中发 ajax 请求初始数据？
 
-### 3.完整的生命周期图示
+### 3. 完整的生命周期图示
 
 可以参考 vue 官方文档给出的 “**生命周期图示**”，进一步理解组件生命周期执行的过程：
 
@@ -483,9 +483,9 @@ https://v3.cn.vuejs.org/guide/instance.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F
 
 ![](./Vue3.0/lifecycle.svg)
 
-## 2.组件之间的数据共享
+## 2. 组件之间的数据共享
 
-### 1.兄弟组件之间的数据共享
+### 1. 兄弟组件之间的数据共享
 
 **兄弟组件之间**实现数据共享的方案是 **EventBus**。可以借助于第三方的包 **mitt** 来创建 **eventBus** 对象，从而实现兄弟组件之间的数据共享。示意图如下：
 
@@ -549,11 +549,11 @@ export default {
 </script>
 ```
 
-### 2.后代关系组件之间的数据共享
+### 2. 后代关系组件之间的数据共享
 
 后代关系组件之间共享数据，指的是**父节点的组件**向其**子孙组件**共享数据。此时组件之间的嵌套关系比较复杂，可以使用 **provide** 和 **inject** 实现后代关系组件之间的数据共享。
 
-#### 1.父节点通过 provide 共享数据
+#### 1. 父节点通过 provide 共享数据
 
 父节点的组件可以通过 **provide 方法**，对其**子孙组件**共享数据：
 
@@ -576,7 +576,7 @@ export default {
 </script>
 ```
 
-#### 2.子孙节点通过 inject 接收数据
+#### 2. 子孙节点通过 inject 接收数据
 
 子孙节点可以使用 **inject** 数组，接收父级节点**向下共享的数据**。示例代码如下：
 
@@ -596,7 +596,7 @@ export default {
 </script>
 ```
 
-#### 3.父节点对外共享响应式的数据
+#### 3. 父节点对外共享响应式的数据
 
 父节点使用 provide 向下共享数据时，可以结合 **computed 函数**向下共享**响应式的数据**。示例代码如下：
 
@@ -621,7 +621,7 @@ export default {
 </script>
 ```
 
-#### 4.子孙节点使用响应式的数据
+#### 4. 子孙节点使用响应式的数据
 
 如果父级节点共享的是**响应式的数据**，则子孙节点必须以 .value 的形式进行使用。示例代码如下：
 
@@ -641,9 +641,9 @@ export default {
 </script>
 ```
 
-## 3.vue 3.x 中全局配置 axios
+## 3. vue 3.x 中全局配置 axios
 
-### 1.为什么要全局配置 axios
+### 1. 为什么要全局配置 axios
 
 在实际项目开发中，几乎每个组件中都会用到 axios 发起数据请求。此时会遇到如下两个问题：
 
@@ -652,7 +652,7 @@ export default {
 
 ![](./Vue3.0/为什么要全局配置axios.png)
 
-### 2.如何全局配置 axios
+### 2. 如何全局配置 axios
 
 在 **main.js** 入口文件中，通过 **app.config.globalProperties** 全局挂载 axios，示例代码如下：
 
@@ -680,17 +680,17 @@ export default {
 </script>
 ```
 
-# 5.组件高级（下）
+# 5. 组件高级（下）
 
-## 1.自定义指令
+## 1. 自定义指令
 
 【bind 改成了 **mounted**】【update 改成了 **updated**】，其他根 vue2 一样
 
-# 6.路由
+# 6. 路由
 
-## 1.vue-router 的基本使用
+## 1. vue-router 的基本使用
 
-### 1.vue-router 的版本
+### 1. vue-router 的版本
 
 vue-router 目前有 **3.x** 的版本和 **4.x** 的版本。其中：
 
@@ -699,9 +699,9 @@ vue-router 目前有 **3.x** 的版本和 **4.x** 的版本。其中：
 
 vue-router 的官方文档地址：https://router.vuejs.org/zh/
 
-### 2.vue-router 4.x 的基本使用步骤
+### 2. vue-router 4.x 的基本使用步骤
 
-#### 1.在项目中安装 vue-router
+#### 1. 在项目中安装 vue-router
 
 在 vue3 的项目中，只能安装并使用 vue-router 4.x。安装的命令如下：
 
@@ -709,7 +709,7 @@ vue-router 的官方文档地址：https://router.vuejs.org/zh/
 npm i vue-router
 ```
 
-#### 2.创建路由模块
+#### 2. 创建路由模块
 
 在 **src** 源代码目录下，新建 **router/index.js** 路由模块，并初始化如下的代码：
 
@@ -729,7 +729,7 @@ const router = new createRouter({
 export default router
 ```
 
-#### 3.导入并挂载路由模块
+#### 3. 导入并挂载路由模块
 
 在 src/**main.js** 入口文件中，导入并挂载路由模块。示例代码如下：
 
@@ -748,7 +748,7 @@ vue.use(router)
 vue.mount('#app');
 ```
 
-#### 4.声明路由链接和占位符
+#### 4. 声明路由链接和占位符
 
 在 src/App.vue 组件中，使用 vue-router 提供的 **`<router-link>`** 和 **`<router-view>`** 声明路由链接和占位符：
 
@@ -763,7 +763,7 @@ vue.mount('#app');
 </template>
 ```
 
-#### 5.声明路由的匹配规则
+#### 5. 声明路由的匹配规则
 
 在 src/router/index.js 路由模块中，通过 **routes 数组**声明路由的匹配规则。示例代码如下：
 
@@ -784,16 +784,16 @@ const router = new createRouter({
 })
 ```
 
-## 2.vue-router 的高级用法
+## 2. vue-router 的高级用法
 
-### 1.路由高亮
+### 1. 路由高亮
 
 可以通过如下的两种方式，将**激活的路由链接**进行高亮显示：
 
 1. 使用**默认的**高亮 class 类
 2. **自定义**路由高亮的 class 类
 
-#### 1.默认的高亮 class 类
+#### 1. 默认的高亮 class 类
 
 被激活的路由链接，默认会应用一个叫做 **router-link-active** 的类名。开发者可以使用此**类名选择器**，为**激活的路由链接**设置高亮的样式：
 
@@ -807,7 +807,7 @@ const router = new createRouter({
 </style>
 ```
 
-#### 2.自定义路由高亮的 class 类
+#### 2. 自定义路由高亮的 class 类
 
 在创建路由的实例对象时，开发者可以基于 **linkActiveClass** 属性，自定义路由链接被激活时所应用的类名：
 
@@ -818,7 +818,7 @@ const router = new createRouter({
 })
 ```
 
-### 2.命名路由
+### 2. 命名路由
 
 通过 **name 属性**为路由规则**定义名称**的方式，叫做**命名路由**。示例代码如下：
 
@@ -833,7 +833,7 @@ const router = new createRouter({
 
 > 注意：命名路由的 **name 值不能重复，必须保证唯一性**！
 
-#### 1.使用命名路由实现声明式导航
+#### 1. 使用命名路由实现声明式导航
 
 为 `<router-link>` 标签动态绑定 to 属性的值，并通过 **name 属性**指定要跳转到的路由规则。期间还可以用 **params 属性**指定跳转期间要携带的路由参数。示例代码 如下：
 
@@ -845,7 +845,7 @@ const router = new createRouter({
 </template>
 ```
 
-#### 2.使用命名路由实现编程式导航
+#### 2. 使用命名路由实现编程式导航
 
 调用 **push 函数**期间指定一个**配置对象，name** 是要跳转到的路由规则、**params** 是携带的路由参数：
 
@@ -859,22 +859,22 @@ const router = new createRouter({
 </template>
 ```
 
-# 7.vue 基础 - 综合案例
+# 7. vue 基础 - 综合案例
 
-## 1.组件库
+## 1. 组件库
 
-### 1.什么是 vue 组件库
+### 1. 什么是 vue 组件库
 
 在实际开发中，前端开发者可以把**自己封装的 .vue 组件**整理、打包、并**发布为 npm 的包**，从而供其他人下载和使用。这种可以直接下载并在项目中使用的现成组件，就叫做 vue **组件库**。
 
-### 2.vue 组件库和 bootstrap 的区别
+### 2. vue 组件库和 bootstrap 的区别
 
 二者之间存在本质的区别：
 
 - bootstrap 只提供了**纯粹的原材料**（css 样式、HTML 结构以及 JS 特效），需要由开发者做**进一步的组装**和**改造**
 - vue 组件库是**遵循 vue 语法、高度定制**的现成组件，开箱即用
 
-### 3.最常用的 vue 组件库
+### 3. 最常用的 vue 组件库
 
 1. **PC 端**
    - Element UI（https://element.eleme.cn/#/zh-CN）
@@ -883,16 +883,16 @@ const router = new createRouter({
    - Vant（https://vant-contrib.gitee.io/vant/v4/#/zh-CN）
    - Mint UI（http://mint-ui.github.io/#!/zh-cn）
 
-### 4.Element UI
+### 4. Element UI
 
 Element UI 是**饿了么前端团队**开源的一套 **PC 端 vue 组件库**。支持在 vue2 和 vue3 的项目中使用：
 
 - **vue2** 的项目使用**旧版的** Element UI（https://element.eleme.cn/#/zh-CN）
 - **vue3** 的项目使用**新版的** Element Plus（https://element-plus.gitee.io/zh-CN/）
 
-## 2.axios 拦截器
+## 2. axios 拦截器
 
-### 1.什么是拦截器
+### 1. 什么是拦截器
 
 **拦截器**（英文：Interceptors）会在**每次发起 ajax 请求**和**得到响应**的时候自动被触发。
 
@@ -904,7 +904,7 @@ Element UI 是**饿了么前端团队**开源的一套 **PC 端 vue 组件库**�
 2. Loading 效果
 3. etc...
 
-### 2.配置请求拦截器
+### 2. 配置请求拦截器
 
 通过 **axios.interceptors.request.use(成功的回调, 失败的回调)** 可以配置请求拦截器。示例代码如下：
 
@@ -921,7 +921,7 @@ axios.interceptors.request.use(config => {
 
 > 注意：**失败的回调函数可以被省略**！
 
-#### 1.请求拦截器 – Token 认证
+#### 1. 请求拦截器 – Token 认证
 
 ```js
 // 导入 axios
@@ -941,7 +941,7 @@ axios.interceptors.request.use(config => {
 vue.config.globalProperties.$http = axios
 ```
 
-#### 2.请求拦截器 – 展示 Loading 效果
+#### 2. 请求拦截器 – 展示 Loading 效果
 
 借助于 element-plus 提供的 **Loading 效果**组件（https://element-plus.gitee.io/zh-CN/component/loading.html#%E4%BB%A5%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E8%B0%83%E7%94%A8）可以方便的实现 Loading 效果的展示：
 
@@ -960,7 +960,7 @@ axios.interceptors.request.use(config => {
 })
 ```
 
-### 3.配置响应拦截器
+### 3. 配置响应拦截器
 
 通过 **axios.interceptors.response.use(成功的回调, 失败的回调)** 可以配置响应拦截器。示例代码如下：
 
@@ -979,7 +979,7 @@ axios.interceptors.response.use(response => {
 
 > 注意：**失败的回调函数可以被省略**！
 
-#### 1.响应拦截器 – 关闭 Loading 效果
+#### 1. 响应拦截器 – 关闭 Loading 效果
 
 调用 **ElLoading 实例**提供的 **close()** 方法即可**关闭 Loading 效果**，示例代码如下：
 
@@ -992,9 +992,9 @@ axios.interceptors.response.use(response => {
 })
 ```
 
-## 3.proxy 跨域代理
+## 3. proxy 跨域代理
 
-### 1.回顾：接口的跨域问题
+### 1. 回顾：接口的跨域问题
 
 vue 项目运行的地址：http://localhost:8080/
 
@@ -1004,7 +1004,7 @@ API 接口运行的地址：https://www.escook.cn/api/users
 
 ![](./Vue3.0/回顾：接口的跨域问题.png)
 
-### 2.通过代理解决接口的跨域问题
+### 2. 通过代理解决接口的跨域问题
 
 通过 vue-cli 创建的项目在遇到接口跨域问题时，可以通过**代理**的方式来解决：
 
@@ -1015,7 +1015,7 @@ API 接口运行的地址：https://www.escook.cn/api/users
 3. 代理把请求根路径**替换为** devServer.proxy 属性的值，**发起真正的数据请求**
 4. 代理把请求到的数据，**转发给 axios**
 
-### 3.在项目中配置 proxy 代理
+### 3. 在项目中配置 proxy 代理
 
 步骤1，在 **main.js** 入口文件中，把 **axios 的请求根路径**改造为**当前 web 项目的根路径**：
 
@@ -1044,11 +1044,11 @@ module.exports = defineConfig({
 > 1. **devServer.proxy** 提供的代理功能，**仅在开发调试阶段生效**
 > 2. 项目上线发布时，依旧需要 API 接口服务器**开启 CORS** 跨域资源共享
 
-# 3.Vuex
+# 3. Vuex
 
-## 1.Vuex 概述
+## 1. Vuex 概述
 
-### 1.组件之间共享数据的方式
+### 1. 组件之间共享数据的方式
 
 父向子传值：**v-bind 属性绑定**
 
@@ -1057,7 +1057,7 @@ module.exports = defineConfig({
 - $on 接收数据的那个组件
 - $emit 发送数据的那个组件
 
-### 2.Vuex 是什么
+### 2. Vuex 是什么
 
 **Vuex** 是实现组件全局状态（数据）管理的一种机制，可以方便的实现组件之间数据的共享。
 
@@ -1065,31 +1065,31 @@ module.exports = defineConfig({
 
 ![](./Vue3.0/vuex.png)
 
-### 3.使用 Vuex 统一管理状态的好处
+### 3. 使用 Vuex 统一管理状态的好处
 
 1. 能够在 vuex 中集中管理共享的数据，易于开发和后期维护
 2. 能够高效地实现组件之间的数据共享，提高开发效率
 3. 存储在 vuex 中的数据都是响应式的，能够实时保持数据与页面的同步
 
-### 4.什么样的数据适合存储到 Vuex 中
+### 4. 什么样的数据适合存储到 Vuex 中
 
 一般情况下，只有组件之间共享的数据，才有必要存储到 vuex 中；对于组件中的私有数据，依旧存储在组件自身的 data 中即可。
 
-## 2.Vuex 的基本使用
+## 2. Vuex 的基本使用
 
-### 1.安装 vuex 依赖包
+### 1. 安装 vuex 依赖包
 
 ```bash
 npm i vuex
 ```
 
-### 2.导入 vuex 包
+### 2. 导入 vuex 包
 
 ```js
 import { createStore } from 'vuex'
 ```
 
-### 3.创建 store 对象
+### 3. 创建 store 对象
 
 ```js
 // 创建 store 数据源，提供唯一的公共数据
@@ -1101,7 +1101,7 @@ export default createStore({
 })
 ```
 
-### 4.将 store 对象挂载到 vue 实例中
+### 4. 将 store 对象挂载到 vue 实例中
 
 ```js
 import { createApp } from 'vue'
@@ -1113,9 +1113,9 @@ import store from './store'
 createApp(App).use(store).mount('#app')
 ```
 
-## 3.Vuex 的核心概念
+## 3. Vuex 的核心概念
 
-### 1.核心概念概述
+### 1. 核心概念概述
 
 Vuex 中的主要核心概念如下：
 
@@ -1124,7 +1124,7 @@ Vuex 中的主要核心概念如下：
 - Action
 - Getter
 
-### 2.State
+### 2. State
 
 State 提供唯一的公共数据源，所有共享的数据都要统一放到 Store 的 State 中进行存储。
 
@@ -1162,7 +1162,7 @@ export default {
 </script>
 ```
 
-### 3.Mutation
+### 3. Mutation
 
 Mutation 用于变更 Store 中的数据。
 
@@ -1228,7 +1228,7 @@ export default {
 </script>
 ```
 
-### 4.Action
+### 4. Action
 
 Action 用于处理异步任务。
 
@@ -1303,7 +1303,7 @@ export default {
 </script>
 ```
 
-### 5.Getter
+### 5. Getter
 
 Getter 用于对 Store 中的数据进行加工处理形成新的数据。
 

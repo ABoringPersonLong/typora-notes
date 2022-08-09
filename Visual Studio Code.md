@@ -48,7 +48,7 @@ Ctrl + 1/2/3：分屏
 
 # 设置：
 
-## 1.底部状态栏颜色：
+## 1. 底部状态栏颜色：
 
 Settings -> Workspace -> Workbench -> Appearance -> Edit in settings.json
 
@@ -63,13 +63,13 @@ Settings -> Workspace -> Workbench -> Appearance -> Edit in settings.json
 }
 ```
 
-## 2.代码提示快捷键：
+## 2. 代码提示快捷键：
 
 File -> Preferences -> Keyboard Shortcuts
 
 搜索 ctrl+space，找到 Trigger Suggest，修改成 alt+/
 
-## 3.设置格式化时，tab 缩进为 2 个空格
+## 3. 设置格式化时，tab 缩进为 2 个空格
 
 1. 在设置中搜索 tab
 2. 将 **Editor: Tab Size** 打勾

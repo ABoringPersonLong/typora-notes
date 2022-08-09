@@ -112,12 +112,12 @@ Ctrl + Shift + F6：更改类型
 
 # 设置：
 
-## 1.取消双击 Shift 打开全局搜索的快捷键：
+## 1. 取消双击 Shift 打开全局搜索的快捷键：
 
 1. 先找到 IDEA 安装目录下的 lib 目录下的 platform-impl.jar 文件，用压缩软件打开
 2. 在压缩软件中找到 idea 文件夹下的 PlatformActions.xml 文件，把 com.intellij.ide.actions.SearchEverywhereAction 这一行注释掉
 
-## 2.IDEA 部署 Tomcat 设置编码：
+## 2. IDEA 部署 Tomcat 设置编码：
 
 1. 修改 IDEA 文件 idea64.exe.vmoptions 里面末尾添加一行 -Dfile.encoding=UTF-8
 

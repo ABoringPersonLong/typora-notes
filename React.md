@@ -1,8 +1,8 @@
-# 1.React 基础
+# 1. React 基础
 
-## 1.React 概述
+## 1. React 概述
 
-### 1.什么是 React
+### 1. 什么是 React
 
 **React** 是一个用于**构建用户界面**的 **JavaScript 库**。
 
@@ -14,13 +14,13 @@ React 主要用来写 HTML 页面，或**构建 Web 应用**
 
 React 起源于 Facebook 的内部项目，后又用来架设 Instagram 的网站，并于 2013 年 5 月开源
 
-### 2.React 的特点
+### 2. React 的特点
 
 - 声明式
 - 基于组件
 - 学习一次，随处使用
 
-#### 1.声明式
+#### 1. 声明式
 
 你只需要描述 UI（HTML）看起来是什么样，就跟写 HTML 一样
 
@@ -32,7 +32,7 @@ const jsx = <div className="app">
 </div>
 ```
 
-#### 2.基于组件
+#### 2. 基于组件
 
 - 组件是 React **最重要**的内容
 - 组件表示页面中的部分内容
@@ -40,7 +40,7 @@ const jsx = <div className="app">
 
 ![](./React/基于组件.png)
 
-#### 3.学习一次，随处使用
+#### 3. 学习一次，随处使用
 
 - 使用 React 可以开发 Web 应用
 - 使用 React 可以开发移动端原生应用（react-native） 
@@ -48,9 +48,9 @@ const jsx = <div className="app">
 
 ![](./React/学习一次，随处使用.png)
 
-## 2.React 的基本使用
+## 2. React 的基本使用
 
-### 1.React 的安装
+### 1. React 的安装
 
 运行如下安装命令：
 
@@ -61,7 +61,7 @@ npm i react react-dom
 - react 包是核心，提供创建元素、组件等功能
 - react-dom 包提供 DOM 相关功能等
 
-### 2.React 的使用
+### 2. React 的使用
 
 1. 引入 react 和 react-dom 两个 js 文件
 
@@ -87,7 +87,7 @@ npm i react react-dom
    </script>
    ```
 
-### 3.方法说明
+### 3. 方法说明
 
 - React.createElement() 说明（知道）
 
@@ -111,18 +111,18 @@ npm i react react-dom
   ReactDOM.render(title, document.getElementById('root'))
   ```
 
-## 3.React 脚手架的使用
+## 3. React 脚手架的使用
 
-### 1.React 脚手架意义
+### 1. React 脚手架意义
 
 1. 脚手架是开发 现代Web 应用的必备。
 2. 充分利用 Webpack、Babel、ESLint 等工具辅助项目开发。
 3. 零配置，无需手动配置繁琐的工具即可使用。
 4. 关注业务，而不是工具配置。
 
-### 2.使用 React 脚手架初始化项目
+### 2. 使用 React 脚手架初始化项目
 
-#### 1.npx 方式
+#### 1. npx 方式
 
 1. 初始化项目，命令：
 
@@ -155,7 +155,7 @@ npm i react react-dom
    - 安装项目依赖项：**yarn**
    - 其他命令，请参考 **yarn 文档**
 
-#### 2.安装全局脚手架方式
+#### 2. 安装全局脚手架方式
 
 1. 执行如下命令全局安装脚手架（安装一次即可）：
 
@@ -175,7 +175,7 @@ npm i react react-dom
    npm start
    ```
 
-### 3.在脚手架中使用 React
+### 3. 在脚手架中使用 React
 
 1. 导入 react 和 react-dom 两个包。
 
@@ -188,7 +188,7 @@ npm i react react-dom
 
 3. 调用 **ReactDOM.render()** 方法渲染 react 元素到页面中。
 
-## 4.总结
+## 4. 总结
 
 1. React 是构建用户界面的 JavaScript 库
 2. 使用 react 时，**推荐使用脚手架方式**。
@@ -197,11 +197,11 @@ npm i react react-dom
 5. React.createElement() 方法用于创建 react 元素（知道）。
 6. ReactDOM.render() 方法负责渲染 react 元素到页面中。
 
-# 2.JSX
+# 2. JSX
 
-## 1.JSX 的基本使用
+## 1. JSX 的基本使用
 
-### 1.createElement() 的问题
+### 1. createElement() 的问题
 
 1. 繁琐不简洁。
 2. 不直观，无法一眼看出所描述的结构。
@@ -209,7 +209,7 @@ npm i react react-dom
 
 ![](./React/createElement()的问题.png)
 
-### 2.JSX 简介
+### 2. JSX 简介
 
 **JSX** 是 **JavaScript XML** 的简写，表示在 JavaScript 代码中写 XML（HTML） 格式的代码。
 
@@ -217,7 +217,7 @@ npm i react react-dom
 
 **JSX 是 React 的核心内容。**
 
-### 3.使用步骤
+### 3. 使用步骤
 
 ```jsx
 // 使用 JSX 语法，创建 React 元素
@@ -234,7 +234,7 @@ ReactDOM.render(title, root)
 3. create-react-app 脚手架中已经默认有该配置，无需手动配置。
 4. 编译 JSX 语法的包为：**@babel/preset-react**。
 
-### 4.注意点
+### 4. 注意点
 
 1. React元素的属性名使用驼峰命名法
 2. 特殊属性名：class -> **className**、for -> **htmlFor**、tabindex -> **tabIndex**。
@@ -248,9 +248,9 @@ const dv = (
 )
 ```
 
-## 2.JSX 中使用 JavaScript 表达式
+## 2. JSX 中使用 JavaScript 表达式
 
-### 1.嵌入 JS 表达式
+### 1. 嵌入 JS 表达式
 
 - 数据存储在 JS 中
 - 语法：**{ JavaScript 表达式 }**
@@ -264,14 +264,14 @@ const div = (
 )
 ```
 
-### 2.注意点
+### 2. 注意点
 
 - **单大括号**中可以使用任意的 JavaScript 表达式
 - JSX 自身也是 JS 表达式
 - 注意：JS 中的对象是一个例外，一般只会出现在 style 属性中
 - 注意：**不能在 { } 中出现语句**（比如：if/for 等）
 
-## 3.JSX 的条件渲染
+## 3. JSX 的条件渲染
 
 - 场景：loading 效果
 - 条件渲染：根据条件渲染特定的 JSX 结构
@@ -292,7 +292,7 @@ const div = (
 )
 ```
 
-## 4.JSX 的列表渲染
+## 4. JSX 的列表渲染
 
 - 如果要渲染一组数据，应该使用数组的 **map()** 方法
 - 注意：渲染列表时应该添加 key 属性，**key 属性的值要保证唯一**
@@ -313,7 +313,7 @@ const list = (
 )
 ```
 
-## 5.JSX 的样式处理
+## 5. JSX 的样式处理
 
 1. 行内样式 —— style
 
@@ -327,7 +327,7 @@ const list = (
    <div className='div'>JSX 的样式处理 className 方式</div>
    ```
 
-## 6.总结
+## 6. 总结
 
 1. JSX 是 React 的核心内容。
 2. JSX 表示在 JS 代码中写 HTML 结构，是 React 声明式的体现。
@@ -335,9 +335,9 @@ const list = (
 4. 推荐使用 className 的方式给 JSX 添加样式。
 5. React 完全利用 JS 语言自身的能力来编写 UI，而不是造轮子增强 HTML 功能。
 
-# 3.React 组件基础
+# 3. React 组件基础
 
-## 1.React 组件介绍
+## 1. React 组件介绍
 
 - 组件是 React 的**一等公民**，使用 React 就是在用组件
 - 组件表示页面中的部分功能
@@ -346,12 +346,12 @@ const list = (
 
 ![](./React/React组件介绍.png)
 
-## 2.React 组件的两种创建方式
+## 2. React 组件的两种创建方式
 
 1. 使用函数创建组件
 2. 使用类创建组件
 
-### 1.使用函数创建组件
+### 1. 使用函数创建组件
 
 - 函数组件：使用 JS 的函数（或箭头函数）创建的组件
 
@@ -373,7 +373,7 @@ const list = (
   ReactDOM.render(<Hello />, document.getElementById('root'))
   ```
 
-### 2.使用类创建组件
+### 2. 使用类创建组件
 
 - 类组件：使用 ES6 的 class 创建的组件
 
@@ -395,7 +395,7 @@ const list = (
   ReactDOM.render(<Hello />, document.getElementById('root'))
   ```
 
-### 3.抽离为独立 JS 文件
+### 3. 抽离为独立 JS 文件
 
 - 思考：项目中的组件多了之后，该如何组织这些组件呢？
 - 选择一：将所有组件放在同一个 JS 文件中
@@ -433,12 +433,12 @@ import Hello from './Hello'
 ReactDOM.render(<Hello />, document.getElementById('root'))
 ```
 
-## 3.React 事件处理
+## 3. React 事件处理
 
 1. 事件绑定
 2. 事件对象
 
-### 1.事件绑定
+### 1. 事件绑定
 
 - React 事件绑定语法与 DOM 事件语法相似
 - 语法：on事件名称={ 事件处理程序 }，比如：onClick={ () => {} }
@@ -471,7 +471,7 @@ class Hello2 extends React.Component {
 }
 ```
 
-### 2.事件对象
+### 2. 事件对象
 
 - 可以通过**事件处理程序的参数**获取到事件对象
 - React 中的事件对象叫做：**合成事件**（对象）
@@ -485,7 +485,7 @@ handleClick(event) {
 return (<div onClick={ this.handleClick }>点我</div>)
 ```
 
-## 4.有状态组件和无状态组件
+## 4. 有状态组件和无状态组件
 
 - 函数组件又叫做无状态组件，类组件又叫做有状态组件
 - 状态（state）即数据
@@ -496,12 +496,12 @@ return (<div onClick={ this.handleClick }>点我</div>)
 
 ![](./React/有状态组件和无状态组件.png)
 
-## 5.组件中的 state 和 setState()
+## 5. 组件中的 state 和 setState()
 
 1. state 的基本使用
 2. setState() 修改状态
 
-### 1.state 的基本使用
+### 1. state 的基本使用
 
 - 状态（state）即数据，是组件内部的**私有**数据，只能在组件内部使用
 - **state 的值是对象**，表示一个组件中可以有多个数据
@@ -541,7 +541,7 @@ class Hello extends React.Component {
 }
 ```
 
-### 2.setState() 修改状态
+### 2. setState() 修改状态
 
 - 状态是可变的
 - 语法：this.setState({ 要修改的数据 })
@@ -575,7 +575,7 @@ class Hello extends React.Component {
 
 - 希望：this 指向组件实例（render 方法中的 this 即为组件实例）
 
-### 3.在函数组件中使用 state
+### 3. 在函数组件中使用 state
 
 ```jsx
 import {useState} from "react"
@@ -597,13 +597,13 @@ function Hello() {
 }
 ```
 
-## 6.事件绑定 this 指向
+## 6. 事件绑定 this 指向
 
 1. 箭头函数
 2. Function.prototype.bind()
 3. class 的实例方法
 
-### 1.调用时用箭头函数
+### 1. 调用时用箭头函数
 
 - 利用箭头函数自身不绑定this的特点
 - render() 方法中的 this 为组件实例，可以获取到 setState()
@@ -621,7 +621,7 @@ class Hello extends React.Component {
 }
 ```
 
-### 2.Function.prototype.bind()
+### 2. Function.prototype.bind()
 
 利用 ES5 中的 bind 方法，将事件处理程序中的 this 与组件实例绑定到一起
 
@@ -643,7 +643,7 @@ class Hello extends React.Component {
 }
 ```
 
-### 3.用箭头函数定义 class 的实例方法（推荐使用这个）
+### 3. 用箭头函数定义 class 的实例方法（推荐使用这个）
 
 - 利用箭头函数形式的 class 实例方法
 - 注意：该语法是实验性语法，但是，由于 babel 的存在可以直接使用
@@ -658,12 +658,12 @@ class Hello extends React.Component {
 }
 ```
 
-## 7.表单处理
+## 7. 表单处理
 
 1. 受控组件
 2. 非受控组件（DOM方式）
 
-### 1.受控组件
+### 1. 受控组件
 
 - HTML 中的表单元素是可输入的，也就是有自己的可变状态
 - 而，React 中可变状态通常保存在 state 中，并且只能通过 setState() 方法来修改
@@ -724,7 +724,7 @@ class Hello extends React.Component {
 }
 ```
 
-### 2.非受控组件
+### 2. 非受控组件
 
 - 说明：借助于 ref，使用原生 DOM 方式来获取表单元素值
 - ref 的作用：获取 DOM 或组件
@@ -758,7 +758,7 @@ class Hello extends React.Component {
    ```
 
 
-## 8.总结
+## 8. 总结
 
 1. 组件的两种创建方式：函数组件和类组件
 2. 无状态（函数）组件，负责静态结构展示
@@ -767,15 +767,15 @@ class Hello extends React.Component {
 5. 推荐使用受控组件来处理表单
 6. 完全利用 JS 语言的能力创建组件，这是 React 的思想
 
-# 4.React 组件进阶
+# 4. React 组件进阶
 
-## 1.组件通讯介绍
+## 1. 组件通讯介绍
 
 **组件**是独立且封闭的单元，默认情况下，只能使用组件自己的数据。在组件化过程中，我们将一个完整的功能拆分成多个组件，以更好的完成整个应用的功能。而在这个过程中，多个组件之间不可避免的要共享某些数据。为了实现这些功能，就需要打破组件的独立封闭性，让其与外界沟通。这个过程就是**组件通讯**。
 
 ![](./React/组件通讯介绍.png)
 
-## 2.组件的 props
+## 2. 组件的 props
 
 - 组件是封闭的，要接收外部数据应该通过 props 来实现
 - **props 的作用：接收传递给组件的数据**
@@ -831,7 +831,7 @@ class Hello extends React.Component {
 }
 ```
 
-## 3.组件通讯的三种方式
+## 3. 组件通讯的三种方式
 
 组件之间的通讯分为 3 种：
 
@@ -839,7 +839,7 @@ class Hello extends React.Component {
 2. 子组件 -> 父组件
 3. 兄弟组件
 
-### 1.父组件传递数据给子组件
+### 1. 父组件传递数据给子组件
 
 1. 父组件提供要传递的 state 数据
 2. 给子组件标签添加属性，值为 **state** 中的数据
@@ -879,7 +879,7 @@ class Parent extends React.Component {
 }
 ```
 
-### 2.子组件传递数据给父组件
+### 2. 子组件传递数据给父组件
 
 思路：利用回调函数，父组件提供回调，子组件调用，将要传递的数据作为回调函数的参数。
 
@@ -929,7 +929,7 @@ class Child extends React.Component {
 }
 ```
 
-### 3.兄弟组件
+### 3. 兄弟组件
 
 - 将共享状态提升到最近的公共父组件中，由公共父组件管理这个状态
 - 思想：**状态提升**
@@ -999,7 +999,7 @@ class Child2 extends React.Component {
 }
 ```
 
-## 4.Context
+## 4. Context
 
 思考：App 组件要传递数据给 Child 组件，该如何处理？
 
@@ -1053,9 +1053,9 @@ class Child2 extends React.Component {
    }
    ```
 
-## 5.props 深入
+## 5. props 深入
 
-### 1.children 属性
+### 1. children 属性
 
 - children 属性：表示组件标签的子节点。当组件标签有子节点时，props 就会有该属性
 - children 属性与普通的 props 一样，值可以是任意值（文本、React 元素、组件，甚至是函数）
@@ -1086,9 +1086,9 @@ class App extends React.Component {
 }
 ```
 
-### 2.props 校验
+### 2. props 校验
 
-#### 1.问题
+#### 1. 问题
 
 - 对于组件来说，props 是外来的，无法保证组件使用者传入什么格式的数据
 
@@ -1137,7 +1137,7 @@ class App extends React.Component {
 
   ![](./React/props校验.png)
 
-#### 2.使用步骤
+#### 2. 使用步骤
 
 1. 安装包 prop-types
 
@@ -1179,7 +1179,7 @@ class App extends React.Component {
    }
    ```
 
-#### 3.约束规则
+#### 3. 约束规则
 
 1. 常见类型：array、bool、func、number、object、string
 2. React 元素类型：element
@@ -1198,7 +1198,7 @@ Hello.propTypes = {
 }
 ```
 
-### 3.props 的默认值
+### 3. props 的默认值
 
 - 场景：分页组件 -> 每页显示条数
 - 作用：给 props 设置默认值，在未传入 props 时生效
@@ -1220,9 +1220,9 @@ Hello.defaultProps = {
 }
 ```
 
-## 6.组件的生命周期
+## 6. 组件的生命周期
 
-### 1.组件的生命周期概述
+### 1. 组件的生命周期概述
 
 - 意义：组件的生命周期有助于理解组件的运行方式、完成更复杂的组件功能、分析组件错误原因等
 - **组件的生命周期**：组件从被创建到挂载到页面中运行，再到组件不用时卸载的过程
@@ -1230,7 +1230,7 @@ Hello.defaultProps = {
 - 钩子函数的作用：为开发人员在不同阶段操作组件提供了时机
 - **只有类组件才有生命周期**
 
-### 2.生命周期的三个阶段
+### 2. 生命周期的三个阶段
 
 1. 每个阶段的执行时机
 2. 每个阶段钩子函数的执行顺序
@@ -1238,7 +1238,7 @@ Hello.defaultProps = {
 
 ![](./React/生命周期的三个阶段.png)
 
-#### 1.创建时（挂载阶段）
+#### 1. 创建时（挂载阶段）
 
 执行时机：组件创建时（页面加载时）
 
@@ -1250,7 +1250,7 @@ Hello.defaultProps = {
 | render            | 每次组件渲染都会触发        | 渲染 UI（注意：**不能调用 setState()**）  |
 | componentDidMount | 组件挂载（完成 DOM 渲染）后 | 1.发送网络请求  2.DOM 操作                |
 
-#### 2.更新时（更新阶段）
+#### 2. 更新时（更新阶段）
 
 执行时机：1.setState() 2.forceUpdate() 3.组件接收到新的 props
 
@@ -1264,7 +1264,7 @@ Hello.defaultProps = {
 | render                | 每次组件渲染都会触发        | 渲染 UI（与挂载阶段是同一个 render）                         |
 | componentDidUpdate    | 组件更新（完成 DOM 渲染）后 | 1.发送网络请求  2.DOM 操作  注意：如果要 setState() 必须放在一个 if 条件中 |
 
-#### 3.卸载时（卸载阶段）
+#### 3. 卸载时（卸载阶段）
 
 执行时机：组件从页面中消失
 
@@ -1272,7 +1272,7 @@ Hello.defaultProps = {
 | -------------------- | ------------------------ | ---------------------------------- |
 | componentWillUnmount | 组件卸载（从页面中消失） | 执行清理工作（比如：清理定时器等） |
 
-### 3.不常用钩子函数介绍
+### 3. 不常用钩子函数介绍
 
 旧版生命周期钩子函数（知道）：
 
@@ -1282,11 +1282,11 @@ Hello.defaultProps = {
 
 ![](./React/不常用钩子函数介绍2.png)
 
-### 4.函数组件的 useEffect
+### 4. 函数组件的 useEffect
 
 useEffect 使用时有以下 4 种情况
 
-#### 1.不传递
+#### 1. 不传递
 
 useEffect 不传递第二个参数会导致每次渲染都会运行 useEffect。然后，当它运行时，它获取数据并更新状态。然后，一旦状态更新，组件将重新呈现，这将再次触发 useEffect，这就是问题所在。
 
@@ -1295,21 +1295,21 @@ useEffect 不传递第二个参数会导致每次渲染都会运行 useEffect。
 useEffect(() => console.log('组件更新了'))
 ```
 
-#### 2.传递空数组
+#### 2. 传递空数组
 
 ```jsx
 // 仅在挂载的时候执行
 useEffect(() => console.log('组件挂载了'), [])
 ```
 
-#### 3.传递一个值
+#### 3. 传递一个值
 
 ```jsx
 // count 更新时执行
 useEffect(() => console.log('count 更新了'), [count])
 ```
 
-#### 4.传递多个
+#### 4. 传递多个
 
 ```jsx
 // 监听 props 对象 number 的更改
@@ -1323,7 +1323,7 @@ const Asynchronous: React.FC = ({number}) => {
 }
 ```
 
-#### 5.return 方法
+#### 5. return 方法
 
 ```jsx
 const timer = setInterval(() => setCount(count + 1), 1000)
@@ -1335,9 +1335,9 @@ useEffect(() => {
 }, [])
 ```
 
-## 7.render-props 和高阶组件
+## 7. render-props 和高阶组件
 
-### 1.React组件复用概述
+### 1. React组件复用概述
 
 - 思考：如果两个组件中的部分功能相似或相同，该如何处理？
 - 处理方式：复用相似的功能（联想函数封装）
@@ -1345,9 +1345,9 @@ useEffect(() => {
 - 两种方式：1.**render props 模式** 2.**高阶组件（HOC）**
 - 注意：这两种方式**不是新的 API**，而是利用 React 自身特点的编码技巧，演化而成的固定模式（写法）
 
-### 2.render props 模式
+### 2. render props 模式
 
-#### 1.思路分析
+#### 1. 思路分析
 
 - 思路：将要复用的 state 和操作 state 的方法封装到一个组件中
 
@@ -1368,7 +1368,7 @@ useEffect(() => {
   ```
 
 
-#### 2.使用步骤
+#### 2. 使用步骤
 
 1. 创建 Mouse 组件，在组件中提供复用的**状态逻辑**代码（1.状态 2.操作状态的方法）
 2. 将要**复用的状态**作为 props.render(**state**) 方法的参数，暴露到组件外部
@@ -1415,7 +1415,7 @@ class App extends React.Component {
 - 操作状态的方法：鼠标移动事件
 - 传入的render prop负责：**使用复用的状态来渲染 UI 结构**
 
-#### 3.children 代替 render 属性
+#### 3. children 代替 render 属性
 
 - 注意：并不是该模式叫 render props 就必须使用名为 render 的 prop，实际上可以使用任意名称的 prop
 - 把 prop 是一个函数并且告诉组件要渲染什么内容的技术叫做：render props 模式
@@ -1437,7 +1437,7 @@ App 组件：
 <Mouse>{state => <p>鼠标当前位置 {state.x}，{state.y}</p>}</Mouse>
 ```
 
-#### 4.代码优化
+#### 4. 代码优化
 
 1. 推荐：给 render props 模式添加 props 校验
 
@@ -1455,9 +1455,9 @@ App 组件：
    }
    ```
 
-### 3.高阶组件
+### 3. 高阶组件
 
-#### 1.概述
+#### 1. 概述
 
 - 目的：**实现状态逻辑复用**
 - 采用 **包装（装饰）模式**，比如说：手机壳
@@ -1465,12 +1465,12 @@ App 组件：
 - 手机壳：提供保护功能
 - 高阶组件就相当于手机壳，通过包装组件，增强组件功能
 
-#### 2.思路分析
+#### 2. 思路分析
 
 - **高阶组件**（HOC：Higher-Order Component）**是一个函数**，接收要包装的组件，返回增强后的组件
 - 高阶组件内部**创建一个类组件**，在这个类组件中**提供复用的状态逻辑**代码，通过 prop 将复用的状态传递给被包装组件 WrappedComponent
 
-#### 3.使用步骤
+#### 3. 使用步骤
 
 1. 创建一个函数，名称约定**以 with 开头**
 2. 指定函数参数，参数应该以大写字母开头（作为要渲染的组件）
@@ -1522,7 +1522,7 @@ class Position extends React.Component {
 const MousePosition = withMouse(Position)
 ```
 
-#### 4.设置 displayName
+#### 4. 设置 displayName
 
 - 使用高阶组件存在的问题：得到的两个组件名称相同
 - 原因：默认情况下，React 使用**组件名称**作为 displayName
@@ -1546,7 +1546,7 @@ function getDisplayName(WrappedComponent) {
 }
 ```
 
-#### 5.传递 props
+#### 5. 传递 props
 
 - 问题：props 丢失
 - 原因：高阶组件没有往下传递 props
@@ -1557,7 +1557,7 @@ function getDisplayName(WrappedComponent) {
 <WrappedComponent {...this.state} {...this.props}/>
 ```
 
-## 8.总结
+## 8. 总结
 
 1. 组件通讯是构建 React 应用必不可少的一环。
 2. props 的灵活性让组件更加强大。
@@ -1567,11 +1567,11 @@ function getDisplayName(WrappedComponent) {
 6. render props 模式和高阶组件都可以实现组件状态逻辑复用。
 7. 组件极简模型：(state, props) => UI
 
-# 5.React 原理揭秘
+# 5. React 原理揭秘
 
-## 1.setState() 的说明
+## 1. setState() 的说明
 
-### 1.更新数据
+### 1. 更新数据
 
 - **setState()** 是**异步**更新数据的
 - 注意：使用该语法时，后面的 setState() 不要依赖于前面的 setState()
@@ -1588,7 +1588,7 @@ addCount = () => {
 }
 ```
 
-### 2.推荐语法
+### 2. 推荐语法
 
 - 推荐：使用 **setState((state, props) => {})** 语法
 - 参数 state：表示最新的 state
@@ -1604,7 +1604,7 @@ this.setState((state, props) => ({count: state.count + 1}))
 this.setState((state, props) => ({count: state.count + 1}))
 ```
 
-### 3.第二个参数
+### 3. 第二个参数
 
 - 场景：在状态更新（页面完成重新渲染）后立即执行某个操作
 - 语法：**setState(updater[, callback])**
@@ -1620,7 +1620,7 @@ this.setState((state, props) => ({count: state.count + 1}), () => {
 })
 ```
 
-## 2.JSX 语法的转化过程
+## 2. JSX 语法的转化过程
 
 - JSX 仅仅是 createElement() 方法的语法糖（简化语法）
 - JSX 语法被 @babel/preset-react 插件编译为 createElement() 方法
@@ -1628,16 +1628,16 @@ this.setState((state, props) => ({count: state.count + 1}), () => {
 
 ![](./React/JSX语法的转化过程.png)
 
-## 3.组件更新机制
+## 3. 组件更新机制
 
 - **setState()** 的两个作用：1.修改 state 2.更新组件（UI）
 - 过程：父组件重新渲染时，也会重新渲染子组件。但只会渲染**当前组件子树**（当前组件及其所有子组件）
 
 ![](./React/组件更新机制.png)
 
-## 4.组件性能优化
+## 4. 组件性能优化
 
-### 1.减轻 state
+### 1. 减轻 state
 
 - **减轻 state**：只存储跟组件渲染相关的数据（比如：count / 列表数据 / loading 等）
 - 注意：不用做渲染的数据不要放在 state 中，比如定时器 id 等
@@ -1658,7 +1658,7 @@ class Hello extends React.Component {
 }
 ```
 
-### 2.避免不必要的重新渲染
+### 2. 避免不必要的重新渲染
 
 - 组件更新机制：父组件更新会引起子组件也被更新，这种思路很清晰
 
@@ -1714,7 +1714,7 @@ class Hello extends React.Component {
   }
   ```
 
-### 3.纯组件
+### 3. 纯组件
 
 - 纯组件：PureComponent 与 React.Component 功能相似
 
@@ -1746,7 +1746,7 @@ class Hello extends React.Component {
   this.setState({list: newArray})
   ```
 
-## 5.虚拟 DOM 和 Diff 算法
+## 5. 虚拟 DOM 和 Diff 算法
 
 - React 更新视图的思想是：只要 state 变化就重新渲染视图
 - 特点：思路非常清晰
@@ -1754,13 +1754,13 @@ class Hello extends React.Component {
 - 理想状态：**部分更新**，只更新变化的地方。
 - 问题：React 是如何做到部分更新的？**虚拟 DOM 配合 Diff 算法**
 
-### 1.虚拟 DOM
+### 1. 虚拟 DOM
 
 虚拟 DOM：本质上就是一个 JS 对象，用来描述你希望在屏幕上看到的内容（UI）。
 
 ![](./React/虚拟DOM和Diff算法.png)
 
-### 2.执行过程
+### 2. 执行过程
 
 1. 初次渲染时，React 会根据初始 state（Model），创建一个虚拟 DOM 对象（树）。
 2. 根据虚拟 DOM 生成真正的 DOM，渲染到页面中。
@@ -1770,7 +1770,7 @@ class Hello extends React.Component {
 
 ![](./React/执行过程.png)
 
-### 3.代码演示
+### 3. 代码演示
 
 - 组件 render() 调用后，根据**状态**和 **JSX 结构**生成虚拟 DOM 对象
 - 示例中，只更新 p 元素的文本节点内容
@@ -1790,7 +1790,7 @@ class Hello extends React.Component {
 {type: 'p', props: {children: 2}}
 ```
 
-## 6.总结
+## 6. 总结
 
 1. 工作角度：应用第一，原理第二。
 2. 原理有助于更好地理解 React 的自身运行机制。
@@ -1800,9 +1800,9 @@ class Hello extends React.Component {
 6. 虚拟 DOM -> state + JSX。
 7. 虚拟 DOM 的真正价值从来都不是性能。
 
-# 6.React 路由基础
+# 6. React 路由基础
 
-## 1.React路由介绍
+## 1. React路由介绍
 
 现代的前端应用大多都是 **SPA**（单页面应用程序），也就是只有一个 HTML 页面的应用程序。因为它的用户体验更好、对服务器的压力更小，所以更受欢迎。为了有效的使用单个页面管理原来多页面的功能，前端路由应运而生。
 
@@ -1810,11 +1810,11 @@ class Hello extends React.Component {
 - 前端路由是一套映射规则，在 React 中，是 **URL 路径**与**组件**的对应关系
 - 使用 React 路由简单来说，就是配置**路径**和**组件**（配对）
 
-## 2.react-router-dom 5.x 版本
+## 2. react-router-dom 5.x 版本
 
-### 1.路由的基本使用
+### 1. 路由的基本使用
 
-#### 1.使用步骤
+#### 1. 使用步骤
 
 1. 安装
 
@@ -1876,7 +1876,7 @@ class Hello extends React.Component {
    }
    ```
 
-#### 2.常用组件说明
+#### 2. 常用组件说明
 
 - Router 组件：包裹整个应用，一个 React 应用只需要**使用一次**
 - 两种常用 Router：HashRouter 和 **BrowserRouter**
@@ -1885,7 +1885,7 @@ class Hello extends React.Component {
 - Link 组件：用于指定导航链接（a 标签）
 - Route 组件：指定路由展示组件相关信息
 
-### 3.路由的执行过程
+### 3. 路由的执行过程
 
 1. 点击 Link 组件（a 标签），修改了浏览器地址栏中的 url。
 2. React 路由监听到地址栏 url 的变化。
@@ -1894,7 +1894,7 @@ class Hello extends React.Component {
 
 ![](./React/路由的执行过程.png)
 
-### 4.编程式导航
+### 4. 编程式导航
 
 - 场景：点击登录按钮，登录成功后，通过代码跳转到后台首页，如何实现？
 - 编程式导航：**通过 JS 代码来实现页面跳转**
@@ -1922,7 +1922,7 @@ class First extends React.Component {
 }
 ```
 
-### 5.默认路由
+### 5. 默认路由
 
 - 问题：现在的路由都是点击导航菜单后展示的，如何在进入页面的时候就展示呢？
 - 默认路由：表示进入页面时就会匹配的路由
@@ -1932,9 +1932,9 @@ class First extends React.Component {
 <Route path='/' element={<Home/>}/>
 ```
 
-### 6.匹配模式
+### 6. 匹配模式
 
-#### 1.模糊匹配模式
+#### 1. 模糊匹配模式
 
 - 问题：当 Link 组件的 to 属性值为 “/login” 时，为什么默认路由也被匹配成功？
 - 默认情况下，React 路由是**模糊匹配模式**
@@ -1946,7 +1946,7 @@ class First extends React.Component {
 <Route exact path='/' element={<Home/>}/>
 ```
 
-#### 2.精确匹配
+#### 2. 精确匹配
 
 - 问题：默认路由任何情况下都会展示，如何避免这种问题？
 - 给 Route 组件添加 **exact** 属性，让其变为**精确匹配模式**
@@ -1959,9 +1959,9 @@ class First extends React.Component {
 
 > 推荐：给默认路由添加 **exact** 属性
 
-## 3.react-router-dom 6.x 版本
+## 3. react-router-dom 6.x 版本
 
-### 1.基本使用
+### 1. 基本使用
 
 1. 首先安装依赖
 
@@ -1997,11 +1997,11 @@ class First extends React.Component {
 
 > 注意：`BrowserRouter`组件最好放在最顶层所有组件之外，这样能确保内部组件使用 Link 做路由跳转时不出错
 
-### 2.路由跳转
+### 2. 路由跳转
 
 在跳转路由时，如果路径是`/`开头的则是绝对路由，否则为**相对路由**，即**相对于当前 URL** 进行改变
 
-#### 1.Link 组件
+#### 1. Link 组件
 
 `Link组件`只能在`Router`内部使用，因此使用到`Link组件`的组件一定要放在顶层的 Router 之内
 
@@ -2022,7 +2022,7 @@ import { NavLink } from "react-router-dom";
 (<NavLink to='/left' style={({isActive}) => ({color: isActive ? "red" : "#fff"})}>Left 组件（NavLink）</NavLink>)
 ```
 
-#### 3.编程式跳转
+#### 3. 编程式跳转
 
 使用`useNavigate`钩子函数生成`navigate函数`，可以通过 JS 代码完成路由跳转
 
@@ -2046,9 +2046,9 @@ function Left() {
 - 可以直接传入要跳转的目标路由（可以使用相对路径，语法和 JS 相同）
 - 传入`-1`表示后退
 
-### 3.动态路由参数
+### 3. 动态路由参数
 
-#### 1.路径参数
+#### 1. 路径参数
 
 - 在`Route组件`中的`path属性`中定义路径参数
 - 在组件内通过`useParams`hook 访问路径参数
@@ -2111,7 +2111,7 @@ export default function Right() {
 1. 将类组件改写为函数组件
 2. 自己写一个 HOC 来包裹类组件，用`useParams`获取参数后通过 props 传入原本的类组件
 
-#### 2.search 参数
+#### 2. search 参数
 
 - 查询参数不需要在路由中定义
 - 使用`useSearchParams`hook 来访问和修改查询参数。其用法和`useState`类似，会返回当前对象和更改它的方法
@@ -2133,9 +2133,9 @@ function Right() {
 }
 ```
 
-### 4.嵌套路由
+### 4. 嵌套路由
 
-#### 1.第一种方式：使用 Outlet
+#### 1. 第一种方式：使用 Outlet
 
 通过嵌套的书写`Route组件`实现对嵌套路由的定义。
 
@@ -2169,7 +2169,7 @@ function Father() {
 }
 ```
 
-#### 2.第二种方式：定义 Routes
+#### 2. 第二种方式：定义 Routes
 
 可以在任何组件中使用`Routes`组件，且组件内的 Routes 中，路径默认带上当前组件的路径作为前缀。
 
@@ -2202,7 +2202,7 @@ export default function Father() {
 }
 ```
 
-### 5.默认路由
+### 5. 默认路由
 
 **定义：**在嵌套路由中，如果 URL 仅匹配了父级 URL，则`Outlet`中会显示带有`index`属性的子路由。可以使用在路由的任何层级
 
@@ -2220,7 +2220,7 @@ export default function Father() {
 - 当 url 为`/father`时：Father 中的 Outlet 会显示 DefaultSon 组件
 - 当 url 为`/father/son`时：Father 中的 Outlet 会显示为 Son 组件
 
-### 6.全匹配路由
+### 6. 全匹配路由
 
 **定义：**`path`属性取值为`*`时，可以匹配任何（非空）路径，该匹配拥有**最低的优先级**。可以用于设置 404 页面。
 
@@ -2230,7 +2230,7 @@ export default function Father() {
 </Routes>
 ```
 
-### 7.多组路由
+### 7. 多组路由
 
 通常，一个应用中只有一个`Routes`组件。
 
@@ -2251,7 +2251,7 @@ export default function Father() {
 </Router>
 ```
 
-### 8.路由重定向
+### 8. 路由重定向
 
 当在某个路径`/`下，要重定向到路径`/a`时，可以通过`Navigate`组件进行重定向到其他路径
 
@@ -2275,7 +2275,7 @@ export default function A() {
 }
 ```
 
-### 9.布局路由
+### 9. 布局路由
 
 当多个路由有共同的父级组件时，可以将父组件提取为一个没有`path`和`index`属性的 Route 组件（Layout Route）
 
@@ -2293,7 +2293,7 @@ export default function A() {
 <Route path="/tos" element={<PageLayout><Tos/></PageLayout>}/>
 ```
 
-### 10.订阅和操作 history stack 的原理
+### 10. 订阅和操作 history stack 的原理
 
 浏览器会记录导航堆栈，以实现浏览器中的前进后退功能。在传统的前端项目中，URL 的改变意味着向服务器重新请求数据。
 
@@ -2311,7 +2311,7 @@ export default function A() {
 />
 ```
 
-#### 1.History 对象
+#### 1. History 对象
 
 浏览器没有直接提供监听 URL 改变（push、pop、replace）的接口，因此`react-router`对原生的`history`对象进行了包装，提供了监听 URL 改变的 API。
 
@@ -2325,7 +2325,7 @@ history.listen(({location, action}) => {
 
 使用`react-router`时不需操作 History 对象（`Routes` 组件会进行操作）
 
-#### 2.Location 对象
+#### 2. Location 对象
 
 `react-router`对`window.location`进行包装后，提供了一个形式简洁的 Location 对象，形如：
 
@@ -2339,7 +2339,7 @@ history.listen(({location, action}) => {
 }
 ```
 
-##### 1.state
+##### 1. state
 
 不显示在页面上，不会引起刷新，只由开发人员操作。
 
@@ -2362,20 +2362,20 @@ console.log(location.state)
 
 > state 中的信息会进行序列化，因此如日期对象等信息会变为 string
 
-##### 2.key
+##### 2. key
 
 每个 Location 对象拥有一个唯一的 key，可以据此来实现基于 Location 的滚动管理，或是数据缓存。
 
 如：将`location.key`和 URL 作为键，每次请求数据前，先查找缓存是否存在来判断是否实际发送请求，来实现客户端数据缓存。
 
-### 11.HashRouter 和 BrowserRouter 的区别
+### 11. HashRouter 和 BrowserRouter 的区别
 
 - `HashRouter`只会修改URL中的哈希值部分；而`BrowserRouter`修改的是 URL 本身
 - `HashRouter`是**纯前端**路由，可以通过输入 URL 直接访问；使用时`BrowserRouter`直接输入 URL 会显示 404，除非配置 Nginx 将请求指向对应的 HTML 文件。初次进入`/`路径时或点击`Link`组件跳转时不会发送请求
 
-# 7.地理位置 API
+# 7. 地理位置 API
 
-## 1.H5 中的地理位置 API
+## 1. H5 中的地理位置 API
 
 - 场景：根据当前地理位置，获取当前所在城市的房源信息
 - 作用：在 Web 应用程序中获取地理位置（[文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation_API)）
@@ -2397,9 +2397,9 @@ navigator.geolocation.getCurrentPosition(position => {
 })
 ```
 
-## 2.百度地图 API
+## 2. 百度地图 API
 
-### 1.介绍
+### 1. 介绍
 
 - H5 的地理位置 API 只能获取到经纬度信息
 - 实际开发中，会使用百度地图/高德地图来完成地理位置的相关功能
@@ -2407,7 +2407,7 @@ navigator.geolocation.getCurrentPosition(position => {
 - 百度地图[文档](https://lbsyun.baidu.com/index.php?title=%E9%A6%96%E9%A1%B5)（首页 -> 开发文档 -> JavaScript API）
 - 注意：使用前，需要先申请百度账号和 ak，获取到的 ak
 
-### 2.申请百度账号和密钥
+### 2. 申请百度账号和密钥
 
 1. 进入 https://lbsyun.baidu.com/index.php?title=jspopularGL/guide/getkey 根据步骤来
 
@@ -2419,7 +2419,7 @@ navigator.geolocation.getCurrentPosition(position => {
 
 3. 再根据 JavaScript API 文档使用相关服务功能
 
-### 3.基本使用
+### 3. 基本使用
 
 ```html
 <!DOCTYPE html>
@@ -2466,7 +2466,7 @@ navigator.geolocation.getCurrentPosition(position => {
 </html>
 ```
 
-### 4.展示地图
+### 4. 展示地图
 
 ```js
 map.enableScrollWheelZoom(true) // 开启鼠标滚轮缩放
@@ -2474,16 +2474,16 @@ map.setHeading(64.5) // 设置地图旋转角度
 map.setTilt(73) // 设置地图的倾斜角度
 ```
 
-### 5.地球模式
+### 5. 地球模式
 
 ```js
 map.enableScrollWheelZoom(true) // 开启鼠标滚轮缩放
 map.setMapType(BMAP_EARTH_MAP) // 设置地图类型为地球模式
 ```
 
-# 8.长列表性能优化
+# 8. 长列表性能优化
 
-## 1.概述
+## 1. 概述
 
 - 场景：展示大型列表和表格数据（比如：城市列表、通讯录、微博等），会导致页面卡顿、滚动不流畅等性能问题
 - 产生性能问题的原因：大量 DOM 节点的重绘和重排
@@ -2491,7 +2491,7 @@ map.setMapType(BMAP_EARTH_MAP) // 设置地图类型为地球模式
 - 其他问题：移动设备耗电加快、影响移动设备电池寿命
 - 优化方案：**1.懒渲染 2.可视区域渲染**
 
-## 2.懒渲染说明
+## 2. 懒渲染说明
 
 - 常见的长列表优化方案，常见于移动端
 - 原理：每次只渲染一部分（比如 10 条数据），等渲染的数据即将滚动完时，再渲染下面部分
@@ -2499,21 +2499,21 @@ map.setMapType(BMAP_EARTH_MAP) // 设置地图类型为地球模式
 - 缺点：数据量大时，页面中依然存在大量 DOM 节点，占用内存过多、降低浏览器渲染性能，导致页面卡顿
 - 使用场景：数据量不大的情况（比如 1000 条，具体还要看每条数据的复杂程度）
 
-## 3.可视区域渲染（react-virtualized）
+## 3. 可视区域渲染（react-virtualized）
 
 - 原理：只渲染页面可视区域的列表项，非可视区域的数据 “完全不渲染”，在滚动列表时动态更新列表项
 - 使用场景：一次性展示大量数据的情况（比如：大表格、微博、聊天应用等）
 
 ![](./React/可视区域渲染（react-virtualized）.png)
 
-## 4.react-virtualized
+## 4. react-virtualized
 
-### 1.概述
+### 1. 概述
 
 1. react-virtualized 是 React 组件，用来高效渲染大型列表和表格数据
 2. GitHub 地址：[react-virtualized](https://github.com/bvaughn/react-virtualized)
 
-### 2.使用组件（以 List 组件为例）
+### 2. 使用组件（以 List 组件为例）
 
 1. 安装：
 
@@ -2565,7 +2565,7 @@ map.setMapType(BMAP_EARTH_MAP) // 设置地图类型为地球模式
    )
    ```
 
-### 3.使用高阶组件（以 AutoSizer 组件为例）
+### 3. 使用高阶组件（以 AutoSizer 组件为例）
 
 1. 打开[文档](https://github.com/bvaughn/react-virtualized/tree/master/docs)，点击 AutoSizer 高阶组件，进入 AutoSizer 的文档中
 
@@ -2606,15 +2606,15 @@ map.setMapType(BMAP_EARTH_MAP) // 设置地图类型为地球模式
    ```
 
 
-# 9.组件间样式覆盖问题
+# 9. 组件间样式覆盖问题
 
-## 1.CSS IN JS
+## 1. CSS IN JS
 
 - CSS IN JS：是使用 JavaScript 编写 CSS 的统称，用来解决 CSS 样式冲突、覆盖等问题
 - CSS IN JS 的具体实现有 50 多种，比如：CSS Modules、styled-components 等
 - 推荐使用：**CSS Modules**（React 脚手架已集成，可直接使用）
 
-## 2.CSS Modules
+## 2. CSS Modules
 
 - CSS Modules 通过对 CSS 类名重命名，保证每个类名的唯一性，从而避免样式冲突的问题
 - 换句话说：所有类名都具有 “局部作用域”，只在当前组件内部生效
@@ -2630,7 +2630,7 @@ map.setMapType(BMAP_EARTH_MAP) // 设置地图类型为地球模式
 .Button_error__ax7yz {}
 ```
 
-## 3.CSS Modules 在项目中的使用
+## 3. CSS Modules 在项目中的使用
 
 1. 创建名为 [name].module.css 的样式文件（React 脚手架中的[约定](https://create-react-app.bootcss.com/docs/adding-a-css-modules-stylesheet)，与普通 CSS 作区分）
 
