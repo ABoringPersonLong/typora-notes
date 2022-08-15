@@ -826,7 +826,7 @@ const router = new createRouter({
 const router = new createRouter({
   routes: [
     // 使用 name 属性为当前路由规则定义一个 “名称”
-    { name: 'movie', path: '/movie/:id', component: Movie }
+    { path: '/movie/:id', name: 'movie', component: Movie }
   ]
 })
 ```
@@ -1086,12 +1086,20 @@ npm i vuex
 ### 2. 导入 vuex 包
 
 ```js
+// vue3.x
 import { createStore } from 'vuex'
+
+// vue2.x
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
 ```
 
 ### 3. 创建 store 对象
 
 ```js
+// vue3.x
 // 创建 store 数据源，提供唯一的公共数据
 export default createStore({
   // state 中存放的就是全局共享的数据
@@ -1099,11 +1107,15 @@ export default createStore({
     count: 0
   }
 })
+
+// vue2.x
+export default new Vuex.Store({})
 ```
 
 ### 4. 将 store 对象挂载到 vue 实例中
 
 ```js
+// vue3.x
 import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
@@ -1111,6 +1123,11 @@ import store from './store'
 // 将创建的共享数据对象，挂载到 Vue 实例中
 // 所有的组件，就可以直接从 store 中获取全局的数据了
 createApp(App).use(store).mount('#app')
+
+// vue2.x
+import store from './store/store.js'
+
+new Vue({store}).$mount()
 ```
 
 ## 3. Vuex 的核心概念
@@ -1119,14 +1136,14 @@ createApp(App).use(store).mount('#app')
 
 Vuex 中的主要核心概念如下：
 
-- State
-- Mutation
-- Action
-- Getter
+- state
+- getters
+- mutations
+- actions
 
-### 2. State
+### 2. state
 
-State 提供唯一的公共数据源，所有共享的数据都要统一放到 Store 的 State 中进行存储。
+state 提供唯一的公共数据源，所有共享的数据都要统一放到 store 的 state 中进行存储。
 
 定义 state：
 
@@ -1162,11 +1179,57 @@ export default {
 </script>
 ```
 
-### 3. Mutation
+### 3. getters
 
-Mutation 用于变更 Store 中的数据。
+getters 用于对 store 中的数据进行加工处理形成新的数据。
 
-1. 只能通过 Mutation 变更 Store 数据，不可以直接操作 Stroe 中的数据。
+1. getters 可以对 store 中已有的数据加工处理之后形成新的数据，类似 Vue 的计算属性。
+2. store 中数据发生变化，getters 的数据也会跟着变化。
+
+定义 getters：
+
+```js
+export default createStore({
+  state: {
+    count: 0
+  },
+  // getters 用于对 state 中的数据进行加工处理形成新的数据
+  getters: {
+    getCount(state) {
+      return `当前最新的数量是【${state.count}】`
+    }
+  }
+})
+```
+
+**访问 getters 的第一种方式**
+
+```js
+// 访问 getCount()
+this.$store.getters.getCount
+```
+
+**访问 getters 的第二种方式**
+
+```vue
+<script>
+// 1. 从 vuex 中按需导入 mapGetters 函数
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    // 2. 将指定的 getters 函数，映射为当前组件的计算属性
+    ...mapGetters(['getCount'])
+  }
+}
+</script>
+```
+
+### 4. mutations
+
+mutations 用于变更 store 中的数据。
+
+1. 只能通过 mutations 变更 store 数据，不可以直接操作 stroe 中的数据。
 2. 通过这种方式虽然操作起来稍微繁琐一些，但是可以集中监控所有数据的变化。
 
 **触发 mutations 的第一种方式**
@@ -1228,11 +1291,11 @@ export default {
 </script>
 ```
 
-### 4. Action
+### 5. actions
 
-Action 用于处理异步任务。
+actions 用于处理异步任务。
 
-如果通过异步操作变更数据，必须通过 Action，而不能使用 Mutation，但是在 Action 中还是要通过触发 Mutation 的方式间接变更数据。
+如果通过异步操作变更数据，必须通过 actions，而不能使用 mutations，但是在 action 中还是要通过触发 mutations 的方式间接变更数据。
 
 **触发 actions 的第一种方式**
 
@@ -1303,48 +1366,69 @@ export default {
 </script>
 ```
 
-### 5. Getter
+## 4. vuex 中的 store 分模块管理
 
-Getter 用于对 Store 中的数据进行加工处理形成新的数据。
+需要在 store/index.js 中引入各个模块，为了解决不同模块命名冲突的问题，将不同模块设置 **namespaced: true**，之后在不同页面中引入 stats、mutations、actions、getter 时，**需要加上所属的模块名**
 
-1. Getter 可以对 Store 中已有的数据加工处理之后形成新的数据，类似 Vue 的计算属性。
-2. Store 中数据发生变化，Getter 的数据也会跟着变化。
-
-定义 getters：
+store/index.js 文件：
 
 ```js
+import { createStore } from 'vuex'
+import moduleCart from './modules/cart.js' // 导入外部模块
+
 export default createStore({
-  state: {
-    count: 0
-  },
-  // getters 用于对 state 中的数据进行加工处理形成新的数据
-  getters: {
-    getCount(state) {
-      return `当前最新的数量是【${state.count}】`
-    }
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {},
+  // 外部模块放到 modules 节点中
+  modules: {
+    moduleCart
   }
 })
 ```
 
-**访问 getters 的第一种方式**
+store/modules/cart.js 文件：
 
 ```js
-// 访问 getCount()
-this.$store.getters.getCount
+export default {
+  namespaced: true, // 为当前模块开启命名空间，在访问这个模块的数据的时候要指定模块名
+  state: {
+    cart: [...]
+  },
+	getters: {
+    getCart(state) {...}
+  },
+  mutations: {
+    addToCart(state) {...}
+  },
+  actions: {
+    addToCartAsync(context) {...}
+  }
+}
 ```
 
-**访问 getters 的第二种方式**
+访问 store/modules/cart.js 文件里的数据：
 
 ```vue
 <script>
-// 1. 从 vuex 中按需导入 mapGetters 函数
-import { mapGetters } from 'vuex'
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
   computed: {
-    // 2. 将指定的 getters 函数，映射为当前组件的计算属性
-    ...mapGetters(['getCount'])
+    ...mapState('moduleCart', ['cart']), // moduleCart 是 modules 节点中指定的模块名
+    ...mapGetters('moduleCart', ['getCart']) // moduleCart 是 modules 节点中指定的模块名
+  },
+  methods: {
+    ...mapMutations('moduleCart', ['addToCart']), // moduleCart 是 modules 节点中指定的模块名
+    ...mapActions('moduleCart', ['addToCartAsync']) // moduleCart 是 modules 节点中指定的模块名
   }
 }
 </script>
 ```
+
+# 4. mixins 混入
+
+不再推荐
+
+在 Vue 2 中，mixins 是创建可重用组件逻辑的主要方式。尽管在 Vue 3 中保留了 mixins 支持，但对于组件间的逻辑复用，[Composition API](https://cn.vuejs.org/guide/reusability/composables.html) 是现在更推荐的方式。
