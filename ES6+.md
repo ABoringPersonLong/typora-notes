@@ -1584,7 +1584,7 @@ console.log(BigInt(max) + BigInt(2));// 运算成功
 
 表示全局对象，在 html 中是 Window，在 js 中是 global
 
-# 5. EventLoop
+# 5. EventLoop（事件循环）
 
 ## 1. JavaScript 是单线程的语言
 
@@ -1640,11 +1640,11 @@ JavaScript 把异步任务又做了进一步的划分，异步任务又分为两
 
 1. **宏任务**（macrotask）
     - 异步 Ajax 请求、
-    - setTimeout、setInterval、
+    - setTimeout、setInterval、requestAnimationFrame
     - 文件操作
     - 其它宏任务
 2. **微任务**（microtask）
-    - Promise.then、.catch 和 .finally
+    - Promise.then、Promise.catch 和 Promise.finally
     - process.nextTick
     - 其它微任务
 
@@ -1673,23 +1673,56 @@ JavaScript 把异步任务又做了进一步的划分，异步任务又分为两
 
 ## 4. 分析以下代码输出的顺序
 
-![](./ES6+/分析以下代码输出的顺序.png)
+```js
+setTimeout(() => console.log('1')) // 宏任务
 
-正确的输出顺序是：2431
+new Promise(resolve => { // 同步任务
+  console.log('2') // 同步任务
+  resolve()
+}).then(() => console.log('3')) // 微任务
 
-分析：
+console.log('4') // 同步任务
+```
 
-1. 先执行所有的**同步任务**
-    - 执行第 6 行、第 12 行代码
-2. 再执行**微任务**
-    - 执行第 9 行代码
-3. 再执行**下一个宏任务**
-    - 执行第 2 行代码
+> 正确的输出顺序是：2431
+>
+> 分析：
+>
+> 1. 先执行所有的**同步任务**
+>     - 执行第 6 行、第 12 行代码
+> 2. 再执行**微任务**
+>     - 执行第 9 行代码
+> 3. 再执行**下一个宏任务**
+>     - 执行第 2 行代码
+>
 
 ## 5. 经典面试题
 
 请分析以下代码输出的顺序（代码较长，截取成了左中右 3 个部分）：
 
-![](./ES6+/经典面试题.png)
+```js
+console.log('1') // 同步任务
 
-正确的输出顺序是：156234789
+setTimeout(() => { // 宏任务
+  console.log('2')
+  new Promise(resolve => { // 同步任务
+    console.log('3')
+    resolve()
+  }).then(() => console.log('4')) // 微任务
+})
+
+new Promise(resolve => { // 同步任务
+  console.log('5')
+  resolve()
+}).then(() => console.log('6')) // 微任务
+
+setTimeout(() => { // 宏任务
+  console.log('7')
+  new Promise(resolve => { // 同步任务
+    console.log('8')
+    resolve()
+  }).then(() => console.log('9')) // 微任务
+})
+```
+
+> 正确的输出顺序是：156234789

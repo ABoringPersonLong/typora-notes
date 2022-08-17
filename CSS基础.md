@@ -200,6 +200,10 @@
             no-repeat：不平铺
             repeat-x：水平方向平铺
             repeat-y：垂直方向平铺
+        background-origin：属性指定 background-position 属性应该是相对位置。
+            padding-box：默认值，背景图像从 padding 开始填充
+            border-box：背景图像从 border 开始填充
+            content-box：背景图像从内容区域开始填充
         background-position: 水平方向位置 垂直方向位置：背景位置
             例：
                 background-position: 0 0;在左上角位置

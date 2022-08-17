@@ -2646,7 +2646,7 @@ App.vue 组件：
     <div class="right">
         <slot>
             <h1>这是后备内容</h1>
-    	</slot>
+    		</slot>
     </div>
 </template>
 ```
