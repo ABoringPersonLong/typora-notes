@@ -504,3 +504,35 @@
         参见 BootStrap 项目
 ```
 
+# BFC 和 IFC 的理解（布局）
+
+## BFC
+
+BFC（Block Formatting Context）叫做 “块级格式化上下文"
+
+布局规则如下：
+
+1. 内部的盒子会在垂直方向，一个个地放置
+2. 盒子垂直方向的距离由 margin 决定， 属于同一个 BFC 的两个相邻 Box 的上下 margin 会发生重叠
+3. 每个元素的左边，与包含的盒子的左边相接触，即使存在浮动也是如此
+4. BFC 的区域不会与 float 重叠
+5. BFC 就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此
+6. 计算 BFC 的高度时，浮动元素也参与计算
+
+介绍过了 BFC 的布局规范，再来说说哪些元素会产生 BFC。
+
+1. 根元素；
+2. float 的属性不为 none
+3. position 为 absolute 或 fixed
+4. display 为 flex 或 inline-block 或 table-cell 或 table-caption
+5. overflow 不为 visible
+
+## IFC
+
+IFC（inline Formatting Context）叫做 “行级格式化上下”
+
+局规则如下：
+
+1. 内部的盒子会在水平方向，一个个地放置
+2. IFC 的高度，由里面最高盒子的高度决定
+3. 当一行不够放置的时候会自动切换到下一行
