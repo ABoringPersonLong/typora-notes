@@ -12,8 +12,6 @@ HTML、CSS、JavaScript
 
 ![](./Node.js/浏览器中的JavaScript的组成部分.png)
 
-
-
 #### 3. 为什么 JavaScript 可以在浏览器中被执行
 
 ![](./Node.js/为什么JavaScript可以在浏览器中被执行.png)

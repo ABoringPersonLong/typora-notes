@@ -1,3 +1,105 @@
+# 1. 引入 three.js
+
+## 1. script 标签方式引入 three.js
+
+你可以像平时开发 web **前端**项目一样，把 three.js 当做一个 js 库引入你的项目。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <script src="./three.js-dev/build/three.min.js"></script>
+  <title>Title</title>
+</head>
+<body>
+<script>
+  console.log(THREE)
+</script>
+</body>
+</html>
+```
+
+## 2. es6 的 import 方式引入
+
+给 script 标签设置`type="module"`，也可以在 .html 文件中使用`import`方式引入 three.js。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <title>Title</title>
+</head>
+<body>
+<script type="module">
+  import * as THREE from './three.js-dev/build/three.module.js'
+  console.log(THREE)
+</script>
+</body>
+</html>
+```
+
+## 3. three.js 工程化开发
+
+平时学习，为了方便可以直接在 .html 文件中引入 three.js 相关文件，不过在正式开发的时候，你可以在你的 node.js 工程文件中，通过 npm 命令安装 three.js。
+
+安装特定版本的 three.js：
+
+```bash
+npm i three@0.143.0
+```
+
+使用：
+
+```js
+// 引入 three.js
+import * as THREE from 'three'
+console.log(THREE)
+
+// 引入扩展库
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
+console.log(OrbitControls)
+```
+
+# 2. 第一个 3D 案例
+
+## 1. 创建 3D 场景
+
+**三维场景`Scene`**
+
+你可以将`Scene`理解为虚拟的 3D 场景，用来表示模拟生活中的真实三维场景，或者说三维世界。
+
+```js
+const scene = new THREE.Scene() // 创建 3D 场景对象 Scene
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 1. 基本示例
 
 index.html 文件：
@@ -13,12 +115,12 @@ index.html 文件：
   <title>Title</title>
 </head>
 <body>
-<script src="./index.js" type="module"></script>
+<script src="./01-基本示例.js" type="module"></script>
 </body>
 </html>
 ```
 
-index.js 文件：
+01-基本示例.js 文件：
 
 ```js
 import * as THREE from 'three' // 导入 three.js
@@ -106,7 +208,7 @@ render()
 npm i gsap
 ```
 
-gsap.js 文件：
+02-gsap.js 文件：
 
 ```js
 import * as THREE from 'three'
@@ -196,7 +298,7 @@ window.addEventListener('keyup', event => {
 npm i dat.gui
 ```
 
-dat.gui.js 文件：
+03-dat.gui.js 文件：
 
 ```js
 import * as THREE from 'three'
@@ -270,5 +372,13 @@ window.addEventListener('resize', () => {
 	renderer.setSize(window.innerWidth, window.innerHeight)
 	renderer.setPixelRatio(window.devicePixelRatio)
 })
+```
+
+# 4. 立方缓冲几何体
+
+04-立方缓冲几何体.js 文件：
+
+```js
+
 ```
 
