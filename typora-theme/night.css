@@ -186,7 +186,7 @@ h6 {
 }
 
 a {
-  color: skyblue;
+  color: pink;
   text-decoration: underline;
   outline: 0;
   transition: all .2s ease-in-out;
@@ -264,8 +264,8 @@ b,
 th,
 dt,
 strong {
-  color: pink !important;
-  font-weight: bold;
+  color: skyblue !important;
+  font-weight: normal;
 }
 
 i,
