@@ -462,7 +462,187 @@ window.addEventListener('resize', () => {
 
 精灵模型对象`Sprite`和网格模型`Mesh`一样都是模型对象，基类都是`Object3D`，关于精灵模型对象`Sprite`的方法和属性除了可以查看`Sprite`的文档，也可以查看基类`Object3D`的文档。
 
-创建精灵模型对象`Sprite`和创建网格模型对象一样需要创建一个材质对象，不同的地方在于创建精灵模型对象不需要创建几何体对象`Geometry`，精灵模型对象本质上你可以理解为已经内部封装了一个平面矩形几何体`PlaneGeometry`，矩形精灵模型与矩形网格模型的区别在于精灵模型的矩形平面会始终平行于Canvas画布。
+创建精灵模型对象`Sprite`和创建网格模型对象一样需要创建一个材质对象，不同的地方在于创建精灵模型对象不需要创建几何体对象`Geometry`，精灵模型对象本质上你可以理解为已经内部封装了一个平面矩形几何体`PlaneGeometry`，矩形精灵模型与矩形网格模型的区别在于精灵模型的矩形平面会始终平行于 Canvas 画布。
+
+### 1. `Sprite`和`SpriteMaterial`
+
+通过`Sprite`创建精灵模型不需要几何体，只需要给构造函数`Sprite`的参数设置为一个精灵材质`SpriteMaterial`即可。
+
+精灵材质对象`SpriteMaterial`和普通的网格材质一样可以设置颜色`.color`、颜色贴图`.map`、开启透明`.transparent`、透明度`.opacity`等属性，精灵材质对象`SpriteMaterial`的基类是材质`Material`。
+
+```js
+// 添加精灵模型
+const map = new THREE.TextureLoader().load('./images/vue400.png')
+const spriteMaterial = new THREE.SpriteMaterial({ // 创建精灵材质对象 SpriteMaterial
+  color: 0xff00f, // 设置颜色
+  map, // 设置纹理贴图
+  rotation: Math.PI / 4 // 旋转 45 度
+})
+const sprite = new THREE.Sprite(spriteMaterial) // 创建精灵模型对象，不需要几何体 geometry 参数
+scene.add(sprite)
+sprite.position.set(50, 50, 50) // 设置坐标位置
+sprite.scale.set(10, 10, 1) // 设置缩放，只需要设置 x、y 两个分量就可以
+```
+
+### 2. `.scale`和`.position`
+
+精灵模型对象和网格模型`Mesh`对一样基类都是`Object3D`，自然精灵模型也有缩放属性`.scale`和位置属性`.position`，一般设置精灵模型的大小是通过`.scale`属性实现，而精灵模型的位置通过属性`.position`实现，精灵模型和普通模型一样，可以改变它在三维场景中的位置，区别在于精灵模型的正面一直平行于 Canvas 画布。
+
+### 3. 中国城市 PM2.5 可视化案例
+
+PM2.5.json：
+
+```json
+[
+  {
+    "name": "海门",
+    "value": 59,
+    "coordinate": [
+      121.15,
+      31.89
+    ]
+  },
+  {
+    "name": "青岛",
+    "value": 18,
+    "coordinate": [
+      120.33,
+      260.07
+    ]
+  },
+  ...
+]
+```
+
+js 代码：
+
+```js
+/**
+ * 一个精灵模型对象表示一个城市的位置和数据
+ */
+const map = new THREE.TextureLoader().load('./images/react512.png') // 加载一个图片当纹理贴图
+let group = new THREE.Group() // 创建组对象，包含所有精灵对象
+const loader = new THREE.FileLoader().setResponseType('json') // 文件加载对象，加载 json 文件
+// 加载 PM2.5 数据
+loader.load('./json/PM2.5.json', data => {
+  // 遍历数据
+  data.forEach(item => {
+    const spriteMaterial = new THREE.SpriteMaterial({
+      map,
+      transparent: true,
+      opacity: 0.5
+    })
+    const sprite = new THREE.Sprite(spriteMaterial)
+    group.add(sprite)
+    sprite.position.set(item.coordinate[0], item.coordinate[1], 0) // 获得城市坐标设置精灵模型对象的位置
+    const k = item.value / 2 // 控制精灵大小，使用 PM2.5 大小设置精灵模型的大小，注意适当缩放 pm2.5 大小，以便得到更好的显示效果
+    sprite.scale.set(k, k, 1)
+  })
+  // 中国城市坐标整体的几何中心不在坐标原点，需要适当的平移
+  group.position.set(-110, -30, 0)
+  scene.add(group) // 把精灵群组插入场景中
+})
+```
+
+### 4. 模拟树林效果
+
+下面通过通过一张背景透明的树纹理贴图`tree512.png`作为精灵模型的纹理贴图`.map`模拟一个树林效果。
+
+```js
+/**
+ * 精灵创建树林效果
+ */
+let map = new THREE.TextureLoader().load('./images/tree512.png') // 加载树纹理贴图
+// 批量创建表示一个树的精灵模型
+for (let i = 0; i < 100; i++) {
+  const spriteMaterial = new THREE.SpriteMaterial({
+    map
+  })
+  const sprite = new THREE.Sprite(spriteMaterial)
+  scene.add(sprite)
+  const k1 = Math.random() - 0.5
+  const k2 = Math.random() - 0.5
+  sprite.position.set(1000 * k1, 50, 1000 * k2) // 设置精灵模型位置，在 xoz 平面上随机分布
+  sprite.scale.set(100, 100, 1)
+}
+
+/**
+ * 创建一个草地地面
+ */
+const geometry = new THREE.PlaneGeometry(1000, 1000) // 矩形平面
+map = new THREE.TextureLoader().load('./images/grass700.jpeg') // 加载草地纹理贴图
+// 设置纹理的重复模式
+map.wrapS = THREE.RepeatWrapping
+map.wrapT = THREE.RepeatWrapping
+map.repeat.set(10, 10) // xy 两个方向纹理重复数量
+const material = new THREE.MeshBasicMaterial({
+  color: 0x777700,
+  map
+})
+const mesh = new THREE.Mesh(geometry, material)
+scene.add(mesh)
+mesh.rotateX(-Math.PI / 2)
+```
+
+### 5. 模拟下雨效果
+
+基本思路就是通过足够多的精灵模型构成一个粒子系统，然后每一个雨滴按照在一定空间内随机分布，每个精灵模型都使用一个背景透明的雨滴`rain128.png`作为纹理贴图。
+
+```js
+/**
+ * 精灵创建下雨效果
+ */
+let map = new THREE.TextureLoader().load('./images/rain128.png') // 加载雨滴理贴图
+const group = new THREE.Group() // 创建一个组表示所有的雨滴
+// 批量创建表示雨滴的精灵模型
+for (let i = 0; i < 400; i++) {
+  const spriteMaterial = new THREE.SpriteMaterial({
+    map
+  })
+  const sprite = new THREE.Sprite(spriteMaterial)
+  const k1 = Math.random() - 0.5
+  const k2 = Math.random() - 0.5
+  const k3 = Math.random() - 0.5
+  sprite.position.set(400 * k1, 400 * k2, 400 * k3) // 设置精灵模型位置，在整个空间上上随机分布
+  sprite.scale.set(4, 4, 1)
+  group.add(sprite)
+}
+scene.add(group)
+
+/**
+ * 创建一个草地地面
+ */
+const geometry = new THREE.PlaneGeometry(1000, 1000)
+map = new THREE.TextureLoader().load('./images/grass700.jpeg')
+map.wrapS = THREE.RepeatWrapping
+map.wrapT = THREE.RepeatWrapping
+map.repeat.set(10, 10)
+const material = new THREE.MeshBasicMaterial({
+  color: 0x777700,
+  map
+})
+const mesh = new THREE.Mesh(geometry, material)
+scene.add(mesh)
+mesh.rotateX(-Math.PI / 2)
+```
+
+下落效果：
+
+```js
+function render() {
+  // 每次渲染遍历雨滴群组，刷新频率 30 ~ 60FPS，两帧时间间隔 16.67ms ~ 33.33ms
+  // 每次渲染都会更新雨滴的位置，进而产生动画效果
+  group.children.forEach(sprite => {
+    sprite.position.y -= 2 // 雨滴的 y 坐标每次减 2
+    if (sprite.position.y < 0) { // 如果雨滴落到地面，重置 y，重新下落
+      const k = Math.random() - 0.5
+      sprite.position.y = 400 * k
+    }
+  })
+  renderer.render(scene, camera)
+  requestAnimationFrame(render)
+}
+```
 
 # 7. three.js 与前端框架结合
 
@@ -628,7 +808,7 @@ components/threejs/index.js：
 
 ```js
 // 导出 mesh
-export {renderer, mesh}
+export {mesh, renderer}
 ```
 
 components/MyColorControl.vue：
