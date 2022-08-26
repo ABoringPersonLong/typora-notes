@@ -1797,11 +1797,23 @@ app.use(express.urlencoded({extended: false}));
 
 cors 是 Express 的一个第三方中间件。通过安装和配置 cors 中间件，可以很方便地解决跨域问题。
 
-使用步骤分为如下3步：
+安装：
 
-1. 运行 <span style="color: skyblue;">npm i cors</span> **安装中间件**
-2. 使用 <span style="color: skyblue;"> const cors = require("cors");</span> **导入中间件**
-3. 在路由之前<span style="color: skyblue;">调用 app.use(cors());</span> **配置中间件**
+```bash
+npm i cors
+```
+
+导入：
+
+```js
+const cors = require("cors");
+```
+
+使用：
+
+```js
+app.use(cors());
+```
 
 #### 3. 什么是 CORS
 
@@ -2374,3 +2386,86 @@ app.use((error, request, response, next) => {
 });
 ```
 
+# 5. ejs 渲染模板
+
+安装：
+
+```bash
+npm i ejs
+```
+
+使用：
+
+```js
+app.set('views', path.join(__dirname, '/views')) // 设置 .ejs 文件的存放路径
+app.set('view engine', 'ejs') // 设置渲染模板为 ejs
+
+// 访问 / 路径就显示 /views/index.ejs 里的内容
+app.get('/', (request, response) => {
+  // 第一个参数：从 /views 目录开始的路径
+  // 第二个参数：传递的参数对象
+  response.render('index', {
+    user: {
+      isLogin: true,
+      username: 'zhangsan',
+      age: 18,
+      gender: '男'
+    }
+  })
+})
+```
+
+/views/index.ejs 文件：
+
+```ejs
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h2>我的系统</h2>
+<% if(user.isLogin) { %>
+    <p>欢迎<%= user.username %>，你的信息是</p>
+    <p>年龄：<%= user.age %></p>
+    <p>性别：<%= user.gender %></p>
+<% } else { %>
+    <a href="">登录</a>
+    <a href="">注册</a>
+<% } %>
+</body>
+</html>
+```
+
+# 6. Express 脚手架
+
+全局安装：
+
+```bash
+npm i -g express-generator
+```
+
+创建基于 ejs 的项目：
+
+```bash
+express 项目名 --ejs
+```
+
+安装依赖，启动项目：
+
+```bash
+npm i
+npm start
+```
+
+目录分析：
+
+- bin：入口
+- public：静态文件
+- routes：路由
+- views：模板文件
+- app.js：服务器启动文件
+- package.json：包描述文件
