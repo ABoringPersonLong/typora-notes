@@ -151,14 +151,18 @@ const material = new THREE.MeshLambertMaterial({ // 改用 MeshLambertMaterial �
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
-// 添加一个环境光
+// 添加环境光
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5) // 第二个参数表示光照的强度
 scene.add(ambientLight)
 
-// 添加一个点光源
+// 添加点光源
 const pointLight = new THREE.PointLight(0xffffff, 0.5) // 第二个参数表示光照的强度
-point.position.set(200, 300, 400)
+pointLight.position.set(90, 140, 190)
 scene.add(pointLight)
+
+// 添加点光源辅助观察
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 10)
+scene.add(pointLightHelper)
 ```
 
 ### 6. 整个程序的结构图
@@ -250,14 +254,6 @@ mesh.scale.x = 0.5 // 还可以用属性来设置
 mesh.rotation.set(Math.PI / 4, 0, 0, 'XZY') // 第二个参数表示旋转顺序，当前是先旋转 x 轴，再旋转 z 轴，再旋转 y 轴
 mesh.rotation.x = Math.PI / 4 // 还可以用属性来设置
 mesh.rotateX(Math.PI / 4) // 可以用方法来旋转，该方法不是修改 rotation 属性，是一调用这个方法就让 mesh 旋转 45 度
-```
-
-## 3. 点光源辅助观察
-
-```js
-// 添加点光源辅助观察
-const pointLightHelper = new THREE.PointLightHelper(pointLight, 10)
-scene.add(pointLightHelper)
 ```
 
 # 3. 动画渲染循环
@@ -979,11 +975,11 @@ const material = new THREE.MeshStandardMaterial({ // 标准网格材质 MeshStan
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
-// 添加一个环境光
+// 添加环境光
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
 scene.add(ambientLight)
 
-// 添加一个平行光
+// 添加平行光
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
 directionalLight.position.set(2, 3, 4)
 scene.add(directionalLight)
@@ -1140,11 +1136,12 @@ const cubeTextureLoader = new THREE.CubeTextureLoader()
   'nz.jpg' // 右
 ])
 scene.background = cubeTextureLoader // 将环境图片甚至啊到场景背景中
-const geometry = new THREE.SphereGeometry(15, 32, 16)
+scene.environment = cubeTextureLoader // 给场景所有的物体添加默认的环境贴图
+const geometry = new THREE.SphereGeometry(10, 64, 32)
 const material = new THREE.MeshStandardMaterial({
   roughness: 0,
   metalness: 1,
-  envMap: cubeTextureLoader // 设置环境贴图
+  // envMap: cubeTextureLoader // 单独设置环境贴图
 })
 ```
 
@@ -1152,7 +1149,196 @@ const material = new THREE.MeshStandardMaterial({
 
 ![](./Three.js/效果图28.png)
 
-# 11. three.js 与前端框架结合
+## 16. hdr 环境贴图
+
+```js
+import {RGBELoader} from 'three/examples/jsm/loaders/RGBELoader.js' // 导入 rgb 加载器
+
+// 异步加载 hdr 环境贴图，因为比较大
+new RGBELoader().loadAsync('./images/hdr/花园别墅.hdr').then(texture => {
+  texture.mapping = THREE.EquirectangularReflectionMapping // 设置图像映射模式
+  scene.background = texture
+  scene.environment = texture
+})
+```
+
+效果图：
+
+![](./Three.js/效果图29.png)
+
+# 11. 灯光与阴影
+
+## 1. 阴影
+
+1. 材质要满足能够对光照有反应：
+
+   ```js
+   const material = new THREE.MeshStandardMaterial() // 1. 材质要满足能够对光照有反应
+   ```
+
+2. 设置渲染器开启场景中的阴影贴图：
+
+   ```js
+   renderer.shadowMap.enabled = true // 2. 设置渲染器开启场景中的阴影贴图
+   ```
+
+3. 设置光照投射阴影：
+
+   ```js
+   directionalLight.castShadow = true // 3. 设置光照投射阴影
+   ```
+
+4. 设置物体投射阴影：
+
+   ```js
+   sphereMesh.castShadow = true // 4. 设置物体投射阴影（球体）
+   ```
+
+5. 设置物体接收阴影：
+
+   ```js
+   planeMesh.receiveShadow = true // 5. 设置物体接收阴影（平面）
+   ```
+
+效果图：
+
+![](./Three.js/效果图30.png)
+
+## 2. 阴影属性
+
+```js
+directionalLight.shadow.radius = 20 // 设置阴影贴图模糊度
+directionalLight.shadow.mapSize.set(2048, 2048) // 设置阴影贴图的分辨率，默认值为（512, 512）
+
+// 设置平行光投射相机的属性
+directionalLight.shadow.camera.near = 0.5 // 近
+directionalLight.shadow.camera.far = 500 // 远
+directionalLight.shadow.camera.top = 5 // 上
+directionalLight.shadow.camera.bottom = -5 // 下
+directionalLight.shadow.camera.left = -5 // 左
+directionalLight.shadow.camera.right = 5 // 右
+
+scene.add(directionalLight)
+
+// 修改 directionalLight.shadow.camera.near 属性做测试
+gui
+  .add(directionalLight.shadow.camera, 'near')
+  .min(0)
+  .max(80)
+  .step(0.01)
+  .name('改变近端距离')
+  .onChange(() => directionalLight.shadow.camera.updateProjectionMatrix()) // 更新投影柜阵
+```
+
+## 3. 聚光灯阴影和属性
+
+```js
+const spotLight = new THREE.SpotLight( // 聚光灯 SpotLight
+  0xffffff,
+  0.5,
+  200, // 如果非零，那么光强度将会从最大值当前灯光位置处按照距离线性衰减到 0。默认值为 0
+  Math.PI / 6, // 设置照射角度，不超过 Math.PI / 2。默认值为 Math.PI / 3
+  0.5, // 聚光锥的半影衰减百分比。在 0 和 1 之间的值。默认为 0
+  1 // 沿着光照距离的衰减量，越远越暗，默认值为 1
+)
+// 修改 spotLight.distance 属性做测试（构造器中第三个参数）
+gui.add(spotLight, 'distance').min(0).max(200).step(0.01)
+// 修改 spotLight.angle 属性做测试（构造器中第四个参数）
+gui.add(spotLight, 'angle').min(0).max(Math.PI / 2).step(0.01)
+// 修改 spotLight.penumbra 属性做测试（构造器中第五个参数）
+gui.add(spotLight, 'penumbra').min(0).max(1).step(0.01)
+// 修改 spotLight.decay 属性做测试（构造器中第六个参数）
+gui.add(spotLight, 'decay').min(0).max(5).step(0.01)
+
+spotLight.position.set(20, 40, 60)
+
+spotLight.target = sphereMesh // 设置照射目标
+// 修改 sphereMesh.position.x 属性做测试
+gui.add(sphereMesh.position, 'x').min(-50).max(50).step(0.01).onChange(() => spotLightHelper.update()) // 更新聚光灯辅助对象
+
+spotLight.castShadow = true
+spotLight.shadow.radius = 20
+spotLight.shadow.mapSize.set(2048, 2048)
+scene.add(spotLight)
+
+// 添加聚光灯辅助观察
+const spotLightHelper = new THREE.SpotLightHelper(spotLight)
+scene.add(spotLightHelper)
+```
+
+效果图：
+
+![](./Three.js/效果图31.png)
+
+## 4. 点光源阴影和属性
+
+```js
+const pointLight = new THREE.PointLight( // 点光源 PointLight
+  0xffffff,
+  0.5,
+  200,
+  1
+)
+// 修改 spotLight.distance 属性做测试（构造器中第三个参数）
+gui.add(pointLight, 'distance').min(0).max(200).step(0.01)
+// 修改 pointLight.decay 属性做测试（构造器中第四个参数）
+gui.add(pointLight, 'decay').min(0).max(5).step(0.01)
+
+pointLight.position.set(20, 40, 60)
+pointLight.castShadow = true
+pointLight.shadow.radius = 20
+pointLight.shadow.mapSize.set(2048, 2048)
+scene.add(pointLight)
+
+// 添加点光源辅助观察
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 10)
+scene.add(pointLightHelper)
+```
+
+效果图：
+
+![](./Three.js/效果图32.png)
+
+```js
+// pointLight.position.set(20, 40, 60)
+pointLight.castShadow = true
+pointLight.shadow.radius = 20
+pointLight.shadow.mapSize.set(2048, 2048)
+// scene.add(pointLight)
+
+// 添加点光源辅助观察
+// const pointLightHelper = new THREE.PointLightHelper(pointLight, 10)
+// scene.add(pointLightHelper)
+
+// 制作一个小灯泡，不用再设置点光源位置、不用将点光源添加到场景中、不用添加点光源辅助观察
+const smallBall = new THREE.Mesh( // 创建一个小球
+  new THREE.SphereGeometry(1, 64, 32),
+  new THREE.MeshBasicMaterial()
+)
+smallBall.position.set(20, 40, 60)
+smallBall.add(pointLight) // 将点光源添加到小球中
+scene.add(smallBall)
+
+const clock = new THREE.Clock()
+function render() {
+  // 让小球转起来
+  const time = clock.getElapsedTime()
+  smallBall.position.x = Math.sin(time) * 50 // Math.sin() 返回一个数的正弦值
+  smallBall.position.z = Math.cos(time) * 50 // Math.cos() 返回一个数的余弦值
+  smallBall.position.y = 40 + Math.sin(time * 5) * 10 // 上下移动
+
+  renderer.render(scene, camera)
+  requestAnimationFrame(render)
+}
+```
+
+效果图：
+
+![](./Three.js/效果图33.png)
+
+
+
+# 12. three.js 与前端框架结合
 
 web 前端开发常见的框架有 Vue、React 和 Angular，不管你用哪种框架，或者说没有使用前端框架，用的是 jquery 前端库，three.js 都可以像普通的 js 库一样 npm 安装，然后 import 引入。
 
@@ -1383,3 +1569,33 @@ export default {
 }
 </style>
 ```
+
+# 13. parcel 打包工具
+
+安装：
+
+```bash
+npm i -D parcel-bundler
+```
+
+修改 package.json 文件：
+
+```json
+{
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  }
+}
+```
+
+启动项目：
+
+```bash
+# 运行
+npm run dev
+
+# 构建
+npm run build
+```
+
