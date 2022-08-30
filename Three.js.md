@@ -184,6 +184,9 @@ scene.add(pointLightHelper)
 - 平移：拖动鼠标右键
 
 ```js
+// 引入 three.js 扩展库 OrbitControls.js 轨道控制器
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
+
 // 创建轨道控制器
 const controls = new OrbitControls(camera, renderer.domElement)
 
@@ -858,10 +861,10 @@ for (let i = 0; i < 50; i++) {
 
 # 10. 纹理贴图
 
-## 1. 添加纹理贴图
+## 1. 色彩贴图
 
 ```js
-const map = new THREE.TextureLoader().load('./images/yv640.jpg') // 加载纹理（就是加载图片）
+const map = new THREE.TextureLoader().load('./images/door/color.jpg') // 加载纹理（就是加载图片）
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshBasicMaterial({
   map // 设置纹理贴图
@@ -874,7 +877,7 @@ scene.add(mesh)
 
 ![](./Three.js/效果图14.png)
 
-## 2. 设置偏移
+### 1. 设置偏移
 
 ```js
 map.offset.set(0.2, 0.2) // 设置 x、y 轴方向的偏移
@@ -885,7 +888,7 @@ map.offset.x = 0.2 // 还可以用属性设置
 
 ![](./Three.js/效果图15.png)
 
-## 3. 设置旋转角度
+### 2. 设置旋转角度
 
 ```js
 map.center.set(0.5, 0.5) // 设置旋转原点，当前为中心点，默认值为 (0, 0)，即左下角
@@ -896,7 +899,7 @@ map.rotation = Math.PI / 4 // 旋转 45 度
 
 ![](./Three.js/效果图16.png)
 
-## 4. 设置纹理重复
+### 3. 设置纹理重复
 
 ```js
 map.repeat.set(2, 3) // 设置 x、y 轴方向的重复
@@ -909,7 +912,7 @@ map.wrapT = THREE.RepeatWrapping // 水平方向普通重复
 
 ![](./Three.js/效果图17.png)
 
-## 5. 纹理显示的算法
+## 2. 纹理显示的算法
 
 ```js
 const map = new THREE.TextureLoader().load('./images/minecraft5.jpg') // 加载一张非常小的图片
@@ -930,13 +933,17 @@ map.magFilter = THREE.NearestFilter
 
 ![](./Three.js/效果图19.png)
 
-## 6. 透明纹理
+## 3. 透明纹理
 
 ```js
+const textureLoader = new THREE.TextureLoader()
+const map = textureLoader.load('./images/door/color.jpg')
+const alpha = textureLoader.load('./images/door/alpha.jpg') // 加载一张灰度纹理贴图
+const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshBasicMaterial({
   map,
   transparent: true, // 允许透明
-  alphaMap: map // 设置一张灰度纹理，用于控制整个表面的不透明度。越黑越透明，越白越不透明（黑色：完全透明，白色：完全不透明）
+  alphaMap: alpha // 设置一张灰度纹理，用于控制整个表面的不透明度。越黑越透明，越白越不透明（黑色：完全透明，白色：完全不透明）
 })
 ```
 
@@ -944,30 +951,31 @@ const material = new THREE.MeshBasicMaterial({
 
 ![](./Three.js/效果图20.png)
 
-## 7. AO 环境遮挡贴图
+## 4. AO 环境遮挡贴图
 
 ```js
-const map = new THREE.TextureLoader().load('./images/yv640.jpg')
+const textureLoader = new THREE.TextureLoader()
+const map = textureLoader.load('./images/door/color.jpg')
+const ao = textureLoader.load('./images/door/ao.jpg') // 加载一张 AO 环境遮挡纹理贴图
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshBasicMaterial({
   map,
-  aoMap: map, // 设置 AO 环境遮挡贴图，白色是不遮挡，越黑越遮挡，需要第二组 UV
+  aoMap: ao, // 设置 AO 环境遮挡贴图，白色是不遮挡，越黑越遮挡，需要第二组 UV
   aoMapIntensity: 0.8 // 环境遮挡效果的强度。默认值为 1。零是不遮挡效果。
 })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
-// 设置第二组 uv
-geometry.setAttribute('uv2', new THREE.BufferAttribute(geometry.attributes.uv.array, 2))
+geometry.setAttribute('uv2', new THREE.BufferAttribute(geometry.attributes.uv.array, 2)) // 设置第二组 uv
 ```
 
 效果图：
 
 ![](./Three.js/效果图21.png)
 
-## 8. 标准网格材质与光照物理效果
+## 5. 标准网格材质与光照物理效果
 
 ```js
-const map = new THREE.TextureLoader().load('./images/yv640.jpg')
+const map = new THREE.TextureLoader().load('./images/door/color.jpg')
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshStandardMaterial({ // 标准网格材质 MeshStandardMaterial
   map
@@ -993,26 +1001,33 @@ scene.add(directionalLightHelper)
 
 ![](./Three.js/效果图22.png)
 
-## 9. 位移贴图
+## 6. 位移贴图
 
 ```js
-const geometry = new THREE.BoxGeometry(1, 1, 1, 10, 10, 10) // 后三个参数是设置宽、高、长的分段数
+const textureLoader = new THREE.TextureLoader()
+const map = textureLoader.load('./images/door/color.jpg')
+const displacement = textureLoader.load('./images/door/displacement.jpg') // 加载一张位移纹理贴图
+const geometry = new THREE.BoxGeometry(1, 1, 1, 100, 100, 100) // 后三个参数是设置宽、高、长的分段数
 const material = new THREE.MeshStandardMaterial({
   map,
-  displacementMap: map, // 设置位移贴图，需要给几何体设置宽、高、长的分段数才看得出来
+  displacementMap: displacement, // 设置位移贴图，需要给几何体设置宽、高、长的分段数才看得出来
   displacementScale: 0.2 // 设置位移贴图对网格的影响程度（越白位移越多，黑色是无位移）。如果没有设置位移贴图，则不会应用此值。默认值为 1
 })
 ```
 
 ![](./Three.js/效果图23.png)
 
-## 10. 粗糙度贴图
+## 7. 粗糙度贴图
 
 ```js
+const textureLoader = new THREE.TextureLoader()
+const map = textureLoader.load('./images/door/color.jpg')
+const roughness = textureLoader.load('./images/door/roughness.jpg') // 加载一张粗糙度纹理贴图
+const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshStandardMaterial({
   map,
   roughness: 1, // 设置材质的粗糙程度。0 表示平滑的镜面反射，1 表示完全漫反射。默认值为 1。如果还提供 roughnessMap，则两个值相乘。
-  roughnessMap: map // 设置粗糙度贴图，越白越粗糙，越黑越平滑
+  roughnessMap: roughness // 设置粗糙度贴图，越白越粗糙，越黑越平滑
 })
 ```
 
@@ -1020,17 +1035,21 @@ const material = new THREE.MeshStandardMaterial({
 
 ![](./Three.js/效果图24.png)
 
-## 11. 金属度贴图
+## 8. 金属度贴图
 
 ```js
+const textureLoader = new THREE.TextureLoader()
+const map = textureLoader.load('./images/door/color.jpg')
+const roughness = textureLoader.load('./images/door/roughness.jpg')
+const metalness = textureLoader.load('./images/door/metalness.jpg') // 加载一张金属度纹理贴图
+const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshStandardMaterial({
   map,
-  roughness: 1,
-  roughnessMap: map,
+  roughnessMap: roughness,
   // 设置材质与金属的相似度。非金属材质，如木材或石材，使用 0，金属使用 1，通常没有中间值。默认值为 0。
   // 0 到 1 之间的值可用于生锈金属的外观。如果还提供了 metalnessMap，则两个值相乘
   metalness: 1,
-  metalnessMap: map // 设置金属度贴图，白色是非金属，越黑越像金属
+  metalnessMap: metalness // 设置金属度贴图，白色是非金属，越黑越像金属
 })
 ```
 
@@ -1038,49 +1057,52 @@ const material = new THREE.MeshStandardMaterial({
 
 ![](./Three.js/效果图25.png)
 
-## 12. 法线贴图
+## 9. 法线贴图
 
 ```js
+const textureLoader = new THREE.TextureLoader()
+const map = textureLoader.load('./images/door/color.jpg')
+const roughness = textureLoader.load('./images/door/roughness.jpg')
+const metalness = textureLoader.load('./images/door/metalness.jpg')
+const normal = textureLoader.load('./images/door/normal.jpg') // 加载一张法线度纹理贴图
+const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshStandardMaterial({
   map,
-  roughness: 1,
-  roughnessMap: map,
-  metalness: 1,
-  metalnessMap: map,
-  normalMap: map2 // 用于创建法线贴图的纹理。RGB 值会影响每个像素片段的曲面法线，并更改颜色照亮的方式。法线贴图不会改变曲面的实际形状，只会改变光照
+  roughnessMap: roughness,
+  metalnessMap: metalness,
+  normalMap: normal // 用于创建法线贴图的纹理。RGB 值会影响每个像素片段的曲面法线，并更改颜色照亮的方式。法线贴图不会改变曲面的实际形状，只会改变光照
 })
 ```
 
 ![](./Three.js/效果图26.png)
 
-## 13. 演示从 poliigon 上下载的贴图
+## 10. 演示从 poliigon 上下载的贴图
 
 ```js
-const map = new THREE.TextureLoader().load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_COL_4K_METALNESS.jpg')
-const ao = new THREE.TextureLoader().load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_AO_4K_METALNESS.jpg')
-const disp = new THREE.TextureLoader().load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_DISP_4K_METALNESS.jpg')
-const roughness = new THREE.TextureLoader().load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_ROUGHNESS_4K_METALNESS.jpg')
-const metalness = new THREE.TextureLoader().load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_METALNESS_4K_METALNESS.jpg')
-const nrm = new THREE.TextureLoader().load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_NRM_4K_METALNESS.jpg')
+const textureLoader = new THREE.TextureLoader()
+const map = textureLoader.load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_COL_4K_METALNESS.jpg')
+const ao = textureLoader.load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_AO_4K_METALNESS.jpg')
+const disp = textureLoader.load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_DISP_4K_METALNESS.jpg')
+const roughness = textureLoader.load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_ROUGHNESS_4K_METALNESS.jpg')
+const metalness = textureLoader.load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_METALNESS_4K_METALNESS.jpg')
+const nrm = textureLoader.load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_NRM_4K_METALNESS.jpg')
 const geometry = new THREE.BoxGeometry(30, 30, 30, 100, 100, 100) // 正方形
-// const geometry = new THREE.SphereGeometry(20, 64, 32) // 圆形
 const material = new THREE.MeshStandardMaterial({
-  map,
+  map, // 色彩贴图
   aoMap: ao, // AO 环境遮挡贴图
   displacementMap: disp, // 位移贴图
   roughnessMap: roughness, // 粗糙度贴图
-  metalnessMap: metalness, // 金属度贴图 
+  metalnessMap: metalness, // 金属度贴图
   normalMap: nrm // 法线贴图
 })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
-// 设置第二组 uv
-geometry.setAttribute('uv2', new THREE.BufferAttribute(geometry.attributes.uv.array, 2))
+geometry.setAttribute('uv2', new THREE.BufferAttribute(geometry.attributes.uv.array, 2)) // 设置第二组 uv
 ```
 
 ![](./Three.js/效果图27.png)
 
-## 14. 纹理加载进度
+## 11. 纹理加载进度
 
 ### 1. 单张纹理的加载
 
@@ -1122,7 +1144,7 @@ const metalness = textureLoader.load('./images/MetalDesignerWeaveSteel002/MetalD
 const nrm = textureLoader.load('./images/MetalDesignerWeaveSteel002/MetalDesignerWeaveSteel002_NRM_4K_METALNESS.jpg')
 ```
 
-## 15. 环境贴图
+## 12. 环境贴图
 
 ```js
 const cubeTextureLoader = new THREE.CubeTextureLoader()
@@ -1149,7 +1171,7 @@ const material = new THREE.MeshStandardMaterial({
 
 ![](./Three.js/效果图28.png)
 
-## 16. hdr 环境贴图
+## 13. hdr 环境贴图
 
 ```js
 import {RGBELoader} from 'three/examples/jsm/loaders/RGBELoader.js' // 导入 rgb 加载器
