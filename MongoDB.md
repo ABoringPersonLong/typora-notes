@@ -180,6 +180,8 @@ db.students.find({
 
 # 5. mongoose
 
+用于在 js 中操作 MongoDB。
+
 ## 1. 快速使用
 
 1. 安装：
