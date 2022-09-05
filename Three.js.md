@@ -2,7 +2,7 @@
 
 ## 1. 引入 three.js
 
-### 1. `script`标签方式引入 three.js
+### 1. `script` 标签方式引入 three.js
 
 你可以像平时开发 web **前端**项目一样，把 three.js 当做一个 js 库引入你的项目。
 
@@ -13,9 +13,9 @@
 <script src="./three.js-dev/examples/js/controls/OrbitControls.js"></script>
 ```
 
-### 2. es6 的`import`方式引入
+### 2. es6 的 `import` 方式引入
 
-给`script`标签设置`type="module"`，也可以在 .html 文件中使用`import`方式引入 three.js。
+给 `script` 标签设置 `type="module"`，也可以在 .html 文件中使用 `import` 方式引入 three.js。
 
 ```html
 <script type="importmap">
@@ -54,9 +54,9 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
 
 ## 2. 第一个 3D 案例
 
-### 1. 创建 3D 场景`Scene`
+### 1. 创建 3D 场景 `Scene`
 
-你可以将`Scene`理解为虚拟的 3D 场景，用来表示模拟生活中的真实三维场景，或者说三维世界。
+你可以将 `Scene` 理解为虚拟的 3D 场景，用来表示模拟生活中的真实三维场景，或者说三维世界。
 
 ```js
 // 1. 创建 3D 场景对象 Scene
@@ -65,7 +65,7 @@ const scene = new THREE.Scene()
 
 ### 2. 给场景添加物体
 
-你可以把网络模型`Mesh`理解为一个虚拟的物体，用来表示生活中真实的物体，比如一个箱子、一个鼠标。
+你可以把网络模型 `Mesh` 理解为一个虚拟的物体，用来表示生活中真实的物体，比如一个箱子、一个鼠标。
 
 ```js
 // 2. 给场景添加物体
@@ -79,11 +79,11 @@ scene.add(mesh) // 将网格模型 Mesh 添加到场景中
 
 ### 3. 创建与设置透视投影相机
 
-通过相机`camera`和渲染器`renderer`把虚拟的三维场景`Scene`渲染出来。
+通过相机 `camera` 和渲染器 `renderer` 把虚拟的三维场景 `Scene` 渲染出来。
 
-three.js 想把三维场景`Scene`呈现在 web 页面上，其实就像你生活中拍照一样，首先要有一个相机，然后还有你，你拿着相机，按一下，咔，完成拍照，获得照片。
+three.js 想把三维场景 `Scene` 呈现在 web 页面上，其实就像你生活中拍照一样，首先要有一个相机，然后还有你，你拿着相机，按一下，咔，完成拍照，获得照片。
 
-**透视投影相机`PerspectiveCamera`**
+**透视投影相机 `PerspectiveCamera`**
 
 构造器：PerspectiveCamera(fov: Number, aspect: Number, near: Number, far: Number)
 
@@ -98,7 +98,7 @@ three.js 想把三维场景`Scene`呈现在 web 页面上，其实就像你生�
 
 ![](./Three.js/透视投影相机PerspectiveCamera.png)
 
-**相机位置`.position`和`.lookAt`**
+**相机位置 `.position`和`.lookAt`**
 
 ![](./Three.js/相机位置.position和.lookAt.png)
 
@@ -113,7 +113,7 @@ camera.position.set(200, 200, 200) // 设置相机的坐标位置
 camera.lookAt(0, 0, 0) // 设置相机的拍摄位置（0, 0, 0 为中心点）
 ```
 
-### 4. WebGL 渲染器`WebGLRenderer`
+### 4. WebGL 渲染器 `WebGLRenderer`
 
 效果图：
 
@@ -173,11 +173,11 @@ scene.add(pointLightHelper)
 
 ![](./Three.js/效果图2.png)
 
-## 3. 相机控件-轨道控制器`OrbitControls`
+## 3. 相机控件-轨道控制器 `OrbitControls`
 
-平时开发调式代码，或者展示模型的时候，可以通过相机控件`OrbitControls`实现旋转缩放预览效果。
+平时开发调式代码，或者展示模型的时候，可以通过相机控件 `OrbitControls` 实现旋转缩放预览效果。
 
-**`OrbitControls`使用**
+**`OrbitControls` 使用**
 
 - 旋转：拖动鼠标左键
 - 缩放：滚动鼠标中键
@@ -261,9 +261,9 @@ mesh.rotateX(Math.PI / 4) // 可以用方法来旋转，该方法不是修改 ro
 
 # 3. 动画渲染循环
 
-three.js 可以借助 HTML5 的 API 请求动画帧`window.requestAnimationFrame`实现动画渲染。
+three.js 可以借助 HTML5 的 API 请求动画帧 `window.requestAnimationFrame` 实现动画渲染。
 
-## 1. 请求动画帧`window.requestAnimationFrame`
+## 1. 请求动画帧 `window.requestAnimationFrame`
 
 - 实现周期性循环执行
 - 默认每秒执行 60 次，但不一定能做到，要看代码的性能
@@ -298,9 +298,9 @@ render()
 
 ## 3. 均匀旋转
 
-在实际执行程序的时候，可能`requestAnimationFrame(render)`请求的函数并不一定能按照理想的 60FPS 频率执行，两次执行渲染函数的时间间隔也不一定相同，如果执行旋转命令的`rotateX`的时间间隔不同，旋转运动就不均匀，为了解决这个问题需要记录两次执行绘制函数的时间间隔。
+在实际执行程序的时候，可能 `requestAnimationFrame(render)` 请求的函数并不一定能按照理想的 60FPS 频率执行，两次执行渲染函数的时间间隔也不一定相同，如果执行旋转命令的 `rotateX` 的时间间隔不同，旋转运动就不均匀，为了解决这个问题需要记录两次执行绘制函数的时间间隔。
 
-使用下面的渲染函数替换原来的渲染函数即可，`rotateX()`的参数是`0.001 * t`，也意味着两次调用渲染函数执行渲染操作的间隔`t`毫秒时间内，立方体旋转了`0.001 * t`弧度，很显然立方体的角速度是`0.001`弧度每毫秒(0.0001 rad/ms = 1 rad/s = 180度/s)。CPU 和 GPU 执行一条指令时间是纳秒 ns 级，相比毫秒 ms 低了 6 个数量级，所以一般不用考虑渲染函数中几个计时语句占用的时间，除非你编写的是要精确到纳秒 ns 的级别的标准时钟程序。
+使用下面的渲染函数替换原来的渲染函数即可，`rotateX()` 的参数是 `0.001 * t`，也意味着两次调用渲染函数执行渲染操作的间隔 `t` 毫秒时间内，立方体旋转了 `0.001 * t` 弧度，很显然立方体的角速度是 `0.001` 弧度每毫秒(0.0001 rad/ms = 1 rad/s = 180度/s)。CPU 和 GPU 执行一条指令时间是纳秒 ns 级，相比毫秒 ms 低了 6 个数量级，所以一般不用考虑渲染函数中几个计时语句占用的时间，除非你编写的是要精确到纳秒 ns 的级别的标准时钟程序。
 
 ```js
 // 上次时间
@@ -335,19 +335,19 @@ function render() {
 render()
 ```
 
-## 5. 渲染循环和相机控件`OrbitControls`
+## 5. 渲染循环和相机控件 `OrbitControls`
 
-设置了渲染循环，相机控件`OrbitControls`就不用再通过事件`change`执行`renderer.render(scene, camera)`，毕竟渲染循环一直在执行`renderer.render(scene, camera)`。
+设置了渲染循环，相机控件 `OrbitControls` 就不用再通过事件 `change` 执行 `renderer.render(scene, camera)`，毕竟渲染循环一直在执行 `renderer.render(scene, camera)`。
 
 # 4. 画布尺寸和布局
 
 three.js 渲染输出的结果就是一个 Cavnas 画布，canvas 画布也是 HTML 的元素之一，这意味着 three.js 渲染结果的布局和普通 web 前端习惯是一样的。
 
-通过`renderer.domElement`属性可以访问 three.js 的渲染结果，也就是 HTML 的元素`canvas`画布。
+通过 `renderer.domElement` 属性可以访问 three.js 的渲染结果，也就是 HTML 的元素 `canvas` 画布。
 
 ## 1. 局部布局
 
-你可以把 three.js 的渲染结果`renderer.domElement`，插入到 web 页面上任何一个元素中，只要符合你项目的布局规则即可。
+你可以把 three.js 的渲染结果 `renderer.domElement`，插入到 web 页面上任何一个元素中，只要符合你项目的布局规则即可。
 
 html：
 
@@ -454,7 +454,7 @@ const camera = new THREE.PerspectiveCamera(45, width / height, 1, 3000) // 超�
 camera.lookAt(600, 300, 600) // 改变相机观察目标点
 ```
 
-注意相机控件`OrbitControls`会影响`lookAt`设置，注意手动设置`OrbitControls`的目标参数
+注意相机控件 `OrbitControls` 会影响 `lookAt` 设置，注意手动设置 `OrbitControls` 的目标参数
 
 ```js
 const controls = new OrbitControls(camera, renderer.domElement)
@@ -493,17 +493,17 @@ window.addEventListener('keyup', event => {
 
 # 6. 精灵模型和粒子系统
 
-## 1. 精灵模型`Sprite`
+## 1. 精灵模型 `Sprite`
 
-精灵模型对象`Sprite`和网格模型`Mesh`一样都是模型对象，基类都是`Object3D`，关于精灵模型对象`Sprite`的方法和属性除了可以查看`Sprite`的文档，也可以查看基类`Object3D`的文档。
+精灵模型对象 `Sprite` 和网格模型 `Mesh` 一样都是模型对象，基类都是 `Object3D`，关于精灵模型对象 `Sprite` 的方法和属性除了可以查看 `Sprite` 的文档，也可以查看基类 `Object3D` 的文档。
 
-创建精灵模型对象`Sprite`和创建网格模型对象一样需要创建一个材质对象，不同的地方在于创建精灵模型对象不需要创建几何体对象`Geometry`，精灵模型对象本质上你可以理解为已经内部封装了一个平面矩形几何体`PlaneGeometry`，矩形精灵模型与矩形网格模型的区别在于精灵模型的矩形平面会始终平行于 Canvas 画布。
+创建精灵模型对象 `Sprite` 和创建网格模型对象一样需要创建一个材质对象，不同的地方在于创建精灵模型对象不需要创建几何体对象 `Geometry`，精灵模型对象本质上你可以理解为已经内部封装了一个平面矩形几何体 `PlaneGeometry`，矩形精灵模型与矩形网格模型的区别在于精灵模型的矩形平面会始终平行于 Canvas 画布。
 
-## 2. `Sprite`和`SpriteMaterial`
+## 2. `Sprite` 和 `SpriteMaterial`
 
-通过`Sprite`创建精灵模型不需要几何体，只需要给构造函数`Sprite`的参数设置为一个精灵材质`SpriteMaterial`即可。
+通过 `Sprite` 创建精灵模型不需要几何体，只需要给构造函数 `Sprite` 的参数设置为一个精灵材质 `SpriteMaterial` 即可。
 
-精灵材质对象`SpriteMaterial`和普通的网格材质一样可以设置颜色`.color`、颜色贴图`.map`、开启透明`.transparent`、透明度`.opacity`等属性，精灵材质对象`SpriteMaterial`的基类是材质`Material`。
+精灵材质对象 `SpriteMaterial` 和普通的网格材质一样可以设置颜色 `.color`、颜色贴图 `.map`、开启透明 `.transparent`、透明度 `.opacity` 等属性，精灵材质对象 `SpriteMaterial` 的基类是材质 `Material`。
 
 ```js
 // 添加精灵模型
@@ -523,9 +523,9 @@ sprite.scale.set(10, 10, 1) // 设置缩放，只需要设置 x、y 两个分量
 
 ![](./Three.js/效果图7.png)
 
-## 3. `.scale`和`.position`
+## 3. `.scale` 和 `.position`
 
-精灵模型对象和网格模型`Mesh`对一样基类都是`Object3D`，自然精灵模型也有缩放属性`.scale`和位置属性`.position`，一般设置精灵模型的大小是通过`.scale`属性实现，而精灵模型的位置通过属性`.position`实现，精灵模型和普通模型一样，可以改变它在三维场景中的位置，区别在于精灵模型的正面一直平行于 Canvas 画布。
+精灵模型对象和网格模型 `Mesh` 对一样基类都是 `Object3D`，自然精灵模型也有缩放属性 `.scale` 和位置属性 `.position`，一般设置精灵模型的大小是通过 `.scale` 属性实现，而精灵模型的位置通过属性 `.position` 实现，精灵模型和普通模型一样，可以改变它在三维场景中的位置，区别在于精灵模型的正面一直平行于 Canvas 画布。
 
 ## 4. 中国城市 PM2.5 可视化案例
 
@@ -589,7 +589,7 @@ loader.load('./json/PM2.5.json', data => {
 
 ## 5. 模拟树林效果
 
-下面通过通过一张背景透明的树纹理贴图`tree512.png`作为精灵模型的纹理贴图`.map`模拟一个树林效果。
+下面通过通过一张背景透明的树纹理贴图 `tree512.png` 作为精灵模型的纹理贴图 `.map` 模拟一个树林效果。
 
 ```js
 /**
@@ -633,7 +633,7 @@ mesh.rotateX(-Math.PI / 2)
 
 ## 6. 模拟下雨效果
 
-基本思路就是通过足够多的精灵模型构成一个粒子系统，然后每一个雨滴按照在一定空间内随机分布，每个精灵模型都使用一个背景透明的雨滴`rain128.png`作为纹理贴图。
+基本思路就是通过足够多的精灵模型构成一个粒子系统，然后每一个雨滴按照在一定空间内随机分布，每个精灵模型都使用一个背景透明的雨滴 `rain128.png` 作为纹理贴图。
 
 ```js
 /**
