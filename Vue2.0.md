@@ -38,8 +38,8 @@
 
 目前主流的前端工程化解决方案：
 
-- **webpack**（https://www.webpackjs.com/）
-- **parcel**（https://zh.parceljs.org/）
+- **webpack**（https://webpack.docschina.org/）
+- **parcel**（https://www.parceljs.cn/）
 
 ## 2. Webpack 的基本使用
 
@@ -480,8 +480,6 @@ module.exports = {
     devtool: "eval-source-map"// 此选项生成的 Source Map 能够保证 “运行时报错的行数” 与 “源代码的行数” 保持一致
 }
 ```
-
-
 
 ### 4. webpack 生产环境下的 Source Map
 

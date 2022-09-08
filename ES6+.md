@@ -328,16 +328,16 @@ Symbol 特点：
 ```js
 // 创建 Symbol
 let s = Symbol();
-console.log(s, typeof s);
+console.log(s, typeof s);// Symbol() 'symbol'
 
 let s2 = Symbol('尚硅谷');
 let s3 = Symbol('尚硅谷');
-console.log(s2, s3, s2 === s3);// false
+console.log(s2, s3, s2 === s3);// Symbol(尚硅谷) Symbol(尚硅谷) false
 
 // Symbol.for 创建
 let s4 = Symbol.for('尚硅谷');
 let s5 = Symbol.for('尚硅谷');
-console.log(s4, s5, s4 === s5);// true
+console.log(s4, s5, s4 === s5);// Symbol(尚硅谷) Symbol(尚硅谷) true
 
 // 不能与其他数据进行运算
 // let result = s + 100;
@@ -350,41 +350,50 @@ console.log(s4, s5, s4 === s5);// true
 ```js
 // 向对象中添加方法 up down
 let game = {
-    up: function () {
-        console.log('up');
-    },
-    down: function () {
-        console.log('down');
-    }
+  up: function () {
+    console.log('up');
+  },
+  down: function () {
+    console.log('down');
+  }
 };
 
 let methods = {
-    up: Symbol(),
-    down: Symbol()
+  up: Symbol(),
+  down: Symbol()
 };
 
 game[methods.up] = function () {
-    console.log('我可以改变形状');
+  console.log('我可以改变形状');
 }
 
 game[methods.down] = function () {
-    console.log('我可以快速下降');
+  console.log('我可以快速下降');
 }
 
 console.log(game);
+game.up();// up
+game.down();// down
+game[methods.up]();// 我可以改变形状
+game[methods.down]();// 我可以快速下降
 
 // 第二种
+const say = Symbol('say')
+const zibao = Symbol('zibao')
+
 let youxi = {
-    name: '狼人杀',
-    [Symbol('say')]: function () {
-        console.log('我可以发言');
-    },
-    [Symbol('zibao')]: function () {
-        console.log('我可以自爆');
-    }
+  name: '狼人杀',
+  [say]: function () {
+    console.log('我可以发言');
+  },
+  [zibao]: function () {
+    console.log('我可以自爆');
+  }
 };
 
 console.log(youxi);
+youxi[say]();// 我可以发言
+youxi[zibao]();// 我可以自爆
 ```
 
 #### 3. Symbol 内置属性
@@ -392,16 +401,16 @@ console.log(youxi);
 ```js
 // hasInstance：当其他对象使用 instanceof 运算符，判断是否为该对象的实例时，会调用这个方法
 class Person {
-    static [Symbol.hasInstance](param) {
-        console.log(param);
-        console.log('我被用来检测类型了');
-        return true;
-    }
+  static [Symbol.hasInstance](param) {
+    // param 是被用 instanceof 比较的那个对象
+    console.log('param', param);// param {}
+    console.log('我被用来检测类型了');
+    return true;
+  }
 }
 
 let o = {};
-
-console.log(o instanceof Person);
+console.log(o instanceof Person);// true
 
 // isConcatSpreadable：对象的 isConcatSpreadable 属性等于的是一个布尔值，表示该对象用于 Array.Prototype.concat() 时，是否可以展开。
 const array = [1, 2, 3];

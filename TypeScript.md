@@ -61,7 +61,7 @@ typescript 包：用来编译 TS 代码的包，提供了 **tsc** 命令，实�
 ## 2. 编译并运行 TS 代码
 
 1. 创建 hello.ts 文件（注意：TS 文件的后缀名为 **.ts**）
-2. 将 TS 编译为 JS：在终端中输入命令，**tsc** hello.ts（此时，在同级目录中会出现一个同名的 JS 文件）
+2. 将 TS 编译为 JS：在终端中输入命令，`tsc hello.ts`（此时，在同级目录中会出现一个同名的 JS 文件）
 3. 执行 JS 代码：在终端中输入命令，node hello.js
 
 ![](./TypeScript/编译并运行TS代码.png)
