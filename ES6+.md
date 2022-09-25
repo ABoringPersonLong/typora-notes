@@ -1028,21 +1028,43 @@ xiaomi.call();// 调用父类的方法
 ```js
 // get 和 set
 class Phone {
-    get price() {
-        console.log('价格属性被读取了');
-        return "aaa";
+    /**
+     * 演示实例属性
+     */
+    price = 0
+
+    get getPrice() {
+      	return this.price;
     }
 
-    set price(value) {
-        console.log('价格属性被修改了');
-        console.log(value);
+    set setPrice(price) {
+    	  this.price = price;
+    }
+
+    /**
+     * 演示静态属性
+     */
+    static total = 100
+
+    static get getTotal() {
+   	   return this.total;
+    }
+
+    static set setTotal(total) {
+     	 this.total = total;
     }
 }
 
-// 实例化对象
-let phone = new Phone();
-console.log(phone.price);// 调用 get
-phone.price = 'free';// 调用 set
+// 演示实例属性
+const phone = new Phone();
+console.log(phone.getPrice);// 调用 get
+phone.setPrice = 500;// 调用 set
+console.log(phone.getPrice);
+
+// 演示静态属性
+console.log(Phone.getTotal);// 调用 get
+Phone.setTotal = 1000;// 调用 set
+console.log(Phone.getTotal);
 ```
 
 ### 17. 数值扩展

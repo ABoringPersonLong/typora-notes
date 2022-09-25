@@ -1,3 +1,27 @@
+# git 的分支操作
+
+```bash
+# 创建 login 分支
+git checkout -b login
+
+# 提交分支
+git add .
+git commit -m '完成了登录功能的开发'
+
+# 推送 login 分支
+git push -u origin login
+
+# 切换到 master 分支，并合并 login 分支
+git checkout master
+git merge login
+
+# 删除本地的 login 分支
+git branch -d login
+
+# 推送 master 分支
+git push
+```
+
 # serve
 
 安装：
@@ -60,4 +84,3 @@ npm i aos
   <p>gdfg dgdfgdf</p>
 </div>
 ```
-

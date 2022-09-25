@@ -1995,15 +1995,15 @@ class First extends React.Component {
    }
    ```
 
-> 注意：`BrowserRouter`组件最好放在最顶层所有组件之外，这样能确保内部组件使用 Link 做路由跳转时不出错
+> 注意：`BrowserRouter` 组件最好放在最顶层所有组件之外，这样能确保内部组件使用 Link 做路由跳转时不出错
 
 ### 2. 路由跳转
 
-在跳转路由时，如果路径是`/`开头的则是绝对路由，否则为**相对路由**，即**相对于当前 URL** 进行改变
+在跳转路由时，如果路径是 `/` 开头的则是绝对路由，否则为**相对路由**，即**相对于当前 URL** 进行改变
 
 #### 1. Link 组件
 
-`Link组件`只能在`Router`内部使用，因此使用到`Link组件`的组件一定要放在顶层的 Router 之内
+`Link组件` 只能在 `Router` 内部使用，因此使用到 `Link组件` 的组件一定要放在顶层的 Router 之内
 
 ```jsx
 import { Link } from "react-router-dom"
@@ -2013,8 +2013,8 @@ import { Link } from "react-router-dom"
 
 #### 2 NavLink 组件
 
-- `NavLink组件`和`Link组件`的功能是一致的，区别在于可以判断其`to属性`是否是当前匹配到的路由
-- `NavLink组件`的`style`或`className`可以接收一个函数，函数接收一个含有`isActive`字段的对象为参数，可根据该参数调整样式
+- `NavLink组件` 和 `Link组件` 的功能是一致的，区别在于可以判断其 `to属性` 是否是当前匹配到的路由
+- `NavLink组件` 的 `style` 或 `className` 可以接收一个函数，函数接收一个含有 `isActive` 字段的对象为参数，可根据该参数调整样式
 
 ```jsx
 import { NavLink } from "react-router-dom";
@@ -2024,9 +2024,9 @@ import { NavLink } from "react-router-dom";
 
 #### 3. 编程式跳转
 
-使用`useNavigate`钩子函数生成`navigate函数`，可以通过 JS 代码完成路由跳转
+使用 `useNavigate` 钩子函数生成 `navigate函数`，可以通过 JS 代码完成路由跳转
 
-> `useNavigate`取代了原先版本中的`useHistory`
+> `useNavigate` 取代了原先版本中的 `useHistory`
 
 ```jsx
 import {useNavigate} from "react-router-dom"
@@ -2044,14 +2044,14 @@ function Left() {
 ```
 
 - 可以直接传入要跳转的目标路由（可以使用相对路径，语法和 JS 相同）
-- 传入`-1`表示后退
+- 传入 `-1` 表示后退
 
 ### 3. 动态路由参数
 
 #### 1. 路径参数
 
-- 在`Route组件`中的`path属性`中定义路径参数
-- 在组件内通过`useParams`hook 访问路径参数
+- 在 `Route组件` 中的 `path属性` 中定义路径参数
+- 在组件内通过 `useParams` hook 访问路径参数
 
 App 组件：
 
@@ -2102,20 +2102,20 @@ export default function Right() {
 
 **兼容类组件**
 
-在以前版本中，组件的`props`会包含一个`match对象`，在其中可以取到路径参数。
+在以前版本中，组件的 `props` 会包含一个 `match对象`，在其中可以取到路径参数。
 
 但在最新的 6.x 版本中，无法从 props 获取参数。
 
-并且，针对类组件的`withRouter`高阶组件已被移除。因此对于类组件来说，使用参数有两种兼容方法：
+并且，针对类组件的 `withRouter` 高阶组件已被移除。因此对于类组件来说，使用参数有两种兼容方法：
 
 1. 将类组件改写为函数组件
-2. 自己写一个 HOC 来包裹类组件，用`useParams`获取参数后通过 props 传入原本的类组件
+2. 自己写一个 HOC 来包裹类组件，用 `useParams` 获取参数后通过 props 传入原本的类组件
 
 #### 2. search 参数
 
 - 查询参数不需要在路由中定义
-- 使用`useSearchParams`hook 来访问和修改查询参数。其用法和`useState`类似，会返回当前对象和更改它的方法
-- 使用`setSearchParams`时，**必须传入所有的查询参数**，否则会覆盖已有参数
+- 使用 `useSearchParams` hook 来访问和修改查询参数。其用法和 `useState` 类似，会返回当前对象和更改它的方法
+- 使用 `setSearchParams` 时，**必须传入所有的查询参数**，否则会覆盖已有参数
 
 ```jsx
 import {useSearchParams} from "react-router-dom"
@@ -2139,7 +2139,7 @@ function Right() {
 
 通过嵌套的书写`Route组件`实现对嵌套路由的定义。
 
-> `path`开头为`/`的为绝对路径，反之为相对路径。
+> `path` 开头为 `/` 的为绝对路径，反之为相对路径。
 
 App 组件：
 
@@ -2171,9 +2171,9 @@ function Father() {
 
 #### 2. 第二种方式：定义 Routes
 
-可以在任何组件中使用`Routes`组件，且组件内的 Routes 中，路径默认带上当前组件的路径作为前缀。
+可以在任何组件中使用 `Routes` 组件，且组件内的 Routes 中，路径默认带上当前组件的路径作为前缀。
 
-注意：此时定义父组件的路由时，要在后面加上`/*`，否则父组件将无法渲染。
+注意：此时定义父组件的路由时，要在后面加上 `/*`，否则父组件将无法渲染。
 
 App 组件：
 
@@ -2204,7 +2204,7 @@ export default function Father() {
 
 ### 5. 默认路由
 
-**定义：**在嵌套路由中，如果 URL 仅匹配了父级 URL，则`Outlet`中会显示带有`index`属性的子路由。可以使用在路由的任何层级
+**定义：**在嵌套路由中，如果 URL 仅匹配了父级 URL，则 `Outlet` 中会显示带有 `index` 属性的子路由。可以使用在路由的任何层级
 
 ```jsx
 <Routes>
@@ -2217,12 +2217,12 @@ export default function Father() {
 ```
 
 - 当 url 为 / 时：显示 Left 组件
-- 当 url 为`/father`时：Father 中的 Outlet 会显示 DefaultSon 组件
-- 当 url 为`/father/son`时：Father 中的 Outlet 会显示为 Son 组件
+- 当 url 为 `/father` 时：Father 中的 Outlet 会显示 DefaultSon 组件
+- 当 url 为 `/father/son` 时：Father 中的 Outlet 会显示为 Son 组件
 
 ### 6. 全匹配路由
 
-**定义：**`path`属性取值为`*`时，可以匹配任何（非空）路径，该匹配拥有**最低的优先级**。可以用于设置 404 页面。
+**定义：**`path` 属性取值为 `*` 时，可以匹配任何（非空）路径，该匹配拥有**最低的优先级**。可以用于设置 404 页面。
 
 ```jsx
 <Routes>
@@ -2253,9 +2253,9 @@ export default function Father() {
 
 ### 8. 路由重定向
 
-当在某个路径`/`下，要重定向到路径`/a`时，可以通过`Navigate`组件进行重定向到其他路径
+当在某个路径 `/` 下，要重定向到路径 `/a` 时，可以通过 `Navigate` 组件进行重定向到其他路径
 
-> 等价于以前版本中的`Redirect`组件
+> 等价于以前版本中的 `Redirect` 组件
 
 ```jsx
 import {Navigate} from 'react-router-dom'
@@ -2277,7 +2277,7 @@ export default function A() {
 
 ### 9. 布局路由
 
-当多个路由有共同的父级组件时，可以将父组件提取为一个没有`path`和`index`属性的 Route 组件（Layout Route）
+当多个路由有共同的父级组件时，可以将父组件提取为一个没有 `path` 和 `index` 属性的 Route 组件（Layout Route）
 
 ```jsx
 <Route element={<PageLayout/>}>
@@ -2297,7 +2297,7 @@ export default function A() {
 
 浏览器会记录导航堆栈，以实现浏览器中的前进后退功能。在传统的前端项目中，URL 的改变意味着向服务器重新请求数据。
 
-在现在的客户端路由（client side routing）中，可以做到编程控制 URL 改变后的反应。如在点击 a 标签的回调函数中使用`event.preventDefault()`阻止默认事件，此时 URL 的改变不会带来任何 UI 上的更新。
+在现在的客户端路由（client side routing）中，可以做到编程控制 URL 改变后的反应。如在点击 a 标签的回调函数中使用 `event.preventDefault()` 阻止默认事件，此时 URL 的改变不会带来任何 UI 上的更新。
 
 ```jsx
 <a
@@ -2313,7 +2313,7 @@ export default function A() {
 
 #### 1. History 对象
 
-浏览器没有直接提供监听 URL 改变（push、pop、replace）的接口，因此`react-router`对原生的`history`对象进行了包装，提供了监听 URL 改变的 API。
+浏览器没有直接提供监听 URL 改变（push、pop、replace）的接口，因此 `react-router` 对原生的 `history` 对象进行了包装，提供了监听 URL 改变的 API。
 
 ```jsx
 let history = createBrowserHistory()
@@ -2323,11 +2323,11 @@ history.listen(({location, action}) => {
 })
 ```
 
-使用`react-router`时不需操作 History 对象（`Routes` 组件会进行操作）
+使用 `react-router` 时不需操作 History 对象（`Routes` 组件会进行操作）
 
 #### 2. Location 对象
 
-`react-router`对`window.location`进行包装后，提供了一个形式简洁的 Location 对象，形如：
+`react-router` 对 `window.location` 进行包装后，提供了一个形式简洁的 Location 对象，形如：
 
 ```js
 {
@@ -2345,7 +2345,7 @@ history.listen(({location, action}) => {
 
 可用于记录用户的跳转详情（从哪跳到当前页面）或在跳转时携带信息。
 
-可以用在`Link`组件或`navigate`方法中。
+可以用在 `Link` 组件或 `navigate` 方法中。
 
 ```jsx
 <Link to="/pins/123" state={{fromDashboard: true}}/>
@@ -2353,7 +2353,7 @@ let navigate = useNavigate()
 navigate("/users/123", {state: partialUser})
 ```
 
-在目标的组件中，可以用`useLocation`方法获取该对象
+在目标的组件中，可以用 `useLocation` 方法获取该对象
 
 ```js
 let location = useLocation()
@@ -2366,12 +2366,12 @@ console.log(location.state)
 
 每个 Location 对象拥有一个唯一的 key，可以据此来实现基于 Location 的滚动管理，或是数据缓存。
 
-如：将`location.key`和 URL 作为键，每次请求数据前，先查找缓存是否存在来判断是否实际发送请求，来实现客户端数据缓存。
+如：将 `location.key` 和 URL 作为键，每次请求数据前，先查找缓存是否存在来判断是否实际发送请求，来实现客户端数据缓存。
 
 ### 11. HashRouter 和 BrowserRouter 的区别
 
-- `HashRouter`只会修改URL中的哈希值部分；而`BrowserRouter`修改的是 URL 本身
-- `HashRouter`是**纯前端**路由，可以通过输入 URL 直接访问；使用时`BrowserRouter`直接输入 URL 会显示 404，除非配置 Nginx 将请求指向对应的 HTML 文件。初次进入`/`路径时或点击`Link`组件跳转时不会发送请求
+- `HashRouter` 只会修改URL中的哈希值部分；而 `BrowserRouter` 修改的是 URL 本身
+- `HashRouter` 是**纯前端**路由，可以通过输入 URL 直接访问；使用时 `BrowserRouter` 直接输入 URL 会显示 404，除非配置 Nginx 将请求指向对应的 HTML 文件。初次进入 `/` 路径时或点击 `Link` 组件跳转时不会发送请求
 
 # 7. 地理位置 API
 

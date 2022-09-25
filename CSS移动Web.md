@@ -536,3 +536,20 @@ IFC（inline Formatting Context）叫做 “行级格式化上下”
 1. 内部的盒子会在水平方向，一个个地放置
 2. IFC 的高度，由里面最高盒子的高度决定
 3. 当一行不够放置的时候会自动切换到下一行
+
+# iconfont 批量导入购物车
+
+因为没有批量导入购物车，所以一般情况下需要一个一个去点，太浪费时间，那么请在控制台输入以下代码，批量导入：
+
+```js
+const icons = document.querySelectorAll('.icon-gouwuche1')
+const auto_click = i => {
+  if (i < icons.length) {
+    setTimeout(() => {
+      icons.item(i).click()
+      auto_click(i + 1)
+    }, 10)
+  }
+}
+auto_click(0)
+```
