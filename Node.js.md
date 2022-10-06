@@ -2469,3 +2469,81 @@ npm start
 - views：模板文件
 - app.js：服务器启动文件
 - package.json：包描述文件
+
+# 7. APIDOC-API 文档生成工具
+
+apidoc 是一个简单的 RESTful API 文档生成工具，它从代码注释中提取特定格式的内容生成文档。支持诸如 Go、Java、C++、Rust 等大部分开发语言，具体可使用 `apidoc lang` 命令行查看所有的支持列表。
+
+apidoc 拥有以下的特点：
+
+1. 跨平台，linux、windows、macOS 等都支持
+2. 支持语言广泛，即使是不支持，也很方便扩展
+3. 支持多个不同语言的多个项目生成一份文档
+4. 输出模板可自定义
+5. 根据文档生成 mock 数据
+
+全局安装：
+
+```sh
+npm i -g apidoc
+```
+
+创建 apidoc.json 文件：
+
+```json
+{
+  "title": "标题",
+  "name": "名称",
+  "description": "描述",
+  "version": "1.0.0",
+  "template": {
+    "withCompare": false
+  }
+}
+```
+
+apiDoc 从源代码中的 API 注释创建文档：
+
+```js
+/**
+ * @api {get} /users/:id 根据ID获取用户
+ * @apiName GetUsersById
+ * @apiGroup 用户管理
+ * @apiHeader {String} Authorization Token令牌
+ *
+ * @apiParam {Number} id 用户ID，写在地址栏中
+ *
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} msg 消息
+ * @apiSuccess {Object} data 数据
+ * @apiSuccessExample {json} 响应数据
+ * {
+ *   "status": 200,
+ *   "msg": "获取成功",
+ *   "data": {
+ *     "id": 10, // 用户ID
+ *     "username": "zhangsan", // 用户名
+ *     "age": 18 // 年龄
+ *   }
+ * }
+ */
+app.get('/api/users/:id', (request, response) => {
+  response.send({
+    status: 200,
+    msg: '获取成功',
+    data: {
+      id: parseInt(request.params.id),
+      username: 'zhangsan',
+      age: 18
+    }
+  })
+})
+```
+
+运行：
+
+```sh
+# 将 src 目录下的文件输出到 apidoc 目录
+apidoc -i src -o apidoc
+```
+

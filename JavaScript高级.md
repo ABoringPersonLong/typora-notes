@@ -342,8 +342,13 @@
 	            1.创建(获取)
 	                第一种：Window.location
 	                第二种：location
-	            2.方法
+	            2.属性
+	            		href：修改url地址，有历史记录
+	            3.方法
 	                reload(): 重新加载当前文档 (刷新)
+	                assign：跳转到新的url地址，有历史记录
+                  replace：重定向到新的url地址，没有历史记录
+                  reload：重新加载当前页面
 					assign(): 根 href 一样, 可以跳转页面 (也称为重定向页面)
 					replace(): 替换当前页面, 因为不记录历史, 所以不能后退页面
 	            3.属性
@@ -362,6 +367,8 @@
 							window.location.href = "./移动.html";// 如果是用手机访问的这个页面就跳转到移动端的页面
 						}
 					</script>
+					判断是否是苹果手机：
+						console.log(navigator.userAgent.includes('iPhone'))
 	        History: 历史记录对象
 	            1.创建 (获取):
 	                第一种：Window.history
@@ -531,4 +538,3 @@
 			localStorage.removeItem(key): 根据键删除数据
 			localStorage.clear(): 清除所有的键值对
 ```
-

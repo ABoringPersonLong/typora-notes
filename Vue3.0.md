@@ -201,11 +201,11 @@ npm i less -D
 
 ### 1. 使用全局注册组件
 
-使用 app.component() 方法注册的全局组件，**直接以标签的形式进行使用**即可，例如：
+使用 vue.component() 方法注册的全局组件，**直接以标签的形式进行使用**即可，例如：
 
 ```js
 import Count from "@/components/Count.vue";
-Vue.component("Count", Count);// 第一个参数是使用这个组件时用的标签名
+vue.component("Count", Count);// 第一个参数是使用这个组件时用的标签名
 ```
 
 ### 2. Class 与 Style 绑定
