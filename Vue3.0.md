@@ -68,7 +68,11 @@ vue 官方提供了**两种**快速创建工程化的 SPA 项目的方式：
 按照顺序执行如下的命令，即可基于 vite 创建 vue 3.x 的工程化项目：
 
 ```bash
+# 1.x
 npm init vite-app 项目名称
+# 3.x
+npm create vite@latest 项目名称 -- --template vue
+
 cd 项目名称
 npm i
 npm run dev
@@ -1865,3 +1869,822 @@ onRenderTriggered(({ key, type, target }) => { // 每次触发页面重新渲染
 </script>
 ```
 
+## 15. 使用 computed 计算属性
+
+```vue
+<script setup>
+import { ref, computed } from 'vue'
+
+const firstName = ref('Hello')
+const lastName = ref('orld')
+
+const fullName = computed(() => firstName.value + lastName.value) // 返回 firstName + lastName
+</script>
+```
+
+## 16. 使用 watch 侦听器
+
+```vue
+<script setup>
+import { ref, watch } from 'vue'
+
+const count = ref(0)
+
+watch(count, (newVal, oldVal) => { // 监听 count 属性
+  console.log(newVal, oldVal)
+}, { immediate: true }) // 表示页面初次渲染好之后，就立即触发当前的 watch 侦听器
+</script>
+```
+
+# 6. Vite
+
+## 1. 总览
+
+Vite（法语意为 "快速的"，发音 `/vit/`，发音同 "veet"）是一种新型前端构建工具，能够显著提升前端开发体验。它主要由两部分组成：
+
+- 一个开发服务器，它基于 [原生 ES 模块](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) 提供了 [丰富的内建功能](https://cn.vitejs.dev/guide/features.html)，如速度快到惊人的 [模块热更新（HMR）](https://cn.vitejs.dev/guide/features.html#hot-module-replacement)。
+- 一套构建指令，它使用 [Rollup](https://rollupjs.org/) 打包你的代码，并且它是预配置的，可输出用于生产环境的高度优化过的静态资源。
+
+Vite 意在提供开箱即用的配置，同时它的 [插件 API](https://cn.vitejs.dev/guide/api-plugin.html) 和 [JavaScript API](https://cn.vitejs.dev/guide/api-javascript.html) 带来了高度的可扩展性，并有完整的类型支持。
+
+你可以在 [为什么选 Vite](https://cn.vitejs.dev/guide/why.html) 中了解更多关于项目的设计初衷。
+
+## 2. 搭建 Vite 项目
+
+> 兼容性注意
+>
+> Vite 需要 [Node.js](https://nodejs.org/en/) 版本 14.18+，16+。然而，有些模板需要依赖更高的 Node 版本才能正常运行，当你的包管理器发出警告时，请注意升级你的 Node 版本。
+
+使用 npm：
+
+```sh
+npm create vite@latest
+```
+
+使用 yarn：
+
+```sh
+yarn create vite
+```
+
+使用 pnpm：
+
+```sh
+pnpm create vite
+```
+
+然后按照提示操作即可！
+
+你还可以通过附加的命令行选项直接指定项目名称和你想要使用的模板。例如，要构建一个 Vite + Vue 项目，运行：
+
+```sh
+# npm 6.x
+npm create vite@latest 项目名称 --template vue
+
+# npm 7.x+
+npm create vite@latest 项目名称 -- --template vue
+
+# yarn
+yarn create vite 项目名称 --template vue
+
+# pnpm
+pnpm create vite 项目名称 --template vue
+```
+
+更多模板：`vue`、`vue-ts`、`react`、`react-ts`、`vanilla`、`vanilla-ts`、`preact`、`preact-ts`、`lit`、`lit-ts`、`svelte`、`svelte-ts`
+
+## 3. 环境变量与模式
+
+- `vite serve` 时是 `development` 开发模式，`vite build` 时是 `production` 生产模式。
+- 分别创建配置文件：`.env.development`、`.env.production`
+- **注意：**命名规范 `VITE_` 为前缀的变量才会暴露给经过 `vite` 处理的代码
+
+.env.development 文件：
+
+```
+# 开发环境
+ENV = development
+
+# 基本路径
+VITE_APP_BASE_URL = http://localhost:3000
+```
+
+.env.production 文件：
+
+```
+# 生产环境
+ENV = production
+
+# 基本路径
+VITE_APP_BASE_URL = http://127.0.0.1:3000
+```
+
+读取环境变量：
+
+```js
+console.log(import.meta.env.VITE_APP_BASE_URL)
+```
+
+# 7. Pinia
+
+## 1. 介绍
+
+Pinia [最初是在 2019 年 11 月左右重新设计使用](https://github.com/vuejs/pinia/commit/06aeef54e2cad66696063c62829dac74e15fd19e) [Composition API](https://github.com/vuejs/composition-api)。从那时起，最初的原则仍然相同，但 Pinia 对 Vue 2 和 Vue 3 都有效，并且不需要您使用组合 API。除了安装和 SSR 之外，两者的 API 都是相同的，并且这些文档针对 Vue 3，并在必要时提供有关 Vue 2 的注释，以便 Vue 2 和 Vue 3 用户可以阅读！
+
+## 2. 为什么要使用 Pinia？
+
+Pinia 是 Vue 的存储库，它允许您跨组件/页面共享状态。如果您熟悉 Composition API，您可能会认为您已经可以通过一个简单的 `export const state = reactive({})`，这对于单页应用程序来说是正确的，但如果它是服务器端呈现的，**会使您的应用程序暴露于安全漏洞**。但即使在小型单页应用程序中，您也可以从使用 Pinia 中获得很多好处：
+
+- dev-tools 支持
+  - 跟踪动作、突变的时间线
+  - Store 出现在使用它们的组件中
+  - time travel 和 更容易的调试
+- 热模块更换
+  - 在不重新加载页面的情况下修改您的 Store
+  - 在开发时保持任何现有状态
+- 插件：使用插件扩展 Pinia 功能
+- 为 JS 用户提供适当的 TypeScript 支持或 **autocompletion**
+- 服务器端渲染支持
+
+## 3. 安装
+
+用你最喜欢的包管理器安装 `pinia`：
+
+```sh
+npm i pinia
+# 或者使用 yarn
+yarn add pinia
+```
+
+> 提示
+>
+> 如果您的应用使用 Vue 2，您还需要安装组合 API：`@vue/composition-api`。 如果您使用 Nuxt，则应遵循 [这些说明](https://pinia.web3doc.top/ssr/nuxt.html)。
+>
+> 如果你使用的是 Vue CLI，你可以试试这个 [**非官方插件**](https://github.com/wobsoriano/vue-cli-plugin-pinia)。
+
+创建一个 pinia（根存储）并将其传递给应用程序：
+
+main.js 文件：
+
+```js
+import { createPinia } from 'pinia'
+
+app.use(createPinia())
+```
+
+如果您使用的是 Vue 2，您还需要安装一个插件并将创建的 `pinia` 注入应用程序的根目录：
+
+```js
+import { createPinia, PiniaVuePlugin } from 'pinia'
+
+Vue.use(PiniaVuePlugin)
+
+new Vue({
+  el: '#app',
+  pinia: createPinia()
+})
+```
+
+这也将添加 devtools 支持。在 Vue 3 中，仍然不支持时间旅行和编辑等一些功能，因为 vue-devtools 尚未公开必要的 API，但 devtools 具有更多功能，并且整体开发人员体验要好得多。在 Vue 2 中，Pinia 使用 Vuex 的现有接口（因此不能与它一起使用）。
+
+## 4. 核心概念
+
+### 1. 定义一个 Store
+
+在深入了解核心概念之前，我们需要知道 Store 是使用 `defineStore()` 定义的，并且它需要一个**唯一**名称，作为第一个参数传递：
+
+```js
+import { defineStore } from 'pinia'
+
+// 第一个参数是应用程序中 store 的唯一 id
+export const useUserStore = defineStore('user', {
+  // other options...
+})
+```
+
+这个 *name*，也称为 *id*，是必要的，Pinia 使用它来将 store 连接到 devtools。 将返回的函数命名为 *use...* 是跨可组合项的约定，以使其符合你的使用习惯。
+
+#### 使用 store
+
+我们正在*定义*一个 store，因为在 `setup()` 中调用 `useStore()` 之前不会创建 store：
+
+```vue
+<script lang="ts" setup>
+import { useUserStore } from '@/store/user'
+
+const userStore = useUserStore()
+</script>
+```
+
+您可以根据需要定义任意数量的 store ，并且**您应该在不同的文件中定义每个 store **以充分利用 pinia（例如自动允许您的包进行代码拆分和 TypeScript 推理）。
+
+如果您还没有使用 `setup` 组件，[您仍然可以将 Pinia 与 *map helpers* 一起使用](https://pinia.web3doc.top/cookbook/options-api.html)。
+
+一旦 store 被实例化，你就可以直接在 store 上访问 `state`、`getters` 和 `actions` 中定义的任何属性。 我们将在接下来的页面中详细介绍这些内容，但自动补全会对您有所帮助。
+
+请注意，`store` 是一个用 `reactive` 包裹的对象，这意味着不需要在getter 之后写 `.value`，但是，就像 `setup` 中的 `props` 一样，**我们不能对其进行解构**：
+
+```js
+export default defineComponent({
+  setup() {
+    const store = useStore()
+    // ❌ 这不起作用，因为它会破坏响应式
+    // 这和从 props 解构是一样的
+    const { name, doubleCount } = store
+
+    name // "eduardo"
+    doubleCount // 2
+
+    return {
+      // 一直会是 "eduardo"
+      name,
+      // 一直会是 2
+      doubleCount,
+      // 这将是响应式的
+      doubleValue: computed(() => store.doubleCount)
+    }
+  }
+})
+```
+
+为了从 Store 中提取属性同时保持其响应式，您需要使用 `storeToRefs()`。 它将为任何响应式属性创建 refs。 当您仅使用 store 中的状态但不调用任何操作时，这很有用：
+
+```js
+import { storeToRefs } from 'pinia'
+
+export default defineComponent({
+  setup() {
+    const store = useStore()
+    // `name` 和 `doubleCount` 是响应式引用
+    // 这也会为插件添加的属性创建引用
+    // 但跳过任何 action 或 非响应式（不是 ref/reactive）的属性
+    const { name, doubleCount } = storeToRefs(store)
+
+    return {
+      name,
+      doubleCount
+    }
+  }
+})
+```
+
+### 2. State
+
+大多数时候，state 是 store 的核心部分。我们通常从定义应用程序的状态开始。在 Pinia 中，状态被定义为返回初始状态的函数。Pinia 在服务器端和客户端都可以工作。
+
+```js
+import { defineStore } from 'pinia'
+
+const useStore = defineStore('storeId', {
+  // 推荐使用 完整类型推断的箭头函数
+  state: () => {
+    return {
+      // 所有这些属性都将自动推断其类型
+      counter: 0,
+      name: 'Eduardo',
+      isAdmin: true
+    }
+  }
+})
+```
+
+> 提示
+>
+> 如果您使用的是 Vue 2，您在 `state` 中创建的数据遵循与 Vue 实例中的 `data` 相同的规则，即 state 对象必须是普通的，并且您需要在以下情况下调用 `Vue.set()` **为其添加新的**属性。**另请参阅：[Vue#data](https://vuejs.org/v2/api/#data)**。
+
+#### 1. 访问 “state”
+
+默认情况下，您可以通过 `store` 实例访问状态来直接读取和写入状态：
+
+```js
+const store = useStore()
+
+store.counter++
+```
+
+#### 2. 重置状态
+
+您可以通过调用 store 上的 `$reset()` 方法将状态 *重置* 到其初始值：
+
+```js
+const store = useStore()
+
+store.$reset()
+```
+
+##### 1. 使用选项 API
+
+对于以下示例，您可以假设已创建以下 Store：
+
+```js
+import { defineStore } from 'pinia'
+
+const useCounterStore = defineStore('counterStore', {
+  state: () => ({
+    counter: 0
+  })
+})
+```
+
+##### 2. 使用 `setup()`
+
+虽然 Composition API 并不适合所有人，但 `setup()` 钩子可以使在 Options API 中使用 Pinia 更容易。不需要额外的 map helper！
+
+```js
+import { useCounterStore } from '../stores/counterStore'
+
+export default {
+  setup() {
+    const counterStore = useCounterStore()
+
+    return {
+      counterStore
+    }
+  },
+  computed: {
+    tripleCounter() {
+      return counterStore.counter * 3
+    }
+  }
+}
+```
+
+##### 3. 不使用 `setup()`
+
+如果您不使用 Composition API，并且使用的是 `computed`、`methods`、...，则可以使用 `mapState()` 帮助器将状态属性映射为只读计算属性：
+
+```js
+import { mapState } from 'pinia'
+import { useCounterStore } from '../stores/counterStore'
+
+export default {
+  computed: {
+    // 允许访问组件内部的 this.counter
+    // 与从 store.counter 读取相同
+    ...mapState(useCounterStore, {
+      myOwnName: 'counter',
+      // 您还可以编写一个访问 store 的函数
+      double: store => store.counter * 2,
+      // 它可以正常读取 “this”，但无法正常写入...
+      magicValue(store) {
+        return store.someGetter + this.counter + this.double
+      }
+    })
+  }
+}
+```
+
+###### 可修改状态
+
+如果您希望能够写入这些状态属性（例如，如果您有一个表单），您可以使用 `mapWritableState()` 代替。 请注意，您不能传递类似于 `mapState()` 的函数：
+
+```js
+import { mapWritableState } from 'pinia'
+import { useCounterStore } from '../stores/counterStore'
+
+export default {
+  computed: {
+    // 允许访问组件内的 this.counter 并允许设置它
+    // this.counter++
+    // 与从 store.counter 读取相同
+    ...mapWritableState(useCounterStore, ['counter'])
+    // 与上面相同，但将其注册为 this.myOwnName
+    ...mapWritableState(useCounterStore, {
+      myOwnName: 'counter'
+    })
+  }
+}
+```
+
+> 提示
+>
+> 对于像数组这样的集合，您不需要 `mapWritableState()`，除非您用 `cartItems = []` 替换整个数组，`mapState()` 仍然允许您调用集合上的方法。
+
+#### 3. 改变状态
+
+除了直接用 `store.counter++` 修改 store，你还可以调用 `$patch` 方法。 它允许您使用部分 “state” 对象同时应用多个更改：
+
+```js
+store.$patch({
+  counter: store.counter + 1,
+  name: 'Abalam'
+})
+```
+
+但是，使用这种语法应用某些突变非常困难或代价高昂：任何集合修改（例如，从数组中推送、删除、拼接元素）都需要您创建一个新集合。正因为如此，`$patch` 方法也接受一个函数来批量修改集合内部分对象的情况：
+
+```js
+cartStore.$patch(state => {
+  state.items.push({ name: 'shoes', quantity: 1 })
+  state.hasChanged = true
+})
+```
+
+这里的主要区别是 `$patch()` 允许您将批量更改的日志写入开发工具中的一个条目中。 注意**两者，`state` 和 `$patch()` 的直接更改都出现在 devtools** 中，并且可以进行 time travelled（在 Vue 3 中还没有）。
+
+#### 4. 替换 `state`
+
+您可以通过将其 `$state` 属性设置为新对象来替换 Store 的整个状态：
+
+```js
+store.$state = { counter: 666, name: 'Paimon' }
+```
+
+您还可以通过更改 `pinia` 实例的 `state` 来替换应用程序的整个状态。这在 [SSR for hydration](https://pinia.web3doc.top/ssr/#state-hydration) 期间使用。
+
+```js
+pinia.state.value = {}
+```
+
+### 3. Getters
+
+Getter 完全等同于 Store 状态的[计算值](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#computed-values)。它们可以用 `defineStore()` 中的 `getters` 属性定义。他们接收 “状态” 作为第一个参数**以鼓励**箭头函数的使用：
+
+```js
+export const useStore = defineStore('main', {
+  state: () => ({
+    counter: 0
+  }),
+  getters: {
+    doubleCount: (state) => state.counter * 2
+  }
+})
+```
+
+大多数时候，getter 只会依赖状态，但是，他们可能需要使用其他 getter。正因为如此，我们可以在定义常规函数时通过 `this` 访问到 *整个 store 的实例*，**但是需要定义返回类型（在 TypeScript 中）**。这是由于 TypeScript 中的一个已知限制，并且**不会影响使用箭头函数定义的 getter，也不会影响不使用 `this` 的 getter**：
+
+```js
+export const useStore = defineStore('main', {
+  state: () => ({
+    counter: 0
+  }),
+  getters: {
+    // 自动将返回类型推断为数字
+    doubleCount(state) {
+      return state.counter * 2
+    },
+    // 返回类型必须明确设置
+    doublePlusOne(): number {
+      return this.counter * 2 + 1
+    }
+  }
+})
+```
+
+然后你可以直接在 store 实例上访问 getter：
+
+```vue
+<template>
+  <p>Double count is {{ store.doubleCount }}</p>
+</template>
+
+<script>
+export default {
+  setup() {
+    const store = useStore()
+
+    return {
+      store
+    }
+  }
+}
+</script>
+```
+
+#### 1. 访问其他 getter
+
+与计算属性一样，您可以组合多个 getter。通过 `this` 访问任何其他 getter。即使您不使用 TypeScript，您也可以使用 [JSDoc](https://jsdoc.app/tags-returns.html) 提示您的 IDE 类型：
+
+```js
+export const useStore = defineStore('main', {
+  state: () => ({
+    counter: 0
+  }),
+  getters: {
+    // 类型是自动推断的，因为我们没有使用 `this`
+    doubleCount: (state) => state.counter * 2,
+    // 这里需要我们自己添加类型（在 JS 中使用 JSDoc）。我们还可以
+    // 使用它来记录 getter
+    /**
+     * 返回计数器值乘以二加一。
+     *
+     * @returns {number}
+     */
+    doubleCountPlusOne() {
+      // 自动完成 ✨
+      return this.doubleCount + 1
+    }
+  }
+})
+```
+
+#### 2. 将参数传递给 getter
+
+*Getters* 只是幕后的 *computed* 属性，因此无法向它们传递任何参数。但是，您可以从 *getter* 返回一个函数以接受任何参数：
+
+```js
+export const useStore = defineStore('main', {
+  getters: {
+    getUserById: state => userId => state.users.find(user => user.id === userId)
+  }
+})
+```
+
+并在组件中使用：
+
+```vue
+<script>
+export default {
+  setup() {
+    const store = useStore()
+
+    return {
+      getUserById: store.getUserById
+    }
+  }
+}
+</script>
+
+<template>
+  <p>User 2：{{ getUserById(2) }}</p>
+</template>
+```
+
+请注意，在执行此操作时，**getter 不再缓存**，它们只是您调用的函数。但是，您可以在 getter 本身内部缓存一些结果，这并不常见，但应该证明性能更高：
+
+```js
+export const useStore = defineStore('main', {
+  getters: {
+    getActiveUserById: state => {
+      const activeUsers = state.users.filter(user => user.active)
+      return (userId: number) => activeUsers.find(user => user.id === userId)
+    }
+  }
+})
+```
+
+#### 3. 访问其他 Store 的 getter
+
+要使用其他存储 getter，您可以直接在 *better* 内部使用它：
+
+```js
+import pinia from '@/store'
+import { useRoleStore } from './role' // 导入角色 Store
+
+const roleStore = useRoleStore(pinia)
+
+export const useUserStore = defineStore('user', {
+  state: () => ({
+    username: 'zhangsan'
+  }),
+  getters: {
+    getUsernameAndRoleName: state => state.username + roleStore.roleName
+  },
+  actions: {}
+})
+```
+
+#### 4. 与 `setup()` 一起使用
+
+您可以直接访问任何 getter 作为 store 的属性（与 state 属性完全一样）：
+
+```js
+export default {
+  setup() {
+    const store = useStore()
+
+    store.counter = 3
+    store.doubleCount // 6
+  }
+}
+```
+
+#### 5. 使用选项 API
+
+对于以下示例，您可以假设已创建以下 store：
+
+```js
+// ./src/stores/counterStore.js
+
+import { defineStore } from 'pinia'
+
+const useCounterStore = defineStore('counterStore', {
+  state: () => ({
+    counter: 0
+  }),
+  getters: {
+    doubleCounter() {
+      return this.counter * 2
+    }
+  }
+})
+```
+
+##### 1. 使用 `setup()`
+
+虽然 Composition API 并不适合所有人，但 `setup()` 钩子可以使在 Options API 中使用 Pinia 更容易。不需要额外的 map helpers 功能！
+
+```js
+import { useCounterStore } from '../stores/counterStore'
+
+export default {
+  setup() {
+    const counterStore = useCounterStore()
+
+    return {
+      counterStore
+    }
+  },
+  computed: {
+    quadrupleCounter() {
+      return counterStore.doubleCounter * 2
+    }
+  }
+}
+```
+
+##### 2. 没有 `setup()`
+
+您可以使用 [previous section of state](https://pinia.web3doc.top/core-concepts/state.html#options-api) 中使用的相同 `mapState()` 函数映射到 getter：
+
+```js
+import { mapState } from 'pinia'
+import { useCounterStore } from '../stores/counterStore'
+
+export default {
+  computed: {
+    // 允许访问组件内的 this.doubleCounter
+    // 与从 store.doubleCounter 中读取相同
+    ...mapState(useCounterStore, ['doubleCount'])
+    // 与上面相同，但将其注册为 this.myOwnName
+    ...mapState(useCounterStore, {
+      myOwnName: 'doubleCounter',
+      // 您还可以编写一个访问 store 的函数
+      double: store => store.doubleCount
+    })
+  }
+}
+```
+
+### 4. Actions
+
+Actions 相当于组件中的 [methods](https://v3.vuejs.org/guide/data-methods.html#methods)。它们可以使用 `defineStore()` 中的 `actions` 属性定义，并且**它们非常适合定义业务逻辑**：
+
+```js
+export const useStore = defineStore('main', {
+  state: () => ({
+    counter: 0
+  }),
+  actions: {
+    increment() {
+      this.counter++
+    },
+    randomizeCounter() {
+      this.counter = Math.round(100 * Math.random())
+    }
+  }
+})
+```
+
+与 [getters](https://pinia.web3doc.top/core-concepts/getters.html) 一样，操作可以通过 `this` 访问 *whole store instance* 并提供**完整类型（和自动完成✨）支持**。 **与它们不同，`actions` 可以是异步的**，您可以在其中 `await` 任何 API 调用甚至其他操作！这是使用 [Mande](https://github.com/posva/mande) 的示例。请注意，只要您获得 “Promise”，您使用的库并不重要，您甚至可以使用浏览器的 “fetch” 函数：
+
+```js
+import { mande } from 'mande'
+
+const api = mande('/api/users')
+
+export const useUsers = defineStore('users', {
+  state: () => ({
+    userData: null
+    // ...
+  }),
+  actions: {
+    async registerUser(login, password) {
+      try {
+        this.userData = await api.post({ login, password })
+        showTooltip(`Welcome back ${this.userData.name}!`)
+      } catch (error) {
+        showTooltip(error)
+        // 让表单组件显示错误
+        return error
+      }
+    }
+  }
+})
+```
+
+你也可以完全自由地设置你想要的任何参数并返回任何东西。调用 Action 时，一切都会自动推断！
+
+Actions 像 methods 一样被调用：
+
+```js
+export default defineComponent({
+  setup() {
+    const main = useMainStore()
+    // Actions 像 methods 一样被调用：
+    main.randomizeCounter()
+
+    return {}
+  }
+})
+```
+
+#### 1. 访问其他 store 操作
+
+要使用另一个 store ，您可以直接在操作内部使用它：
+
+```js
+import pinia from '@/store'
+import { useRoleStore } from './role'
+
+const roleStore = useRoleStore(pinia)
+
+export const useSettingsStore = defineStore('settings', {
+  state: () => ({
+    // ...
+  }),
+  actions: {
+    changeRoleName() {
+      roleStore.roleName = '普通用户'
+    }
+  }
+})
+```
+
+#### 2. 与 `setup()` 一起使用
+
+您可以直接调用任何操作作为 store 的方法：
+
+```js
+export default {
+  setup() {
+    const store = useStore()
+
+    store.changeRoleName()
+  }
+}
+```
+
+#### 3. 使用选项 API
+
+对于以下示例，您可以假设已创建以下 store：
+
+```js
+// ./src/stores/counterStore.js
+
+import { defineStore } from 'pinia'
+
+const useCounterStore = defineStore('counterStore', {
+  state: () => ({
+    counter: 0
+  }),
+  actions: {
+    increment() {
+      this.counter++
+    }
+  }
+})
+```
+
+##### 1. 使用 `setup()`
+
+虽然 Composition API 并不适合所有人，但 `setup()` 钩子可以使在 Options API 中使用 Pinia 更容易。 不需要额外的 map helpers 功能！
+
+```js
+import { useCounterStore } from '../stores/counterStore'
+
+export default {
+  setup() {
+    const counterStore = useCounterStore()
+
+    return {
+      counterStore
+    }
+  },
+  methods: {
+    incrementAndPrint() {
+      counterStore.increment()
+      console.log('New Count:', counterStore.count)
+    }
+  }
+}
+```
+
+##### 2. 不使用 `setup()`
+
+如果您根本不想使用 Composition API，可以使用 `mapActions()` 将操作属性映射为组件中的方法：
+
+```js
+import { mapActions } from 'pinia'
+import { useCounterStore } from '../stores/counterStore'
+
+export default {
+  methods: {
+    // gives access to this.increment() inside the component
+    // same as calling from store.increment()
+    ...mapActions(useCounterStore, ['increment'])
+    // same as above but registers it as this.myOwnName()
+    ...mapActions(useCounterStore, { myOwnName: 'doubleCounter' })
+  }
+}
+```

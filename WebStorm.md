@@ -129,3 +129,7 @@ Ctrl + Shift + F6：更改类型
 ## 1. 禁用双修改键快捷方式（双击 Ctrl、双击 Shift）
 
 Settings -> Advanced Settings -> 找到 User Interface 标题 -> 将 Disable double modifier key shortcuts 勾上
+
+## 2. sass 全局配置
+
+File -> New Projects Setup -> Settings for Vew Projects -> Tools -> File Watchers -> 添加一个 scss -> 将 Arguments 的值修改为 --style=compressed --update --no-source-map $FileName$:$FileNameWithoutExtension$.min.css 即可
