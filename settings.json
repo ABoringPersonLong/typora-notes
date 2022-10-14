@@ -1,0 +1,81 @@
+{
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#323234" // 底部状态栏的颜色
+  },
+  "workbench.startupEditor": "none",
+  "workbench.iconTheme": "material-icon-theme",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "editor.renderWhitespace": "none",
+  "editor.fontFamily": "Consolas, SimHei",
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "editor.fontSize": 15,
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": false,
+  "git.confirmSync": false,
+  "git.ignoreLimitWarning": true,
+  "git.enableSmartCommit": true,
+  // Live Server 插件的配置
+  "liveServer.settings.donotShowInfoMsg": true,
+  // Vetur 插件的配置
+  "vetur.completion.scaffoldSnippetSources": {
+    "workspace": "💼",
+    "user": "🗒️",
+    "vetur": "✌"
+  },
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "vetur.ignoreProjectWarning": true,
+  "vetur.validation.template": false,
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "wrap_attributes": false
+    },
+    "prettyhtml": {
+      "printWidth": 1000,
+      "semi": false,
+      "singleQuote": true,
+      "trailingComma": "none",
+      "arrowParens": "avoid"
+    }
+  },
+  // ESLint 插件的配置
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.alwaysShowStatus": true,
+  // Prettier - Code formatter 插件的配置
+  "prettier.configPath": "C:\\Users\\龙雨欢\\.prettierrc", // 读取额外的配置文件
+  "prettier.printWidth": 1000, // 超过最大值换行
+  "prettier.semi": true, // 句尾添加分号
+  "prettier.singleQuote": true, // 使用单引号代替双引号
+  "prettier.trailingComma": "none", // 在对象或数组最后一个元素后面不加逗号
+  "prettier.arrowParens": "avoid", // 箭头函数的参数只有一个时省略小括号
+  // Path Autocomplete 插件的配置
+  "path-autocomplete.extensionOnImport": true,
+  "path-autocomplete.pathMappings": {
+    "@": "${folder}/src"
+  },
+  // 各个文件的默认格式化方式
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

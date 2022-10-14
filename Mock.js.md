@@ -181,17 +181,14 @@ const JSON5 = require('json5')
 
 // webpack5 的写法
 module.exports = devServer => {
-  // 如果环境变量 MOCK 为 true 就拦截请求
-  if (process.env.MOCK === 'true') {
-    // 监听 http 请求
-    devServer.app.get('/user/userinfo', (request, response) => {
-      const json = fs.readFileSync(path.join(__dirname, './userInfo.json5'), 'utf-8')
-      response.json({
-        msg: '拦截到了...',
-        data: Mock.mock(JSON5.parse(json))
-      })
+  // 监听 http 请求
+  devServer.app.get('/user/userinfo', (request, response) => {
+    const json = fs.readFileSync(path.join(__dirname, './userInfo.json5'), 'utf-8')
+    response.json({
+      msg: '拦截到了...',
+      data: Mock.mock(JSON5.parse(json))
     })
-  }
+  })
 }
 ```
 
@@ -257,7 +254,6 @@ export default {
 module.exports = function (devServer) {
   // 如果环境变量 MOCK 为 true 就拦截请求
   if (process.env.MOCK === 'true') {
-    // 监听 http 请求
     devServer.app.get('/user/userinfo', (request, response) => {
       const json = fs.readFileSync(path.join(__dirname, './userInfo.json5'), 'utf-8')
       response.json({
