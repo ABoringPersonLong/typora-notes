@@ -1883,6 +1883,14 @@ const firstName = ref('Hello')
 const lastName = ref('orld')
 
 const fullName = computed(() => firstName.value + lastName.value) // 返回 firstName + lastName
+const isCheckAll = computed({ // 计算出是否全选
+  get() { // 使用计算属性会调用这个函数
+    return userList.value.every(item => item.isCheck)
+  },
+  set(newVal) { // 修改计算属性会调用这个函数
+    userList.value.forEach(item => (item.isCheck = newVal))
+  }
+})
 </script>
 ```
 

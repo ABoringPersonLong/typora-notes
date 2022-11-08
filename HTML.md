@@ -153,17 +153,17 @@ HTML
                         range：滑块
                         search：搜索框
                         hidden：隐藏域
-                    placeholder：提示文字
-					checked：默认选择
-                    readonly：只读
-                    disabled：禁用
-                    required：必填
-                    pattern：验证规则，值是正则表达式
-                    autocomplete="off"：不显示历史输入记录
-					size：长度，对于text和password以字符为单位，其他以像素为单位
-                    <label>：与input中的id关联后，点击被label包裹的内容也会进入input标签
+                    		placeholder：提示文字
+											checked：默认选择
+                    		readonly：只读
+		                    disabled：禁用
+    		                required：必填
+        		            pattern：验证规则，值是正则表达式
+            		        autocomplete="off"：不显示历史输入记录
+											size：长度，对于text和password以字符为单位，其他以像素为单位
+                <label>：与input中的id关联后，点击被label包裹的内容也会进入input标签
                 <select>：下拉列表(单选)，加个 multiple="multiple" 属性就变成多选的下拉列表
-                    <option>
+                <option>
 						selected：默认选择
                 <textarea>：文本域
                     cols列数(宽度)，rows行数(高度)
