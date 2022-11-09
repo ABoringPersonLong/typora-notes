@@ -22,6 +22,51 @@ git branch -d login
 git push
 ```
 
+# vue 项目打包并生成打包报告
+
+```sh
+vue-cli-service build --report
+```
+
+# 开启 gzip 配置
+
+使用 `gzip` 可以减小文件体积，使传输速度更快。
+
+可以通过服务器端使用 express 做 gzip 压缩。
+
+安装：
+
+```sh
+npm i compression -D
+```
+
+使用：
+
+```js
+const compression = require('compression')
+
+app.use(compression())
+```
+
+# pm2
+
+安装：
+
+```sh
+npm i -g pm2
+```
+
+使用：
+
+```sh
+pm2 start 入口文件路径 --name 自定义名称 # 添加一个新的项目并启动项目
+pm2 start ID或自定义名称 # 启动项目
+pm2 ls # 查看运行项目
+pm2 restart ID或自定义名称 # 重启项目
+pm2 stop ID或自定义名称 # 停止项目
+pm2 delete ID或自定义名称 # 删除项目
+```
+
 # serve
 
 安装：
