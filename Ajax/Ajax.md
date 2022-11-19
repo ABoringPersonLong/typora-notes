@@ -1778,3 +1778,18 @@ HTTP状态码共分为5种类型：
 # 6. DNS
 
 **域名系统**（**D**omain **N**ame **S**ystem）是**互联网**的一项服务。它作为将**域名**和 **IP 地址**相互**映射**的一个**分布式数据库**，能够使人更方便地访问互联网。DNS 使用 **UDP** 端口 53。当前，对于每一级域名长度的限制是 63 个字符，域名总长度则不能超过 253 个字符。
+
+# 7. fetch
+
+```js
+// 请求 html 页面
+fetch('/user.html')
+  .then(response => response.text())
+  .then(body => console.log(body))
+
+// 请求 json 数据
+fetch('/user.json')
+  .then(response => response.json())
+  .then(json => console.log(json))
+  .catch(error => console.log(error))
+```
