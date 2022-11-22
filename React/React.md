@@ -151,7 +151,7 @@ npm i react react-dom
    - yarn 是 Facebook 发布的包管理器，可以看做是 npm 的替代品，功能与 npm 相同
    - yarn 具有快速、可靠和安全的特点
    - 初始化新项目：**yarn init**
-   - 安装包： **yarn add 包名称**
+   - 安装包：**yarn add 包名称**
    - 安装项目依赖项：**yarn**
    - 其他命令，请参考 **yarn 文档**
 

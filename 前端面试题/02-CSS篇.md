@@ -17,10 +17,30 @@
 
 ## 2. CSS 中可继承与不可继承属性有哪些
 
-**一、无继承性的属性**
+**一、有继承性的属性**
+
+1. 字体属性
+2. 文本属性
+   - text-indent：文本缩进
+   - text-align：文本水平对齐
+   - line-height：行高
+   - word-spacing：单词之间的间距
+   - letter-spacing：中文或者字母之间的间距
+   - text-transform：控制文本大小写（就是 uppercase、lowercase、capitalize 这三个）
+   - color：文本颜色
+3. 元素可见性 visibility
+4. 列表布局属性 list-style：列表风格，包括 list-style-type、list-style-image 等
+5. 光标属性 cursor：光标显示为何种形态
+
+**二、无继承性的属性**
 
 1. display
 2. 文本属性
+   - vertical-align：垂直文本对齐
+   - text-decoration：规定添加到文本的装饰
+   - text-shadow：文本阴影效果
+   - white-space：空白符的处理
+   - unicode-bidi：设置文本的方向
 3. 盒子模型的属性
 4. 背景属性
 5. 定位属性
@@ -28,14 +48,6 @@
 7. 轮廓样式属性
 8. 页面样式属性
 9. 声音样式属性
-
-**二、有继承性的属性**
-
-1. 字体系列属性
-2. 文本系列属性
-3. 元素可见性 visibility
-4. 列表布局属性 list-style：列表风格，包括 list-style-type、list-style-image 等
-5. 光标属性 cursor：光标显示为何种形态
 
 ## 3. display 的属性值及其作用
 
