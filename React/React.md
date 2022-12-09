@@ -2667,4 +2667,396 @@ map.setMapType(BMAP_EARTH_MAP) // 设置地图类型为地球模式
    .root :global(.adm-nav-bar) {}
    ```
 
-   
+# 10. Redux
+
+## 1. Redux
+
+### 1. Redux 概述
+
+#### 1. Redux 是什么
+
+**Redux** 是一个 **JavaScript** 状态容器，提供可与预测化的状态管理。
+
+**Redux** 可以让你构建**一致化**的应用，运行于不同的环境（客户端、服务器、原生应用），并且易于测试。
+
+**Redux** 除了和 **React** 一起使用外，还支持其他界面库，而且它体小精悍（只有 2KB）。
+
+#### 2. Redux 的设计初衷
+
+随着 **JavaScript** 单页面开发日趋复杂，**JavaScript** 需要管理更多的 **state**（状态），这些 **state** 可能包括服务器响应、缓存数据、本地生成未持久化到服务器的数据，也包括 UI 状态等。
+
+管理不断变化的 **state** 非常麻烦，如果一个 **model** 的变化会一起另一个 **model** 变化，那么当 **view** 变化时，就可能引起对应 model 以及另一个 **model** 的变化，依次可能会引起另一个 **view** 的变化。所以就会产生混乱。
+
+而 **Redux** 就是为了去解决这个问题。
+
+#### 3. Redux 三大核心
+
+##### 1. 单一数据源
+
+整个应用的 **state** 被存储在一棵 **object tree** 中，并且这个 object tree 只存在唯一一个 **store** 中。
+
+![](images/单一数据源.png)
+
+##### 2. State 是只读的
+
+唯一改变 **state** 的方法就是触发 **action**，**action** 是一个用于描述已发生事件的普通对象。
+
+这样确保了视图和网络请求都不能直接去修改 state，相反，它们只能表达想要修改的意图，因为所有的修改都被集中化处理，并且严格按照一个接一个的顺序执行。
+
+```js
+store.dispatch({ type: 'COMPLETE_TODO', index: 1 })
+```
+
+##### 3. 使用纯函数来执行修改
+
+为了描述 **action** 如何改变 **state tree**，你需要去编写 **reducers**。
+
+Reducers 只是一些纯函数，它接收先前的 state 和 action，并且返回新的 state。可以复用、可以控制顺序、传入附加参数。
+
+### 2. Redux 组成部分
+
+#### 1. State-状态
+
+就是我们传递的**数据**，那么我们在用 React 开发项目的时候，大致可以把 State分为三类：
+
+- **DomainData**：可以理解成为服务器端的数据，比如：获取用户的信息，商品的列表等等
+- **UI State**：决定当前 UI 决定展示的状态，比如：弹框的显示隐藏，受控组件等等
+- **App State**：App 级别的状态，比如：当前是否请求 loading，当前路由信息等可能被多个和组件去使用的到的状态
+
+#### 2. Action-事件
+
+**Action** 是把数据从应用传到 **store** 的载体，它是 **store** 数据的唯一来源，一般来说，我们可以通过 **store.dispatch()** 将 **action** 传递给 **store**。
+
+![](images/Action-事件.png)
+
+**Action 特点**：
+
+- Action 的本质就是一个 javascript 的普通对象
+- Action 对象内部必须2要有一个 **type** 属性来表示要执行的动作
+- 多数情况下，这个 **type** 会被定义成字符串常亮
+- 除了 **type** 字段之外，action 的结构随意进行定义
+- 而我们在项目中，更多的喜欢用 **action 创建函数**（就是创建 action 的地方）
+- **只是描述了有事情要发生，并没有描述如何去更新 state**
+
+![](images/Action-事件2.png)
+
+#### 3. Reducer
+
+**Reducer** 本质就是一个**函数**，它用来**响应**发送过来的 **action**，然后经过处理，把 **state** 发送给 **Store** 的。
+
+**注意**：在 Reducer 函数中，需要 return 返回值，这样 Store 才能接受到数据。函数会接受两个参数，第一个参数是初始化 state，第二个参数是 action
+
+```js
+const initState = { ... }
+rootReducer = (state = initState, action) => { ... return { ... }}
+```
+
+![](images/Reducer.png)
+
+#### 4. Store
+
+**Store** 就是把 action 与 reducer 联系到一起的对象。
+
+主要职责：
+
+- 维持应用的 state
+- 提供 getState() 方法获取 state
+- 提供 dispatch() 方法发送 action
+- 通过 subscribe() 来注册监听
+- 通过 subscribe() 返回值来注销监听
+
+```js
+import { createStore } from 'redux'
+const store = createStore(传递reducer)
+```
+
+### 3. Redux 入门案例
+
+#### 1. 准备工作
+
+- 构建 react 项目
+
+  ```sh
+  npx create-react-app redux-demo
+  ```
+
+- 删除多余的文件
+
+- 在 views 目录下创建 Home 组件
+
+- 编写一个简单的结构样式
+
+  ```html
+  <button>发送一个action</button>
+  ```
+
+- 在 App.js 中引入这个组件
+
+- 安装 redux
+
+  ```sh
+  npm i redux
+  ```
+
+#### 2. 创建一个 Action
+
+在 src 目录下创建一个目录 action，在该目录下创建一个 index.js 文件，用来构建 Action：
+
+```js
+export const sendAction = () => {
+  return {
+    type: 'send_action',
+    value: '发送了一个 action'
+  }
+}
+```
+
+#### 3. 创建一个 Reducer
+
+在 src 目录下创建一个目录 reducer，在该目录下创建一个 index.js 文件，用来构建 reducer，注意 rootReducer 要接收两个参数：
+
+```js
+const initState = { value: '默认值' }
+
+export const rootReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'send_action':
+      return Object.assign({}, state, action)
+    default:
+      return state
+  }
+}
+```
+
+#### 4. 创建 Store
+
+在 src 目录下创建一个目录 store，在该目录下创建一个 index.js 文件，用来构建 store，注意 createStore 函数里面第一个参数接收的是 reducer：
+
+```js
+import { createStore } from 'redux'
+import { rootReducer } from '../reducer'
+
+export default createStore(rootReducer)
+```
+
+#### 5. 在 Home 组件中使用
+
+- 给页面的 button 按钮绑定一个点击事件
+
+- 在组件一加载完毕的时候我们通过 store 来进行监听器的注册，返回值可以用来注销监听
+
+  ```js
+  // 组件加载完毕时，注册监听
+  useEffect(() => {
+    store.subscribe(() => {
+      console.log('subscribe：', store.getState())
+      setValue(value + 1) // 修改 state 为了触发页面的更新，这样页面上才能显示新的 store 状态
+    })
+  }, [])
+  ```
+
+- 在点击事件处理函数中，通过 store.dispatch 来发送一个 action
+
+  ```jsx
+  <button onClick={() => store.dispatch(sendAction())}>点我发送一个action</button>
+  ```
+
+## 2. React-redux
+
+### 1. React-redux 概述
+
+#### 1. Redux 与 React 的关系
+
+**Redux** 与 **React** 之间是没有关系的，Redux 支持 React、Angular、jQuery 甚至是 JavaScript
+
+**Redux** 与 **React** 这类库搭配起来更好用
+
+#### 2. React-redux
+
+**react-redux** 就是 Redux 官方出的用于配合 React 的绑定库
+
+**react-redux** 能够使你的 **React** 组件从 **Redux store** 中很方便的读取数据，并且向 **store** 中分发 **action** 以此来更新数据
+
+#### 3. React-redux 中两个重要的成员
+
+在学习 React 的时候，我们了解到，React 这个 UI 的框架是以**组件来进行驱动的**，所以 react-redux 中有**两个重要的部分**，先来认识一下：
+
+![](images/React-redux中两个重要的成员.png)
+
+#### 4. Provider
+
+- Provider **包裹**在根组件最外层，使所有的子组件都可以拿到 State
+- Provider 接受 **store** 作为 **props**，然后通过 context 往下传递，这样 react 中任何组件都可以通过 context 获取到 store
+
+![](images/Provider.png)
+
+#### 5. connect
+
+- Provider 内部组件如果想要使用到 state 中的数据，就必须要 connect 进行一层包裹封装，换一句话来说就是必须要被 connect 进行加强
+- connect 就是方便我们组件能够获取到 store 中的 state
+
+### 2. React-redux 的基本使用
+
+#### 1. 案例效果
+
+![](images/案例效果.png)
+
+#### 2. 安装 react-redux
+
+react-redux 不是 react 官方所提供，所以当我们构建 react 项目之后，需要进行**安装**：
+
+```sh
+npm i react-redux
+```
+
+react-redux 还需要依赖与 Redux 中的 store，所以我们还需要**安装 redux**：
+
+```sh
+npm i redux
+```
+
+#### 3. 利用 redux 来构建 store
+
+- 创建 reducer/index.js 和 store/index.js 文件，和之前一样
+
+- 在 App.js 中引入 store
+
+  ```js
+  import store from './store'
+  ```
+
+#### 4. 构建页面结构
+
+- 创建一个组件，名字叫 ComA，里面放一个 button 按钮
+- 创建另外一个组件，名字叫 ComB，里面放一个 div，用来显示数字
+- 在 App.js 中引入两个组件
+
+#### 5. 引入 Provider 组件
+
+- 在 App.js 中导入 Provider 组件
+
+  ```js
+  import { Provider } from 'react-redux'
+  ```
+
+- 利用 Provider 组件将我们整个结构进行包裹，并且传递 store
+
+  ```jsx
+  const App = () => {
+    return (
+      <Provider store={store}>
+        <ComA></ComA>
+        <ComB></ComB>
+      </Provider>
+    )
+  }
+  ```
+
+#### 6. connect 的使用
+
+- 导入 connect 方法
+
+  ```js
+  import { connect } from 'react-redux'
+  ```
+
+- 调用 connect 方法
+
+  ```js
+  connect(...)(Component)
+  ```
+
+- connect 方法会有一个返回值，而这个返回值就是加强之后的组件
+
+**connect 参数说明**：
+
+| 参数名                                          | 类型     | 说明                                                         |
+| :---------------------------------------------- | -------- | ------------------------------------------------------------ |
+| mapStateToProps(state, ownProps)                | Function | 这个函数允许我们将 store 中的数据作为 props 绑定到组件上<br />`state`：redux 中的 store<br />`ownProps`：自己的 props |
+| mapDispatchToProps(dispatch, ownProps)          | Function | 将 action 作为 props 绑定到我们自己的函数中<br />`dispatch`：就是 store.dispatch()<br />`ownProps`：自己的 props |
+| mergeProps(stateProps, dispatchProps, ownProps) | Function | 不管是 `stateProps` 还是 `dispatchProps`，都需要和 `ownProps` merge 之后才会被赋给我们的组件，通常情况下，你可以不传这个参数，`connect` 就会使用 `Object.assign` 替代该方法 |
+| options                                         | Object   | 可以定制 connector 的行为                                    |
+
+#### 7. 利用 connect 方法让我们组件与 store 关联
+
+- 在组件 ComA 和 ComB，分别导入 connect 方法
+
+  ```js
+  import { connect } from 'react-redux'
+  ```
+
+- 利用 connect 方法来对我们组件进行加强，并且导出
+
+  ```js
+  export default connect(mapStateToProps, mapDispatchToProps)(Component)
+  ```
+
+- 组件 ComA 属于发送方，所以要实现第二个参数
+
+  ```jsx
+  import { connect } from 'react-redux'
+  
+  const ComA = props => {
+    const handleClick = () => {
+      console.log('ComA的props：', props) // 里面包含 sendAction 函数
+      props.sendAction() // 发送 action
+    }
+  
+    return (
+      <>
+        <button onClick={handleClick}>+</button>
+      </>
+    )
+  }
+  
+  // 组件 ComA 属于发送方，所以要实现第二个参数
+  export default connect(null, dispatch => {
+    return { // 返回的对象会合并到 ComA 组件的 props 中
+      sendAction: () => {
+        dispatch({ // 利用 dispatch 发送一个 action
+          type: 'countAdd'
+        })
+      }
+    }
+  })(ComA)
+  ```
+
+- 组件 ComB 属于是接收，所以要实现第一个参数
+
+  ```jsx
+  import { connect } from 'react-redux'
+  
+  const ComB = props => {
+    console.log('ComB的props：', props) // 里面包含 state 的值（初始是 initState）
+    return (
+      <>
+        {props.count}
+      </>
+    )
+  }
+  
+  export default connect(state => {
+    return state // 返回的对象会合并到 ComB 组件的 props 中
+  })(ComB)
+  ```
+
+- reducer/index.js 文件：
+
+  ```js
+  const initState = {
+    value: '默认值',
+    count: 1
+  }
+  
+  export const rootReducer = (state = initState, action) => {
+    console.log('reducer：', state, action)
+    switch (action.type) {
+      case 'send_action':
+        return Object.assign({}, state, action)
+      case 'countAdd':
+        return { ...state, count: state.count + 1 }
+      default:
+        return state
+    }
+  }
+  ```
