@@ -314,4 +314,55 @@ ng g c 组件名称
     }
     ```
 
+11. 表单验证
+
+    表单元素添加`required`关键字表示必填，通过绑定`ngModel`的引用可以拿到当前组件的信息，通过引用获取到验证的信息
+
+    ```tsx
+    账号：<input type="text" name="username" required #usernameInput="ngModel" [(ngModel)]="formData.username">
+    <span>{{ usernameInput.valid }}</span><br>
+    密码：<input type="text" name="password" required #passwordInput="ngModel" [(ngModel)]="formData.password">
+    <span>{{ passwordInput.valid }}</span><br>
+    <button (click)="submitForm(usernameInput, passwordInput)">提交</button>
+    
+    export class HelloComponent {
+      formData = {
+        username: '',
+        password: ''
+      }
+    
+      submitForm(usernameInput: NgModel, passwordInput: NgModel) {
+        console.log('usernameInput', usernameInput)
+        console.log('usernameInput.name', usernameInput.name)
+        console.log('usernameInput.model', usernameInput.model)
+        console.log('passwordInput', passwordInput)
+        console.log('passwordInput.name', passwordInput.name)
+        console.log('passwordInput.model', passwordInput.model)
+      }
+    }
+    ```
+
+    我们还可以通过 **ngModel** 跟踪修改状态与有效性验证，它使用了三个 CSS 类来更新控件，以便反映当前状态。
+
+    | 状态             | 为 true 时的类 | 为 false 时的类 |
+    | ---------------- | -------------- | --------------- |
+    | 控件已经被访问过 | .ng-touched    | .ng-untouched   |
+    | 控件值已经变化   | .ng-dirty      | .ng-pristine    |
+    | 控件值是有效的   | .ng-valid      | .ng-invalid     |
+
+    ```scss
+    // 演示 ngModel 跟踪修改状态，.ng-invalid 表示控件值是无效的
+    .ng-invalid {
+      border-color: red;
+    }
+    ```
+
+12. 自定义表单验证
+
+    先引入表单的一些内置依赖
+
+    ```tsx
+    
+    ```
+
     
