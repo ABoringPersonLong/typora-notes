@@ -156,7 +156,7 @@ Git 之所以快速和高效，主要依赖于它的如下两个特性：
 设置用户信息：
 
 - git config --global user.name "longyuhuan"
-- git config --global user.email "2630819701@qq.com"
+- git config --global user.email "longyuhuanweb@foxmail.com"
 
 注意：如果使用了 **--global** 选项，那么该命令只需要运行一次，即可永久生效。
 
@@ -251,7 +251,7 @@ Git 操作的终极结果：让工作区中的文件都处于 “**未修改**�
 
 ![](images/跟踪新文件-以精简的方式显示文件状态.png)
 
-### 7. 提交跟新
+### 7. 提交更新
 
 现在暂存区中有一个 index.html 文件**等待被提交**到 Git 仓库中进行保存。可以执行 **git commit** 命令进行提交，其中 **-m 选项**后面是本次的**提交消息**，用来**对提交的内容做进一步的描述**：
 
@@ -544,7 +544,7 @@ SSH 由**两部分组成**，分别是：
 
 2. 粘贴如下的命令（-C 后面跟的是 Github 账号的邮箱）：
 
-    ssh-keygen -t rsa -b 4096 -C "2630819701@qq.com"
+    ssh-keygen -t rsa -b 4096 -C "longyuhuanweb@foxmail.com"
 
 3. 连续敲击3次回车，即可在 C:/Users/用户名文件夹/.ssh 目录中生成 id_ras 和 id_rsa.pub 两个文件
 
