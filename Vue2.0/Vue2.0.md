@@ -1376,7 +1376,7 @@ https://v3.vuejs.org/guide/migration/filters.html#migration-strategy
         },
         watch: {
             username: {
-                async handler(newVal, oldVal) {// handler 是固定写法，表示当 username 的值变化时，自动调用 handler 处理函数
+                handler(newVal, oldVal) {// handler 是固定写法，表示当 username 的值变化时，自动调用 handler 处理函数
                     console.log(newVal, oldVal);
                 },
                 immediate: true// 表示页面初次渲染好之后，就立即触发当前的 watch 侦听器
