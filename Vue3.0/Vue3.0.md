@@ -1967,6 +1967,8 @@ pnpm create vite 项目名称 --template vue
 
 ## 3. 环境变量与模式
 
+### 1.vite
+
 - `vite serve` 时是 `development` 开发模式，`vite build` 时是 `production` 生产模式。
 - 分别创建配置文件：`.env.development`、`.env.production`
 - **注意：**命名规范 `VITE_` 为前缀的变量才会暴露给经过 `vite` 处理的代码
@@ -1995,6 +1997,38 @@ VITE_APP_BASE_URL = http://127.0.0.1:3000
 
 ```js
 console.log(import.meta.env.VITE_APP_BASE_URL)
+```
+
+### 2.vue-cli
+
+- 跟上边一样
+- 变量以`VUE_APP_`开头
+- 如果读取不到变量就在 package.json 的 serve 命令值后面加 `--mode development`，build 命令值后面加 `--mode production`
+
+.env.development 文件：
+
+```
+# 开发环境
+ENV = development
+
+# 基本路径
+VUE_APP_BASE_URL = http://localhost:3000
+```
+
+.env.production 文件：
+
+```
+# 生产环境
+ENV = production
+
+# 基本路径
+VUE_APP_BASE_URL = http://127.0.0.1:3000
+```
+
+读取环境变量：
+
+```js
+console.log(process.env.VUE_APP_BASE_URL)
 ```
 
 # 7. Pinia

@@ -156,7 +156,7 @@ Git 之所以快速和高效，主要依赖于它的如下两个特性：
 设置用户信息：
 
 - git config --global user.name "longyuhuan"
-- git config --global user.email "longyuhuanweb@foxmail.com"
+- git config --global user.email "longyuhuanweb@icloud.com"
 
 注意：如果使用了 **--global** 选项，那么该命令只需要运行一次，即可永久生效。
 
@@ -544,7 +544,7 @@ SSH 由**两部分组成**，分别是：
 
 2. 粘贴如下的命令（-C 后面跟的是 Github 账号的邮箱）：
 
-    ssh-keygen -t rsa -b 4096 -C "longyuhuanweb@foxmail.com"
+    ssh-keygen -t rsa -b 4096 -C "longyuhuanweb@icloud.com"
 
 3. 连续敲击3次回车，即可在 C:/Users/用户名文件夹/.ssh 目录中生成 id_ras 和 id_rsa.pub 两个文件
 
