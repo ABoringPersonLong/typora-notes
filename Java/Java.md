@@ -1,6 +1,6 @@
 # mac：
 
-官网下载后解压放到：/Library/Java/JavaVirtualMachines/jdk-17.0.11.jdk
+官网下载后解压放到：/Library/Java/JavaVirtualMachines/jdk-17.0.11
 
 打开 .bash_profile 文件：
 
@@ -12,7 +12,7 @@ open -e .bash_profile
 
 ```bash
 # Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.11.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.11/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH:.
 export CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:.
 ```
