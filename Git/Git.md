@@ -1,3 +1,25 @@
+# 操作：
+
+```bash
+# 拉取
+git pull
+
+# 提交上传
+git add .
+git commit -m 'update'
+git push
+
+# 拉取出现冲突
+git stash
+git pull
+git add .
+git stash pop
+# 在文件中解决冲突后提交上传
+git add .
+git commit -m 'update'
+git push
+```
+
 # 1. 起步
 
 ## 1. 文件的版本

@@ -1,3 +1,66 @@
+# Mac：
+
+偶数版本为稳定版，奇数版本为开发版。
+
+官网下载后解压改名为 mongodb 后放到：/usr/local/mongodb
+
+打开 .bash_profile 文件：
+
+```bash
+open -e .bash_profile
+```
+
+将环境变量添加进去：
+
+```bash
+# MongoDB
+export PATH=${PATH}:/usr/local/mongodb/bin
+```
+
+保存：
+
+```bash
+source .bash_profile
+```
+
+查看版本：
+
+```bash
+mongod -version
+```
+
+创建数据存放路径和日志文件路径：
+
+```bash
+sudo mkdir -p /usr/local/mongodb/data
+sudo mkdir -p /usr/local/mongodb/log
+
+# 确保当前用户对以上两个目录有读写的权限
+sudo chown longyuhuan /usr/local/mongodb/data
+sudo chown longyuhuan /usr/local/mongodb/log
+```
+
+在后台启动 mongodb：
+
+```bash
+mongod --dbpath /usr/local/mongodb/data --logpath /usr/local/mongodb/log/mongo.log --logappend --fork
+```
+
+可在浏览器查看，进入：http://localhost:27017
+
+关闭 mongodb：
+
+```bash
+# 查看 mongo 进程的 pid
+pgrep mongo
+# 按照 pid 关闭进程
+sudo kill 1008(pid)
+```
+
+关闭后查看有没有 /usr/local/mongodb/data/mongod.lock 文件，有就删掉
+
+# Windows：
+
 # 1. 安装 MongoDB
 
 ## 1. 安装 MongoDB Community Server
