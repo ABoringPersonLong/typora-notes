@@ -1,3 +1,25 @@
+# Mac：
+
+用 Homebrew 安装：
+
+```bash
+brew install node@20
+```
+
+配置环境变量：
+
+```bash
+echo 'export PATH="/opt/homebrew/opt/node@20/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+查看版本：
+
+```bash
+node -v
+npm -v
+```
+
 # 1. 初识 Node.js 与内置模块
 
 ## 1. 初识 Node.js

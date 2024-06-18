@@ -1,12 +1,24 @@
 # 操作：
 
 ```bash
+# 设置在拉取时合并远程分支的更改。如果有冲突，需要手动解决。这是默认策
+git config --global pull.rebase false
+
 # 拉取
 git pull
 
-# 提交上传
+# 创建 login 分支
+git checkout -b login
+
+# 提交并推送 login 分支
 git add .
-git commit -m 'update'
+git commit -m '完成了登录功能的开发'
+git push -u origin login
+
+# 切换到 master 合并 login 后删除 login，再提交 master
+git checkout master
+git merge login
+git branch -d login
 git push
 
 # 拉取出现冲突
