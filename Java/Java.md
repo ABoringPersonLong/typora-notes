@@ -12,7 +12,7 @@ open -e .bash_profile
 
 ```bash
 # Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.11/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-22.0.1/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH:.
 export CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:.
 ```

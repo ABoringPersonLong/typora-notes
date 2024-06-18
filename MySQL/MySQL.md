@@ -1,6 +1,6 @@
 # Mac：
 
-官网下载 .dmg 直接安装。
+官网下载 8.0 的最高版本的 .dmg 直接安装。
 
 打开 .bash_profile 文件：
 
@@ -27,3 +27,20 @@ source .bash_profile
 mysql -uroot -padministrator
 ```
 
+启动 mysql 服务：
+
+```bash
+sudo /usr/local/mysql/support-files/mysql.server start
+```
+
+停止 mysql 服务：
+
+```bash
+sudo /usr/local/mysql/support-files/mysql.server stop
+```
+
+重启 mysql 服务：
+
+```bash
+sudo /usr/local/mysql/support-files/mysql.server restart
+```
