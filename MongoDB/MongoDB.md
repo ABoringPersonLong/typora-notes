@@ -4,10 +4,13 @@
 
 官网下载后解压改名为 mongodb 后放到：/usr/local/mongodb
 
-打开 .bash_profile 文件：
+## 添加环境变量
+
+打开`bash shell`和`zsh shell`的环境变量文件：
 
 ```bash
-open -e .bash_profile
+open -e ~/.bash_profile
+open -e ~/.zshrc
 ```
 
 将环境变量添加进去：
@@ -20,7 +23,8 @@ export PATH=${PATH}:/usr/local/mongodb/bin
 保存：
 
 ```bash
-source .bash_profile
+source ~/.bash_profile
+source ~/.zshrc
 ```
 
 查看版本：

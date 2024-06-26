@@ -6,10 +6,26 @@
 brew install node@20
 ```
 
-配置环境变量：
+## 配置环境变量
+
+打开`bash shell`和`zsh shell`的环境变量文件：
 
 ```bash
-echo 'export PATH="/opt/homebrew/opt/node@20/bin:$PATH"' >> ~/.zshrc
+open -e ~/.bash_profile
+open -e ~/.zshrc
+```
+
+将环境变量添加进去：
+
+```bash
+# Node.js
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+```
+
+保存：
+
+```bash
+source ~/.bash_profile
 source ~/.zshrc
 ```
 

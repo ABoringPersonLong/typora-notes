@@ -2,10 +2,13 @@
 
 官网下载 8.0 的最高版本的 .dmg 直接安装。
 
-打开 .bash_profile 文件：
+## 配置环境变量（好像不用）
+
+打开`bash shell`和`zsh shell`的环境变量文件：
 
 ```bash
-open -e .bash_profile
+open -e ~/.bash_profile
+open -e ~/.zshrc
 ```
 
 将环境变量添加进去：
@@ -18,7 +21,8 @@ export PATH=${PATH}:/usr/local/mysql/bin
 保存：
 
 ```bash
-source .bash_profile
+source ~/.bash_profile
+source ~/.zshrc
 ```
 
 登陆：
