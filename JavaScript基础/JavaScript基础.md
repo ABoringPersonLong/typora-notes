@@ -223,7 +223,7 @@
             item: 循环的每一项
             例：
             	将数组里的值全部加起来
-            	const result = array.reduce((total, item) => total += item, 0)
+            	const result = array.reduce((total, item) => total + item, 0)
           find(function (item, index, array) {})：返回数组中满足条件的一项，返回值：true 或 false
           findIndex(function (item, index) {})：返回数组中第一个满足条件的下标
 		        3.属性：
