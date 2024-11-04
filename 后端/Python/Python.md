@@ -1104,3 +1104,31 @@ pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy
 ```
 
 https://pypi.tuna.tsinghua.edu.cn/simple 是清华大学提供的一个网站，可供 pip 程序下载第三方包
+
+# 19.json
+
+```python
+import json
+
+# 准备一个符合 json 格式的数据
+data = [
+    {
+        "name": "zhangsan",
+        "age": 18
+    },
+    {
+        "name": "list",
+        "age": 19
+    }
+]
+
+# python数据 转 json字符串
+jsonStr = json.dumps(data)
+print(type(jsonStr)) # <class 'str'>
+print(jsonStr) # [{"name": "zhangsan", "age": 18}, {"name": "list", "age": 19}]
+
+# json字符串 转 python数据
+array = json.loads(jsonStr)
+print(type(array)) # <class 'list'>
+print(array) # [{'name': 'zhangsan', 'age': 18}, {'name': 'list', 'age': 19}]
+```
