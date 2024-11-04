@@ -762,8 +762,6 @@ fn4(lambda x, y: x + y)
 
 # 17.文件操作
 
-## 文件的读取
-
 open(name, mode, encoding): 打开文件
 
 - name: 要打开的目标文件名（可以包含文件路径）
@@ -774,8 +772,11 @@ mode的访问模式
 
 ![](./images/mode的访问模式.jpg)
 
+## 文件的读取
+
 ```python
-f = open("./files/a.txt", "r", encoding="utf-8")
+# 打开 a.txt 文件，如果没有会报错
+f = open("files/a.txt", "r", encoding="utf-8")
 print(type(f)) # <class '_io.TextIOWrapper'>
 # 关闭文件
 f.close()
@@ -783,7 +784,7 @@ f.close()
 print("****************** 读取全部内容 ******************")
 
 # 读取全部内容
-f = open("./files/a.txt", "r", encoding="utf-8")
+f = open("files/a.txt", "r", encoding="utf-8")
 print(f.read()) # aaa\n
                 # bbb\n
                 # ccc
@@ -792,7 +793,7 @@ f.close()
 print("****************** 只读取2个字节 ******************")
 
 # 只读取4个字节
-f = open("./files/a.txt", "r", encoding="utf-8")
+f = open("files/a.txt", "r", encoding="utf-8")
 print(f.read(4), end="") # aaa\n
 print(f.read(4), end="") # bbb\n
 f.close()
@@ -800,7 +801,7 @@ f.close()
 print("****************** 读取一行 ******************")
 
 # 读取一行
-f = open("./files/a.txt", "r", encoding="utf-8")
+f = open("files/a.txt", "r", encoding="utf-8")
 print(f.readline(), end="") # aaa\n
 print(f.readline(), end="") # bbb\n
 f.close()
@@ -808,14 +809,14 @@ f.close()
 print("****************** 读取全部行 ******************")
 
 # 读取全部行
-f = open("./files/a.txt", "r", encoding="utf-8")
+f = open("files/a.txt", "r", encoding="utf-8")
 print(f.readlines()) # ['aaa\n', 'bbb\n', 'ccc']
 f.close()
 
 print("****************** 循环读取每一行 ******************")
 
 # 循环读取每一行
-f = open("./files/a.txt", "r", encoding="utf-8")
+f = open("files/a.txt", "r", encoding="utf-8")
 for line in f:
     print(line, end="") # aaa\n
                         # bbb\n
@@ -826,7 +827,7 @@ f.close()
 print("****************** with open 语法操作文件 ******************")
 
 # with open 语法操作文件
-with open("./files/a.txt", "r", encoding="utf-8") as f:
+with open("files/a.txt", "r", encoding="utf-8") as f:
     for line in f:
         print(line, end="")  # aaa\n
                              # bbb\n
@@ -837,6 +838,269 @@ with open("./files/a.txt", "r", encoding="utf-8") as f:
 
 ## 文件的写入
 
+注意：
+
+- 直接调用 write，内容并未真正写入文件，而是会积攒在程序的内存中，称之为缓冲区
+- 当调用 flush 的时候，内容会真正写入文件
+- 这样做是避免频繁的操作硬盘，导致效率下降（攒一堆，一次性写磁盘）
+
+```python
+# 打开一个空的 b.txt 文件，如果没有：会创建文件，如果有：会清空文件内容
+f = open("files/b.txt", "w", encoding="utf-8")
+
+# 写入内容
+f.write('hello world')
+
+# 刷新内容（保存）
+# f.flush()
+
+# 关闭文件，close 内置了 flush 的功能
+f.close()
+```
+
 ## 文件的追加
 
-## 文件操作综合案例
+```python
+# 打开 c.txt 文件，如果没有：会创建文件
+f = open("files/c.txt", "a", encoding="utf-8")
+
+# 追加内容
+f.write('hello world\n')
+
+# 刷新内容（保存）
+# f.flush()
+
+# 关闭文件，close 内置了 flush 的功能
+f.close()
+```
+
+# 18.异常、模块与包
+
+## 异常
+
+```python
+# FileNotFoundError: 没有这样的文件或目录：'files/d.txt'
+f = ''
+try:
+    f = open("files/d.txt", "r", encoding="utf-8")
+except FileNotFoundError as e:
+    print(e) # [Errno 2] No such file or directory: 'files/d.txt'
+    print('文件 d.txt 不存在，改为 w 模式去打开')
+    f = open("files/d.txt", "w", encoding="utf-8")
+f.close()
+
+# NameError: 名称为 'a' 的变量未定义
+try:
+    print(a)
+except NameError as e:
+    print(e) # name 'a' is not defined
+
+# ZeroDivisionError: 除零，算式错误
+try:
+    print(1 / 0)
+except ZeroDivisionError as e:
+    print(e) # division by zero
+
+print("****************** 捕获多个异常 ******************")
+
+# 异常1, 异常2, ...
+try:
+    print(a)
+    print(1 / 0)
+except (NameError, ZeroDivisionError) as e:
+    print(e)
+
+print("****************** 捕获所有异常 ******************")
+
+# Exception: 所有异常
+try:
+    print(a)
+    print(1 / 0)
+except Exception as e:
+    print(e)
+
+print("****************** else 和 finally ******************")
+
+# NameError: 名称为 'a' 的变量未定义
+try:
+    print('111')
+    # print(a)
+except NameError as e:
+    print(e)
+else:
+    # 没有异常才会执行
+    print('没有异常')
+finally:
+    # 有没有异常都执行
+    print('有没有异常都执行')
+```
+
+## 模块
+
+模块（Module）就是一个 Python 文件，里面有类、函数、变量等、我们可以拿过来用（导入模块去使用）
+
+### 模块的导入
+
+语法：`[form 模块名] import [模块 | 类 | 变量 | 函数 | *] [as 别名]`
+
+常用的组合形式如：
+
+- import 模块名
+- from 模块名 import 类、变量、方法等
+- from 模块名 import *
+- import 模块名 as 别名
+- from 模块名 import 功能名 as 别名
+
+```python
+# 导入 time 模块
+import time
+print('开始')
+time.sleep(1) # 让程序睡眠 1 秒（阻塞）
+print('结束')
+
+# 导入 time 模块中的 sleep
+from time import sleep
+print('开始2')
+sleep(1) # 直接写 sleep
+print('结束2')
+
+# 导入 time 模块中的全部功能
+from time import *
+print('开始3')
+sleep(1) # 直接写 sleep
+print('结束3')
+
+print("****************** as 起别名 ******************")
+
+# 模块别名
+import time as t
+print('开始4')
+t.sleep(1)
+print('结束4')
+
+# 功能别名
+from time import sleep as sl
+print('开始5')
+sl(1)
+print('结束5')
+```
+
+### 自定义模块
+
+```python
+import GlobalUtils
+# 调用自定义 sum() 方法
+print(GlobalUtils.sum(10, 20)) # 30
+
+from GlobalUtils import *
+fn1()
+# fn2() # 未导入进来
+```
+
+GlobalUtils.py 文件：
+
+```python
+# 设置在使用 'from GlobalUtils import *' 导入时，只能导入 __all__ 中定义的元素
+__all__ = ['sum', 'fn1']
+
+# 求和
+def sum(num1, num2):
+    return num1 + num2
+
+# 方法1
+def fn1():
+    print('fn1')
+
+# 方法2
+def fn2():
+    print('fn2')
+
+# python 的内置变量 __main__，当运行本模块时它的值为 '__main__'，反之被其他模块导入时它的值为本模块名 'GlobalUtils'
+# 这样判断就可以实现运行本模块做测试
+if __name__ == '__main__':
+    print(sum(1, 2))
+    fn1()
+    fn2()
+```
+
+## 包
+
+从物理上看，包就是一个文件夹，在该文件夹下包含了一个 \__init__.py 文件，该文件夹可用于包含多个模块文件
+
+从逻辑上看，包的本质依然是模块
+
+### 自定义包
+
+结构：
+
+![](./images/自定义包结构.jpg)
+
+```python
+# 导入包中的模块
+import my_package.my_module1
+import my_package.my_module2
+my_package.my_module1.fn1()
+my_package.my_module2.fn2()
+
+# 导入包中的模块中的功能
+from my_package.my_module1 import fn1
+from my_package.my_module2 import fn2
+fn1()
+fn2()
+
+# 导入包中的所有模块
+from my_package import *
+my_package.my_module1.fn1()
+# my_package.my_module3.fn3() # 未导入进来
+```
+
+\__init__.py 文件：
+
+```python
+# 在使用 'from my_package import *' 导入时，只能导入 __all__ 中定义的元素
+__all__ = ['my_module1', 'my_module2']
+```
+
+my_module1.py 文件：
+
+```python
+def fn1():
+    print('fn1')
+```
+
+my_module2.py 文件：
+
+```python
+def fn2():
+    print('fn2')
+```
+
+my_module3.py 文件：
+
+```python
+def fn3():
+    print('fn3')
+```
+
+### 安装第三方包
+
+在 Python 程序的生态中，有许多非常多的第三方包（非 Python 官方），可以极大的帮助我们提高开发效率，如：
+
+- 科学计算中常用的：numpy
+- 数据分析中常用的：pandas
+- 大数据计算中常用的：pyspark、apache-flink
+- 图形可视化常用的：matplotlib、pyecharts
+- 人工智能常用的：tensorflow
+
+第三方包的安装非常简单，我们只需要使用 Python 内置的 pip 程序即可。
+
+```bash
+# 查看 pip 的版本
+python3 -m pip --version
+# 安装 numpy 包
+pip3 install numpy
+# 安装 numpy 包，用国内网址安装
+pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy
+```
+
+https://pypi.tuna.tsinghua.edu.cn/simple 是清华大学提供的一个网站，可供 pip 程序下载第三方包
